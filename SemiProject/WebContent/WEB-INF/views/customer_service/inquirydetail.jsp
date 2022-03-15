@@ -1,10 +1,15 @@
+<%@page import="dto.InquiryAnswer"%>
 <%@page import="dto.Inquiry"%>
 <%@page import="java.util.List"%>
+<%@page import="dto.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../layout/header.jsp" %>
 
-<% List<Inquiry> list = (List)request.getAttribute("list"); %>
+<%
+	Inquiry inquiry = (Inquiry)request.getAttribute("inquiry"); 
+	InquiryAnswer inquiryAnswer = (InquiryAnswer)request.getAttribute("inquiryAnswer");
+%>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -14,23 +19,8 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-function pwtest(inquiry_no, password){
-	
-	var inputpw = prompt("비밀번호를 입력하세요")
-	
-	if(password == inputpw){
-		location.href="/inquiry/detail?inquiry_no="+inquiry_no;
-	} else {
-		alert("비밀번호가 틀렸습니다.")
-	}
-}
-
-</script>
 
 <style type="text/css">
-
 
 #submenu{
 	text-align:center;
@@ -52,54 +42,47 @@ a:hover{
 	color:blue;
 }
 
+hr{
+	border:1px solid black;
+}
+
+button{
+	margin:10px;
+}
+
 </style>
 
 <div class="container text-center">
-<br><br><br>
-
-<div class="col-xs-offset-11 col-xs-1 btn-xs" onclick="location.href='/inquiry/write'"><button>문의하기</button></div>
-
-<br><br>
-
+<br><br><br><br><br>
 <div id="submenu" class="col-xs-2">
 <h3><strong>고객센터</strong></h3>
 <span><a href="/notice/list">공지사항</a></span><br>
 <span><strong><a href="/inquiry/list">1:1질문</a></strong></span>
 </div>
 
-<div id="list" class="col-xs-10">
-
-<table class="table table-striped table-hover table-condensed">
-<tr>
-	<th>제목</th>
-	<th>작성자</th>
-	<th>날짜</th>
-</tr>
-
-<%	for(int i=0; i<list.size(); i++) { %>
-<tr onclick="pwtest(<%=list.get(i).getInquiry_no() %>, <%=list.get(i).getPassword()%>);">
-	<td><%=list.get(i).getTitle() %></td>
-	<td><%=list.get(i).getId() %></td>
-	<td><%=list.get(i).getWrite_date() %></td>
-</tr>
-<%	} %>
-
-</table>
-
+<div class="col-xs-10">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+			<h3 id="title" align="left"><%=inquiry.getTitle() %></h3>
+			<h6 id="write_date" align="left"><%=inquiry.getWrite_date() %></h6><hr>
+			<p id="content"><%=inquiry.getContent() %></p><hr>
+			<p><%=inquiryAnswer.getContent() %></p>
+			
+			
+				<div class="btn-group btn-group-md" role="group">
+					 <button class="btn btn-secondary" onclick="location.href='/inquiry/list'">
+				    	목록
+					</button>
+					<button class="btn btn-secondary" onclick="location.href='/inquiry/delete?inquiry_no=<%=inquiry.getInquiry_no()%>'">
+				    	삭제
+					</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
 </div>
 
 </div>
-
-<%@ include file="./layout/inquiryPaging.jsp" %>
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
