@@ -1,6 +1,11 @@
+<%@page import="dto.Notice"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../layout/header.jsp" %>
+
+<% List<Notice> list = (List)request.getAttribute("list");%>
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -9,9 +14,7 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
 
-</script>
 
 <style type="text/css">
 
@@ -51,16 +54,16 @@ a:hover{
 
 <table class="table table-striped table-hover table-condensed">
 <tr>
-	<th>분류?</th>
+	<th>번호</th>
 	<th>제목</th>
 	<th>날짜</th>
 </tr>
 
-<%	for(int i=0; i<3; i++) { %>
-<tr onclick="location.href=''">
-	<td>ㅇ</td>
-	<td>ㅇ</td>
-	<td>ㅇ</td>
+<%	for(int i=0; i<list.size(); i++) { %>
+<tr onclick="location.href='/notice/detail?notice_no=<%=list.get(i).getNotice_no() %>'">
+	<td><%=list.get(i).getNotice_no() %></td>
+	<td><%=list.get(i).getTitle() %></td>
+	<td><%=list.get(i).getWrite_date() %></td>
 </tr>
 <%	} %>
 
@@ -70,7 +73,7 @@ a:hover{
 
 </div>
 
-
+<%@ include file="./layout/paging.jsp" %>
 
 
 
