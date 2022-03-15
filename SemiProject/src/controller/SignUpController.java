@@ -28,7 +28,7 @@ public class SignUpController extends HttpServlet {
 		user.setNickname(req.getParameter("userJoinnick"));
 		user.setPassword(req.getParameter("userJoinpw"));
 		user.setGender(req.getParameter("gender"));
-		user.setPhonenumber(Integer.parseInt(req.getParameter("userJoinphone")));
+		user.setPhonenumber(req.getParameter("userJoinphone"));
 		
 		//기존회원인지 확인
 		boolean isExistence = accountService.userCheck(user);
