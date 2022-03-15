@@ -7,72 +7,60 @@ public class UserInfo {
     private String gender;
     private String nickname;
     private String sympton;
-    private int phonenumber;
+    private String phonenumber;
     
     //toString
 	@Override
 	public String toString() {
 		return "UserInfo [userNo=" + userNo + ", id=" + id + ", password=" + password + ", gender=" + gender
 				+ ", nickname=" + nickname + ", sympton=" + sympton + ", phonenumber=" + phonenumber + "]";
-	} 
+	}
 	
-
-	//getter and setters
+	//setter, getter
 	public int getUserNo() {
 		return userNo;
 	}
-
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getGender() {
 		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 	public String getNickname() {
 		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 	public String getSympton() {
 		return sympton;
 	}
-
 	public void setSympton(String sympton) {
 		this.sympton = sympton;
 	}
-
-	public int getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
-
-	public void setPhonenumber(int phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
+    
+  
     
 	
     
