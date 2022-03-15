@@ -77,8 +77,8 @@ public class AccountDaoImpl implements AccountDao{
 	@Override
 	public int insertUser(Connection conn, UserInfo user) {
 		String sql = "";
-		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, NICKNAME, SYMPTON, PHONENUMBER)";
-		sql += " VALUES(user_seq.nextval, ?, ?, ?, ?, ?, ?)";
+		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, SYMPTON, PHONENUMBER)";
+		sql += " VALUES(user_seq.nextval, ?, ?, ?, ?, ?)";
 		
 		int cnt = 0; 
 		try {
@@ -87,8 +87,7 @@ public class AccountDaoImpl implements AccountDao{
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getGender());
 			ps.setString(4, user.getNickname());
-			ps.setString(5, "증상");
-			ps.setInt(6, user.getPhonenumber());
+			ps.setString(5, user.getPhonenumber());
 			cnt = ps.executeUpdate();
 			
 		} catch (SQLException e) {
