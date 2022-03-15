@@ -232,7 +232,7 @@ li{list-style:none;}
 <h3 style="clear:right;font-size:25px;width:75px;margin:0 auto;">로그인</h3>
 <div style="width:300px;margin:50px auto 0;">
 <label for="userid" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userid" name="userid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디">
+<input id="userid" name="userid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디" type="text">
 </div>
 <div style="clear:left;width:300px;margin:15px auto;">
 <label for="userpw"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
@@ -259,12 +259,12 @@ li{list-style:none;}
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
 <div style="width:300px;margin:50px auto 0;">
 <label for="userJoinid" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinid" name="userJoinid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력">
+<input id="userJoinid" name="userJoinid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text">
 <span id="rescheckid" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 <div style="width:300px;margin:0 auto;">
 <label for="userJoinnick" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinnick" name="userJoinnick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임">
+<input id="userJoinnick" name="userJoinnick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
 <span id="reschecknick" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 
@@ -280,7 +280,7 @@ li{list-style:none;}
 
 <div  style="width:300px;margin:18px auto;">
 <label for="userJoinphone"  style="cursor:pointer;background:url(../../resources/img/mobile_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinphone" name="userJoinphone"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="'-' 제외하고 입력해주세요" type="tel">
+<input id="userJoinphone" name="userJoinphone"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="'-' 제외하고 입력해주세요" type="text">
 </div>
 
 <div style="width:155px;margin:15px auto;">
