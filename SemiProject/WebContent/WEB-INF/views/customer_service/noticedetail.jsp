@@ -48,16 +48,15 @@ $(document).ready(function(){
 
 function ajax(curNo){
 	$.ajax({
-		type:"post" //요청메소드
-		,url:"/notice/detail" //요청 URL
-		,data:{ //요청 파라미터
+		type:"post"
+		,url:"/notice/detail"
+		,data:{
 			notice_no:curNo
 		}
-		, dataType:"html" //응답 데이터의 형식
+		, dataType:"html"
 		, success:function(res){
 			console.log("AJAX 성공")
 			
-			//응답 데이터 반영하기
 			$('#resultLayout').html(res)
 		}
 		, error:function(){

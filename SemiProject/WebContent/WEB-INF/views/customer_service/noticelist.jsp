@@ -73,7 +73,7 @@ a:hover{
 
 </div>
 
-<%@ include file="./layout/paging.jsp" %>
+<%@ include file="./layout/noticePaging.jsp" %>
 
 
 

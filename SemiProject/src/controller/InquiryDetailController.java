@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,24 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import service.face.InquiryService;
 import service.impl.InquiryServiceImpl;
-import util.Paging;
 
-@WebServlet("/inquiry/list")
-public class InquiryListController extends HttpServlet {
+@WebServlet("/inquiry/detail")
+public class InquiryDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	InquiryService inquiryService = new InquiryServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Paging paging = inquiryService.getPaging(req);
+		Inquiry inquiry = new Inquiry();
+		InquiryAnswer inquiryAnswer = new InquiryAnswer();
 		
-		List<Inquiry> list = inquiryService.getInquiryList(paging);
-		req.setAttribute("list", list);
-		req.setAttribute("paging", paging);
-		req.getRequestDispatcher("/WEB-INF/views/customer_service/inquirylist.jsp").forward(req, resp);
+		inquiry = inquiryService.getInquiry(req);
+		inquiryAnswer = inquiryService.getInquiryAnswer(req);
+		
+		req.setAttribute("inquiry", inquiry);
+		req.setAttribute("inquiryAnswer", inquiryAnswer);
+		
+		req.getRequestDispatcher("/WEB-INF/views/customer_service/inquirydetail.jsp").forward(req, resp);
 	}
-
+	
 }
