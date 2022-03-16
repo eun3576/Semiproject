@@ -217,6 +217,7 @@ li{list-style:none;}
 </li>
 <li>제품추천</li>
 <li>제품후기</li>
+<!-- 제품 후기 선택시 제품 후기 리스트로 이동 기능 추가 예정 -->
 <li>BEST3</li>
 <li>고객센터
 <ul class="subMenu subMenuB">
