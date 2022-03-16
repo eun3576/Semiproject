@@ -174,6 +174,9 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
 #header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
 /* header style layout end */
+
+#footer { text-align: center; }
+/* footer style layout */
 </style>
 </head>
 <body>
