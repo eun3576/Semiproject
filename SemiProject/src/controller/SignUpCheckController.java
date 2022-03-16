@@ -30,7 +30,7 @@ public class SignUpCheckController extends HttpServlet {
 			while(accountDao.userIdCheck(conn, user)==false) {
 				PrintWriter out = resp.getWriter();
 				out.write("사용중인 아이디 입니다.");
-				return;
+				break;
 			}
 		}
 		if(req.getParameter("userJoinnick")!=null) {
@@ -38,7 +38,7 @@ public class SignUpCheckController extends HttpServlet {
 			while(accountDao.userNickCheck(conn, user)==false) {
 				PrintWriter out = resp.getWriter();
 				out.write("사용중인 닉네임입니다");
-				return;
+				break;
 			}
 		}
 	}
