@@ -86,6 +86,11 @@ $(document).ready(function(){
 	//로그인창 닫기
 	$("#loginClose").click(function(){
 		$("#login").hide();
+		
+		//닫을 때 기존 기록 삭제
+		$("#userid").val("");
+		$("#userpw").val("");
+		
 	})
 	//로그인 유지 준비중
 	$("#loginkeep").click(function(){
@@ -126,9 +131,23 @@ $(document).ready(function(){
 		ajaxToServerNick();
 	})
 	
-	//회원가입창 닫기
+	//회원가입창 닫기/닫으면서 기록한거 삭제
 	$("#userJoinClose").click(function(){
+		//숨기기
 		$("#userJoin").hide();
+		
+		//작성한거 삭제
+		$("#userJoinid").val("");
+		$("#userJoinnick").val("");
+		$("#userJoinpw").val("");
+		$("#userJoinpwcheck").val("");
+		$("#userJoinphone").val("");
+		$("#gender1").prop("checked",false);
+		$("#gender2").prop("checked",false);
+		$("#terms1").prop("checked",false);
+		$("#terms2").prop("checked",false);
+		$("#terms3").prop("checked",false);
+		
 	})
 	
 	//가입하기 버튼 클릭시 submit하도록 한다
