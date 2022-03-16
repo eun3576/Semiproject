@@ -33,8 +33,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
+//			if(rs!=null)JDBCTemplate.close(rs);
+//			if(ps!=null)JDBCTemplate.close(ps);
 		}
 		
 		if(cnt<=0) {
@@ -63,8 +63,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
+//			if(rs!=null)JDBCTemplate.close(rs);
+//			if(ps!=null)JDBCTemplate.close(ps);
 		}
 		
 		if(cnt<=0) {
