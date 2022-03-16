@@ -165,9 +165,9 @@ $(document).ready(function(){
 })
 </script>
 
-
 <!-- style sheet -->
 <style type="text/css">
+body{margin:0;padding:0;}
 /* header style layout start */
 div{padding:0;}
 li{list-style:none;}
@@ -193,6 +193,11 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
 #header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
 /* header style layout end */
+/* footer style layout start */
+#footer{height:50px;background-color:#eee;margin:0;padding:0;}
+#footer ul{width:1200px;margin:0 auto;padding:0;text-align: center;}
+#footer ul li{display:inline-block;margin-right:30px;}
+/* footer style layout end */
 </style>
 </head>
 <body>
@@ -324,5 +329,4 @@ li{list-style:none;}
 </div>
 
 
-</body>
-</html>
+
