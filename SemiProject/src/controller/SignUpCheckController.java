@@ -29,7 +29,7 @@ public class SignUpCheckController extends HttpServlet {
 			user.setId(req.getParameter("userJoinid"));
 			while(accountDao.userIdCheck(conn, user)==false) {
 				PrintWriter out = resp.getWriter();
-				out.write("사용중인 아이디 입니다.");
+				out.write("사용중인 아이디입니다.");
 				break;
 			}
 		}
