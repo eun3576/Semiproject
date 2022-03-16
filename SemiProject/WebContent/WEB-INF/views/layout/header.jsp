@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html>
 <title>header</title>
+
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="../../resources/js/userJoinCheck.js"></script>
 <script type="text/javascript" src="../resources/js/httpRequest.js"></script>
+
 <!-- 회원가입 ajax script -->
 <script type="text/javascript">
 function ajaxToServerId(){

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Review;
+import dto.UserInfo;
 
 public interface ReviewDao {
 	
@@ -22,6 +23,15 @@ public interface ReviewDao {
 	 * @return Review - 조회된 후기글의 상세정보 DTO 객체
 	 */
 	public Review selectReviewByReviewno(Connection conn, Review reviewno);
+	
+	/**
+	 * user_no를 이용해 nick을 조회한다.
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param reviewno - 조회할 reviewno를 가진 객체
+	 * @return Userinfo - 작성자 유저 정보
+	 */
+	public UserInfo selectUserInfoByReviewno(Connection conn, Review reviewno);
 	
 	/**
 	 * @param conn - DB연결 객체

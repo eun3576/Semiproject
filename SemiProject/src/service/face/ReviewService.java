@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Review;
+import dto.UserInfo;
+
 
 public interface ReviewService {
 	
@@ -25,6 +27,15 @@ public interface ReviewService {
 	public Review getReviewno(HttpServletRequest req);
 	
 	/**
+	 * 전달된 reviewno를 이용하여 작성자의 정보를 조회한다.
+	 * 
+	 * @param review - 조회할 reviewno를 가지고 있는 DTO객체
+	 * @return UserInfo - 조회된 유저의 정보
+	 * 
+	 */
+	public UserInfo getUserInfoByReviewno(Review reviewno);
+	
+	/**
 	 * 전달된 reviewno을 이용하여 게시글을 조회한다.
 	 * 
 	 * 조회된 게시글의 조회수를 1 증가 시킨다.
@@ -32,7 +43,8 @@ public interface ReviewService {
 	 * @param review - 조회할 reviewno를 가지고 있는 DTO객체
 	 * @return Review - 조회된 게시글 정보
 	 */
-	public Review view(Review review);
+	public Review view(Review reviewno);
+	
 	
 	/**
 	 * 후기 작성 - 후기 작성 페이지에서의 입력 데이터 삽입 

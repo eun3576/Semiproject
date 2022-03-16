@@ -9,6 +9,7 @@ import common.JDBCTemplate;
 import dao.face.ReviewDao;
 import dao.impl.ReviewDaoImpl;
 import dto.Review;
+import dto.UserInfo;
 import service.face.ReviewService;
 
 public class ReviewServiceImpl implements ReviewService{
@@ -37,7 +38,21 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		return reviewno;
 	}
-
+	
+	
+	
+	@Override
+	public UserInfo getUserInfoByReviewno(Review reviewno) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//전달된 reviewno에 따른 유저 정보 유저 객체에 저장 
+		UserInfo userInfo = reviewDao.selectUserInfoByReviewno(conn, reviewno);
+		
+		return userInfo;
+	}
+	
+	
 	@Override
 	public Review view(Review reviewno) {
 		
@@ -56,6 +71,7 @@ public class ReviewServiceImpl implements ReviewService{
 		return review;
 	}
 
+	
 	@Override
 	public void write(HttpServletRequest req) {
 		
@@ -125,5 +141,6 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		
 	}
+
 
 }

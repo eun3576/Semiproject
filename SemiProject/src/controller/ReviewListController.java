@@ -13,6 +13,8 @@ import dto.Review;
 import service.face.ReviewService;
 import service.impl.ReviewServiceImpl;
 
+// 제품 후기 리스트 조회하는 컨트롤러
+
 @WebServlet("/review/list")
 public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

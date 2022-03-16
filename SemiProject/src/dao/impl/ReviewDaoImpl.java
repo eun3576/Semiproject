@@ -10,6 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.ReviewDao;
 import dto.Review;
+import dto.UserInfo;
 
 public class ReviewDaoImpl implements ReviewDao {
 
@@ -71,6 +72,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		return reviewList;
 	}
 
+	
+	
 	@Override
 	public Review selectReviewByReviewno(Connection conn, Review reviewno) {
 		
@@ -123,7 +126,53 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return review;
 	}
+	
+	
+	
+	@Override
+	public UserInfo selectUserInfoByReviewno(Connection conn, Review reviewno) {
+		
+		//review_no에 따른 SQL 작성
+		String sql = "";
+		sql += "SELECT review.review_no, review.user_no, userinfo.nickname"; 
+		sql += " FROM review, userinfo";
+		sql += " WHERE review.user_no = userinfo.user_no";
+		sql += " AND review.review_no = ?";
+		
+		//유저 정보 저장할 객체
+		UserInfo userInfo = null;
+		
+		try {
+			
+			//SQL 수행
+			ps = conn.prepareStatement(sql);
+			
+			//SQL수행문 1번째 매개변수에 reviewno 대입
+			ps.setInt(1, reviewno.getReview_no());
+			
+			//SQL수행 및 결과 집합 저장
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				//유저 정보 저장할 객체
+				userInfo = new UserInfo();
+				
+				//결과값 행 처리
+				userInfo.setNickname(rs.getString("nickname"));
+				userInfo.setUserNo(rs.getInt("user_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return userInfo;
+	}
 
+	
+	
 	@Override
 	public int updateView(Connection conn, Review reviewno) {
 		
@@ -246,4 +295,5 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return res;
 	}
+
 }
