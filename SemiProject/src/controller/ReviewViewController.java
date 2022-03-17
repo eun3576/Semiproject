@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Attachment;
 import dto.Review;
 import dto.UserInfo;
 import service.face.ReviewService;
@@ -36,16 +37,24 @@ public class ReviewViewController extends HttpServlet {
 		Review viewReview = reviewService.view(reviewno);
 		
 		//reviewno에 따른 유저정보 객체 
-		UserInfo userInfo = reviewService.getUserInfoByReviewno(reviewno);
+		UserInfo userInfo = reviewService.getNickSymptonByReviewno(reviewno);
 		
 		
-		//viewReview, userinfo 중간 test
+		//viewReview, userInfo 중간 test
 //		System.out.println("ReviewController viewReview - " + viewReview);
-		System.out.println("ReviewController userinfo" + userInfo);
+//		System.out.println("ReviewController userInfo" + userInfo);
+		
 		
 		//조회결과 MODEL값 전달
 		req.setAttribute("viewReview", viewReview);
 		req.setAttribute("userInfo", userInfo);
+		
+		//첨부파일 정보 조회
+		Attachment attach = reviewService.viewFile(viewReview);
+		
+		//첨부파일 정보 MODEL값 전달
+		req.setAttribute("attach", attach);
+		
 		
 		//VIEW지정 및 응답 - forward
 		req.getRequestDispatcher("/WEB-INF/views/review/view.jsp").forward(req, resp);

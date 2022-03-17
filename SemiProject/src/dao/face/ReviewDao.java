@@ -3,6 +3,7 @@ package dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import dto.Attachment;
 import dto.Review;
 import dto.UserInfo;
 
@@ -13,7 +14,17 @@ public interface ReviewDao {
 	 * @param conn - DB 연결 객체
 	 * @return List<Review> - Review 테이블 전체 조회 결과 목록
 	 */
-	public List<Review> selectAll(Connection conn);
+	public List<Review> selectReviewAll(Connection conn);
+	
+	/**
+	 * review의 user_no컬럼과 userinfo의 user_no컬럼과 같은
+	 * nickname와 sympton list 조회
+	 * 
+	 * @param conn - DB 연결 객체 
+	 * @return List<UserInfo> - review에 따른 작성자 list
+	 * 
+	 */
+	public List<UserInfo> selectNickSympAll(Connection conn);
 	
 	/**
 	 * 지정된 reviewno의 후기글 조회하기
@@ -25,13 +36,47 @@ public interface ReviewDao {
 	public Review selectReviewByReviewno(Connection conn, Review reviewno);
 	
 	/**
-	 * user_no를 이용해 nick을 조회한다.
-	 * 
+	 * review_no컬럼을 이용하여 nickname, sympton 컬럼 조회
+	 *  
 	 * @param conn - DB 연결 객체
 	 * @param reviewno - 조회할 reviewno를 가진 객체
 	 * @return Userinfo - 작성자 유저 정보
 	 */
-	public UserInfo selectUserInfoByReviewno(Connection conn, Review reviewno);
+	public UserInfo selectNickSympByReviewno(Connection conn, Review reviewno);
+	
+	/** 
+	 * 시퀀스를 이용하여 다음 후기글 번호를 조회한다.
+	 * 
+	 * @param conn - DB연결 객체 
+	 * @return int - 다음 후기글 번호
+	 */
+	public int selectReivewno(Connection conn);
+	
+	/**
+	 * nickname을 통하여 user_no조회한다.
+	 * 
+	 * @param conn - DB연결 객체
+	 * @return UserInfo - nickname에 대한 userno
+	 */
+	public UserInfo selectUsernobyNick(Connection conn, UserInfo userInfo);
+	
+	/**
+	 * 첨부파일 삽입 
+	 * 
+	 * @param conn - DB 연결 객체 
+	 * @param attach - 첨부파일 정보
+	 * @return int - INSERT 쿼리 수행 결과
+	 */
+	public int insertFile(Connection conn, Attachment attach);
+	
+	/**
+	 * 첨부파일 정보 조회
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param reviewno - 조회할 후기글 번호가 있는 DTO객체 
+	 * @return Attachment - 첨부파일 정보
+	 */
+	public Attachment selectFile(Connection conn, Review reviewno);
 	
 	/**
 	 * @param conn - DB연결 객체
@@ -66,4 +111,13 @@ public interface ReviewDao {
 	 * @return
 	 */
 	public int delete(Connection conn, Review review);
+	
+	/**
+	 * 후기글에 첨부된 파일 기록 삭제
+	 * 
+	 * @param conn - DB연결 객체 
+	 * @param review - 삭제할 후기글 번호를 담은 객체 
+	 * @return int - 쿼리문 수행 결과 
+	 */
+	public int deleteFile(Connection conn, Review review);
 }

@@ -148,7 +148,6 @@ $(document).ready(function(){
 })
 </script>
 
-
 <!-- style sheet -->
 <style type="text/css">
 /* header style layout start */

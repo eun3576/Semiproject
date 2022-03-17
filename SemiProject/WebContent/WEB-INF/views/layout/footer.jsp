@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!-- 웹 페이지 하단부 파일 -->
+<hr>
 <div id="footer">
 	<small>영추영추Inc.</small>
 </div>
