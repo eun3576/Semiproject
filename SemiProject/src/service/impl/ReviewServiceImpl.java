@@ -389,6 +389,8 @@ public class ReviewServiceImpl implements ReviewService{
 					review.setContent(value);
 				}
 				
+				
+				System.out.println("여기 확인좀 하자!!!!" + review);
 			}//if (item.isFormField()) end
 			
 			

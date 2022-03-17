@@ -48,6 +48,9 @@ th {
 	width: 20%;
 }
 
+.table {
+	table-layout:fixed;
+}
 </style>
 
 <div class="container">

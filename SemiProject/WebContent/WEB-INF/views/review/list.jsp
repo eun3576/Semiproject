@@ -36,6 +36,9 @@ $(document).ready(function () {
 
 <style type="text/css">
 
+#list{
+	overflow-x:hidden;
+}
 
 .main_list {
     width: 1000px;
@@ -53,7 +56,7 @@ $(document).ready(function () {
     height: 170px;
 	border: 2px solid #f2dede;
  	border-radius: 40px 80px; 
-    margin: 13px;
+    margin: 6px;
     padding: 9px;
     background-color: #f2dede;
 }
@@ -70,7 +73,7 @@ $(document).ready(function () {
 
 	<% for(int i=0; i<reviewList.size(); i++) { %>
 
-		<div class="list_detail">
+		<div id="list" class="list_detail">
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
 			증상: <%=nickList.get(i).getSympton() %><br>

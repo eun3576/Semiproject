@@ -8,11 +8,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- 스마트에디터2 설치 -->
+<script type="text/javascript" src="../resources/se2/js/service/HuskyEZCreator.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	//작성버튼 동작
 	$("#btnWrite").click(function() {
+		
+		//submit전에 스마트에디터에 작성된 내용을 <textarea>로 반영한다
+		submitContents( $("#btnWrite") );
+		
 		$("form").submit();
 	})
 	
@@ -22,10 +29,25 @@ $(document).ready(function() {
 	})
 	
 })	
+
+//스마트에디터에 작성한 내용을 <textarea>에 반영하는 함수
+function submitContents( elClickedObj ) {
+	
+	//에디터의 내용을 #content에 반영한다
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		//<form>태그의 submit을 수행한다
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+}
 	
 </script>
 
 <style type="text/css">
+
+
 </style>
 
 <div class="container">
@@ -53,7 +75,7 @@ $(document).ready(function() {
 		</tr>
 		
 		<tr>
-			<td colspan="2"><textarea class="form-control" name="reviewContent" placeholder="후기 내용을 입력 하세요."></textarea></td>
+			<td colspan="2"><textarea class="form-control" id="content" name="reviewContent" placeholder="후기 내용을 입력 하세요."></textarea></td>
 		</tr>
 	
 	</table>
@@ -70,8 +92,18 @@ $(document).ready(function() {
 
 </div>
 
-
 </div>
 <!-- .container -->
+
+<!-- <textarea>태그에 스마트에디터2를 스킨 적용하는 스크립트 -->
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content", //스킨을 적용할 <textarea>의 id를 적어준다
+	sSkinURI: "../resources/se2/SmartEditor2Skin.html",
+	fCreate: "createSEditor2"
+})
+</script>
 
 <%@ include file="../layout/footer.jsp"%>

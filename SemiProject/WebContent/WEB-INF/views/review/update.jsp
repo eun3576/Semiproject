@@ -15,6 +15,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- 스마트에디터 2 -->
+<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
+
+<!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
+<script type="text/javascript">
+function submitContents( elClickedObj ) {
+	
+	//에디터의 내용을 #content에 반영한다
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+}
+</script>
 
 <script type="text/javascript">
 
@@ -22,9 +38,11 @@ $(document).ready(function() {
 	
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
-		console.log("수정 버튼 눌러짐 테스트")
+		
+		//스마트 에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
+		submitContents( $("#btnUpdate") )
+		
 		$("form").submit();
-		console.log(parameter)
 	})
 	
 	//취소버튼 동작
@@ -70,7 +88,7 @@ $(document).ready(function() {
 	작성 페이지에 반영하는 것 추후에 추가 해야한다. -->
 		<tr>
 			<th>글번호: <%=updateReview.getReview_no() %></th>
-			<th>작성한 : <%=userInfo.getNickname() %></th>
+			<th>닉네임 : <%=userInfo.getNickname() %></th>
 		</tr>
 		<tr>
 			<th colspan="2">후기 제목 수정하기</th>
@@ -85,7 +103,7 @@ $(document).ready(function() {
 		<tr><th colspan="2">본문</th></tr>
 		
 		<tr>
-			<td colspan="2"><textarea class="form-control" name="reviewContent" 
+			<td colspan="2"><textarea class="form-control" id="content" name="reviewContent" 
 			placeholder="수정할 후기 내용을 입력 하세요."><%=updateReview.getContent() %></textarea></td>
 		</tr>
 	
@@ -129,5 +147,15 @@ $(document).ready(function() {
 
 </div>
 <!-- .container -->
+
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content", //에디터가 적용될 <textarea>의 id를 입력
+	sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2"
+})
+</script>
 
 <%@ include file="../layout/footer.jsp"%>
