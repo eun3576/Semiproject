@@ -9,7 +9,6 @@
 <!-- header삽입 -->
 <%@include file="./views/layout/header.jsp" %>
 <!--<<<<<<< jyj-->
-<!-- <h1>메인이 있는데 왜 ㅇ없다고 그러냐</h1> -->
 
 <!-- 웹페이지 하단부 영역 추가 -->
 <%-- <%@include file="./views/layout/footer.jsp" %> --%>
@@ -213,7 +212,7 @@ $(document).ready(function(){
 
 <%} %>
 </div>
+<!-- >>>>>>> main -->
 
 <!-- footer삽입 -->
 <%@include file="./views/layout/footer.jsp" %>
-<!-->>>>>>> main-->
