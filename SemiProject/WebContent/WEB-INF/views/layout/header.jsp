@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<!--<<<<<<< jyj-->
 <title>header</title>
+<!--=======-->
+<title>영추영추</title>
+<!-->>>>>>> main-->
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -78,6 +82,7 @@ $(document).ready(function(){
 	$("#login").hide();
 	//로그인 창 열기
 	$("#loginOpen").click(function(){
+		$("#login").css("display","block");
 		$("#login").show();
 		//페이지 접속시 처음 input(아이디)에 포커스
 		$("#userid").focus();
@@ -87,7 +92,13 @@ $(document).ready(function(){
 	})
 	//로그인창 닫기
 	$("#loginClose").click(function(){
+		$("#login").css("display","none");
 		$("#login").hide();
+		
+		//닫을 때 기존 기록 삭제
+		$("#userid").val("");
+		$("#userpw").val("");
+		
 	})
 	//로그인 유지 준비중
 	$("#loginkeep").click(function(){
@@ -108,8 +119,10 @@ $(document).ready(function(){
 	//회원가입
 	//회원가입창 닫기 기본설정
 	$("#userJoin").hide();
+	$("#userJoin").css("display","none");
 	//회원가입 창 열기
 	$("#userJoinOpen").click(function(){
+		$("#userJoin").css("display","block");
 		$("#userJoin").show();
 		//페이지 접속시 처음 input(아이디)에 포커스
 		$("#userJoinid").focus();
@@ -128,9 +141,23 @@ $(document).ready(function(){
 		ajaxToServerNick();
 	})
 	
-	//회원가입창 닫기
+	//회원가입창 닫기/닫으면서 기록한거 삭제
 	$("#userJoinClose").click(function(){
+		//숨기기
 		$("#userJoin").hide();
+		
+		//작성한거 삭제
+		$("#userJoinid").val("");
+		$("#userJoinnick").val("");
+		$("#userJoinpw").val("");
+		$("#userJoinpwcheck").val("");
+		$("#userJoinphone").val("");
+		$("#gender1").prop("checked",false);
+		$("#gender2").prop("checked",false);
+		$("#terms1").prop("checked",false);
+		$("#terms2").prop("checked",false);
+		$("#terms3").prop("checked",false);
+		
 	})
 	
 	//가입하기 버튼 클릭시 submit하도록 한다
@@ -150,6 +177,7 @@ $(document).ready(function(){
 
 <!-- style sheet -->
 <style type="text/css">
+body{margin:0;padding:0;}
 /* header style layout start */
 div{padding:0;}
 li{list-style:none;}
@@ -165,7 +193,7 @@ li{list-style:none;}
 #header #nav > ul > li{display:inline-block;font-size:25px;margin-right:169px;width:100px;cursor:pointer;text-align:center;position:relative;}
 #header #nav > ul > li:last-child{margin-right:0;}
 #header #nav > ul > li:hover{font-weight:bold;}
-#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;}
+#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;}
 #header #nav > ul > li:hover > .subMenuA{height:70px;}
 #header #nav > ul > li:hover > .subMenuB{height:50px;} 
 #header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;}
@@ -175,12 +203,22 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
 #header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
 /* header style layout end */
+/*<<<<<<< jyj*/
 
 #footer { text-align: center; }
 /* footer style layout */
+=======
+/* footer style layout start */
+#footer{height:50px;background-color:#eee;margin:0;padding:0;}
+#footer ul{width:1200px;margin:0 auto;padding:0;text-align: center;}
+#footer ul li{display:inline-block;margin-right:30px;}
+/* footer style layout end */
+/*>>>>>>> main*/
 </style>
+
 </head>
 <body>
+<!-- header시작 -->
 <div id="header">
 <ul id="smallNav">
 <%if(null != session.getAttribute("login") && (boolean)session.getAttribute("login")){ %>
@@ -222,16 +260,17 @@ li{list-style:none;}
 <li>BEST3</li>
 <li>고객센터
 <ul class="subMenu subMenuB">
-<li>공지사항</li>
-<li>1:1 문의</li>
+<li><a href="/notice/list" style="text-decoration:none;">공지사항</a></li>
+<li><a href="/inquiry/list" style="text-decoration:none;">1:1 문의</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<!-- header끝 -->
 
-<!-- 로그인 -->
-<div id="login" style="width:400px;height:450px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
+<!-- 로그인 시작 -->
+<div id="login" style="display:none;width:400px;height:450px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
 <form action="/user/login" method="post">
 <span id="loginClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:75px;margin:0 auto;">로그인</h3>
@@ -256,9 +295,9 @@ li{list-style:none;}
 </div>
 </form>
 </div>
-
-<!-- 회원가입 -->
-<div id="userJoin" style="width:400px;height:600px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
+<!-- 로그인 끝 -->
+<!-- 회원가입 시작-->
+<div id="userJoin" style="display:none;width:400px;height:600px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
 <form action="/user/signup" method="post" name="frm">
 <span id="userJoinClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
@@ -308,7 +347,6 @@ li{list-style:none;}
 </div>
 </form>
 </div>
+<!-- 회원가입 끝 -->
 
 
-</body>
-</html>

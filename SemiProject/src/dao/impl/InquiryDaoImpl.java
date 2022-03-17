@@ -11,6 +11,7 @@ import common.JDBCTemplate;
 import dao.face.InquiryDao;
 import dto.Inquiry;
 import dto.InquiryAnswer;
+import dto.UserInfo;
 import util.Paging;
 
 public class InquiryDaoImpl implements InquiryDao{
@@ -90,7 +91,62 @@ public class InquiryDaoImpl implements InquiryDao{
 	
 	@Override
 	public void insertInquiry(Connection conn, Inquiry inquiry) {
-		//세션필요
+		PreparedStatement ps = null;
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO inquiry(inquiry_no, title, content, user_no, password) ";
+		sql += "VALUES(inquiry_seq.nextval, ?, ?, ?, ?)";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, inquiry.getTitle());
+			ps.setString(2, inquiry.getContent());
+			ps.setInt(3, inquiry.getUser_no());
+			ps.setInt(4, inquiry.getPassword());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		if(res > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+	
+	@Override
+	public UserInfo selectUserNoByUserId(Connection conn, UserInfo userInfo) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		sql += "SELECT * FROM userinfo ";
+		sql += "WHERE id=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userInfo.getId());
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				userInfo.setUserNo(rs.getInt("user_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return userInfo;
 	}
 	
 	@Override

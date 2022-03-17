@@ -33,8 +33,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
+//			if(rs!=null)JDBCTemplate.close(rs);
+//			if(ps!=null)JDBCTemplate.close(ps);
 		}
 		
 		if(cnt<=0) {
@@ -63,8 +63,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
+//			if(rs!=null)JDBCTemplate.close(rs);
+//			if(ps!=null)JDBCTemplate.close(ps);
 		}
 		
 		if(cnt<=0) {
@@ -77,7 +77,7 @@ public class AccountDaoImpl implements AccountDao{
 	@Override
 	public int insertUser(Connection conn, UserInfo user) {
 		String sql = "";
-		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, SYMPTON, PHONENUMBER)";
+		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, NICKNAME, PHONENUMBER)";
 		sql += " VALUES(user_seq.nextval, ?, ?, ?, ?, ?)";
 		
 		int cnt = 0; 

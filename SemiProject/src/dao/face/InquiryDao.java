@@ -5,6 +5,7 @@ import java.util.List;
 
 import dto.Inquiry;
 import dto.InquiryAnswer;
+import dto.UserInfo;
 import util.Paging;
 
 public interface InquiryDao {
@@ -22,6 +23,8 @@ public interface InquiryDao {
 	public void deleteInquiry(Connection conn, Inquiry inquiry);
 	
 	public void deleteInquiryAnswer(Connection conn, Inquiry inquiry);
+	
+	public UserInfo selectUserNoByUserId(Connection conn, UserInfo userInfo);
 }
 
 

@@ -35,8 +35,12 @@ function pwtest(inquiry_no, password){
 #submenu{
 	text-align:center;
 	line-height:40px;
-	background:#78CCC8;
-	height:150px;
+	border:1px solid #ccc;
+	height:180px;
+}
+
+hr{
+	border:1px solid #ccc;
 }
 
 th{
@@ -49,7 +53,7 @@ a{
 
 a:hover{
 	text-decoration:none;
-	color:blue;
+	color:black;
 }
 
 </style>
@@ -62,7 +66,7 @@ a:hover{
 <br><br>
 
 <div id="submenu" class="col-xs-2">
-<h3><strong>고객센터</strong></h3>
+<h3><strong>고객센터</strong></h3><hr>
 <span><a href="/notice/list">공지사항</a></span><br>
 <span><strong><a href="/inquiry/list">1:1질문</a></strong></span>
 </div>
