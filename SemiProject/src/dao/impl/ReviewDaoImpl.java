@@ -418,7 +418,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		String sql = "";
 		sql += "UPDATE review";
 		sql += " SET title = ?,";
-		sql += " content = ?";
+		sql += " content = ?,";
+		sql += " update_date = sysdate";
 		sql += " WHERE review_no = ?";
 		
 		//쿼리문 수행 결과 저장 변수

@@ -73,7 +73,12 @@ th {
 
 <tr>
 	<th class="danger">Write_Date</th><td colspan="2"><%=viewReview.getWriteDate() %></td>
-	<th class="danger">Update_Date</th><td colspan="2"><%=viewReview.getUpdateDate() %></td>
+	<th class="danger">Update_Date</th>
+	<% if(viewReview.getUpdateDate() == null) { %>
+	<td colspan="2"></td>
+	<% } else { %>
+	<td colspan="2">(수정됨) <%=viewReview.getUpdateDate() %></td>
+	<% } %>	
 </tr>
 
 <tr>
