@@ -77,7 +77,7 @@ public class AccountDaoImpl implements AccountDao{
 	@Override
 	public int insertUser(Connection conn, UserInfo user) {
 		String sql = "";
-		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, SYMPTON, PHONENUMBER)";
+		sql += "INSERT INTO userinfo(USER_NO, ID, PASSWORD, GENDER, NICKNAME, PHONENUMBER)";
 		sql += " VALUES(user_seq.nextval, ?, ?, ?, ?, ?)";
 		
 		int cnt = 0; 
