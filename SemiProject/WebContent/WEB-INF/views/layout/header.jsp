@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>header</title>
+<title>영추영추</title>
+
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="../../resources/js/userJoinCheck.js"></script>
@@ -76,6 +77,7 @@ $(document).ready(function(){
 	$("#login").hide();
 	//로그인 창 열기
 	$("#loginOpen").click(function(){
+		$("#login").css("display","block");
 		$("#login").show();
 		//페이지 접속시 처음 input(아이디)에 포커스
 		$("#userid").focus();
@@ -85,6 +87,7 @@ $(document).ready(function(){
 	})
 	//로그인창 닫기
 	$("#loginClose").click(function(){
+		$("#login").css("display","none");
 		$("#login").hide();
 		
 		//닫을 때 기존 기록 삭제
@@ -111,8 +114,10 @@ $(document).ready(function(){
 	//회원가입
 	//회원가입창 닫기 기본설정
 	$("#userJoin").hide();
+	$("#userJoin").css("display","none");
 	//회원가입 창 열기
 	$("#userJoinOpen").click(function(){
+		$("#userJoin").css("display","block");
 		$("#userJoin").show();
 		//페이지 접속시 처음 input(아이디)에 포커스
 		$("#userJoinid").focus();
@@ -183,7 +188,7 @@ li{list-style:none;}
 #header #nav > ul > li{display:inline-block;font-size:25px;margin-right:169px;width:100px;cursor:pointer;text-align:center;position:relative;}
 #header #nav > ul > li:last-child{margin-right:0;}
 #header #nav > ul > li:hover{font-weight:bold;}
-#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;}
+#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;}
 #header #nav > ul > li:hover > .subMenuA{height:70px;}
 #header #nav > ul > li:hover > .subMenuB{height:50px;} 
 #header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;}
@@ -199,6 +204,7 @@ li{list-style:none;}
 #footer ul li{display:inline-block;margin-right:30px;}
 /* footer style layout end */
 </style>
+
 </head>
 <body>
 <div id="header">
