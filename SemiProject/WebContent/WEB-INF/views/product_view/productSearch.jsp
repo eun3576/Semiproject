@@ -124,6 +124,7 @@ hr{
 	  <label class="btn btn-primary" for="btncheck8">운동</label>
 	</div>
 	<button onclick="search();" class="btn btn-info" style="margin:0 10px;">조회</button>
+	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;">초기화</button>
 </div>
 
 <hr>
