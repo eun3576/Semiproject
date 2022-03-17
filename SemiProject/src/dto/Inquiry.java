@@ -11,6 +11,13 @@ public class Inquiry {
 	private String id;
 	private int password;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Inquiry [inquiry_no=" + inquiry_no + ", title=" + title + ", content=" + content + ", write_date="
+				+ write_date + ", user_no=" + user_no + ", id=" + id + ", password=" + password + "]";
+	}
 	public int getInquiry_no() {
 		return inquiry_no;
 	}

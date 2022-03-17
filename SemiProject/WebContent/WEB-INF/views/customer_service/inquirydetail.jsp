@@ -64,10 +64,10 @@ button{
 <div class="col-xs-10">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-12" style="overflow:hidden;word-wrap:break-word;">
 			<h3 id="title" align="left"><%=inquiry.getTitle() %></h3>
 			<h6 id="write_date" align="left"><%=inquiry.getWrite_date() %></h6><hr>
-			<p id="content" style="word-wrap: break-word;"><%=inquiry.getContent() %></p><hr>
+			<p id="content"><%=inquiry.getContent() %></p><hr>
 			<p><%=inquiryAnswer.getContent() %></p>
 			
 			

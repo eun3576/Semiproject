@@ -10,6 +10,9 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="../resources/se2/js/service/HuskyEZCreator.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -17,20 +20,32 @@ $(document).ready(function() {
 		
 		var pwtest = /^[0-9]+$/.test($('#password').val())
 		if(pwtest){
+			submitContents( $("#btnWrite") );
 			$("#inquiryform").submit()		
 		}else{
 			alert("비밀번호는 숫자만 입력해주세요.")
 			$('#password').val("")
 		}
 		
-		
 	});
+	
 	
 	$("#btnCancel").click(function() {
 		history.go(-1);
-	});
+	})
 	
-});
+	
+	function submitContents( elClickedObj ) {
+	
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+	}
+	
+})
 </script>
 
 <style type="text/css">
@@ -69,7 +84,7 @@ a:hover{
 
 <div id="write" class="col-xs-10">
 
-<form id="inquiryform" action="./write" method="post">
+<form id="inquiryform" action="/inquiry/write" method="post">
   <fieldset>
     <legend>문의하기</legend>
  
@@ -96,6 +111,15 @@ a:hover{
 </div>
 </div>
 
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content",
+	sSkinURI: "../resources/se2/SmartEditor2Skin.html",
+	fCreate: "createSEditor2"
+})
+</script>
 
 </body>
 </html>

@@ -90,7 +90,16 @@ function ischecked(){
 	return checked
 }
 
-
+function resetCheck(){
+	$('#btncheck1').attr('checked', false);
+	$('#btncheck2').attr('checked', false);
+	$('#btncheck3').attr('checked', false);
+	$('#btncheck4').attr('checked', false);
+	$('#btncheck5').attr('checked', false);
+	$('#btncheck6').attr('checked', false);
+	$('#btncheck7').attr('checked', false);
+	$('#btncheck8').attr('checked', false);
+}
 
 </script>
 
@@ -123,8 +132,8 @@ hr{
 	  <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="category" value="exercise">
 	  <label class="btn btn-primary" for="btncheck8">운동</label>
 	</div>
-	<button onclick="search();" class="btn btn-info" style="margin:0 10px;">조회</button>
-	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;">초기화</button>
+	<button onclick="search();" class="btn btn-info" style="margin:0 10px;width:90px;">조회</button>
+	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;width:90px;">초기화</button>
 </div>
 
 <hr>
