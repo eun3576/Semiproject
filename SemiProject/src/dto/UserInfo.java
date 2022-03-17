@@ -60,8 +60,4 @@ public class UserInfo {
 		this.phonenumber = phonenumber;
 	}
     
-  
-    
-	
-    
 }

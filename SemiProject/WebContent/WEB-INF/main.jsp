@@ -8,6 +8,12 @@
 
 <!-- header삽입 -->
 <%@include file="./views/layout/header.jsp" %>
+<!--<<<<<<< jyj-->
+<!-- <h1>메인이 있는데 왜 ㅇ없다고 그러냐</h1> -->
+
+<!-- 웹페이지 하단부 영역 추가 -->
+<%-- <%@include file="./views/layout/footer.jsp" %> --%>
+<!--=======-->
 
 <style type="text/css">
 /*이미지 슬라이드 스타일*/
@@ -210,3 +216,4 @@ $(document).ready(function(){
 
 <!-- footer삽입 -->
 <%@include file="./views/layout/footer.jsp" %>
+<!-->>>>>>> main-->

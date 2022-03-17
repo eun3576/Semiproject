@@ -2,12 +2,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<!--<<<<<<< jyj-->
+<title>header</title>
+<!--=======-->
 <title>영추영추</title>
+<!-->>>>>>> main-->
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="../../resources/js/userJoinCheck.js"></script>
 <script type="text/javascript" src="../resources/js/httpRequest.js"></script>
+
 <!-- 회원가입 ajax script -->
 <script type="text/javascript">
 function ajaxToServerId(){
@@ -198,11 +203,17 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
 #header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
 /* header style layout end */
+/*<<<<<<< jyj*/
+
+#footer { text-align: center; }
+/* footer style layout */
+=======
 /* footer style layout start */
 #footer{height:50px;background-color:#eee;margin:0;padding:0;}
 #footer ul{width:1200px;margin:0 auto;padding:0;text-align: center;}
 #footer ul li{display:inline-block;margin-right:30px;}
 /* footer style layout end */
+/*>>>>>>> main*/
 </style>
 
 </head>
@@ -245,6 +256,7 @@ li{list-style:none;}
 </li>
 <li>제품추천</li>
 <li>제품후기</li>
+<!-- 제품후기 눌렀을 때 이동 기능 추가 해야한다. -->
 <li>BEST3</li>
 <li>고객센터
 <ul class="subMenu subMenuB">
