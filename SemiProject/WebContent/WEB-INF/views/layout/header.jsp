@@ -86,6 +86,11 @@ $(document).ready(function(){
 	//로그인창 닫기
 	$("#loginClose").click(function(){
 		$("#login").hide();
+		
+		//닫을 때 기존 기록 삭제
+		$("#userid").val("");
+		$("#userpw").val("");
+		
 	})
 	//로그인 유지 준비중
 	$("#loginkeep").click(function(){
@@ -126,9 +131,23 @@ $(document).ready(function(){
 		ajaxToServerNick();
 	})
 	
-	//회원가입창 닫기
+	//회원가입창 닫기/닫으면서 기록한거 삭제
 	$("#userJoinClose").click(function(){
+		//숨기기
 		$("#userJoin").hide();
+		
+		//작성한거 삭제
+		$("#userJoinid").val("");
+		$("#userJoinnick").val("");
+		$("#userJoinpw").val("");
+		$("#userJoinpwcheck").val("");
+		$("#userJoinphone").val("");
+		$("#gender1").prop("checked",false);
+		$("#gender2").prop("checked",false);
+		$("#terms1").prop("checked",false);
+		$("#terms2").prop("checked",false);
+		$("#terms3").prop("checked",false);
+		
 	})
 	
 	//가입하기 버튼 클릭시 submit하도록 한다
@@ -146,9 +165,9 @@ $(document).ready(function(){
 })
 </script>
 
-
 <!-- style sheet -->
 <style type="text/css">
+body{margin:0;padding:0;}
 /* header style layout start */
 div{padding:0;}
 li{list-style:none;}
@@ -174,6 +193,11 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
 #header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
 /* header style layout end */
+/* footer style layout start */
+#footer{height:50px;background-color:#eee;margin:0;padding:0;}
+#footer ul{width:1200px;margin:0 auto;padding:0;text-align: center;}
+#footer ul li{display:inline-block;margin-right:30px;}
+/* footer style layout end */
 </style>
 </head>
 <body>
@@ -305,5 +329,4 @@ li{list-style:none;}
 </div>
 
 
-</body>
-</html>
+
