@@ -3,13 +3,11 @@
 <!--<<<<<<< jyj-->
     
 <!-- 웹 페이지 하단부 파일 -->
-<hr>
-<div id="footer">
-	<small>영추영추Inc.</small>
-</div>
+<!-- <hr> -->
 <!--=======-->
 <!-- footer 시작-->
-<div id="footer">
+<div id="footer" >
+	<small>영추영추Inc.</small>
 <ul>
 <li style="font-weight:bold;">팀 명: 영양 챙겨야조</li>
 <li style="cursor:pointer;" onclick="alert('준비중입니다')">개인정보정책</li>
@@ -19,4 +17,3 @@
 <!-- footer끝 -->
 </body>
 </html>
-<!-->>>>>>> main-->
