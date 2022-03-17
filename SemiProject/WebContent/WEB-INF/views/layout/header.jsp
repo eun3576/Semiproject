@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 <!--<<<<<<< jyj-->
-<title>header</title>
 <!--=======-->
 <title>영추영추</title>
-<!-->>>>>>> main-->
+<!-- >>>>>>> main -->
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -177,16 +176,24 @@ $(document).ready(function(){
 
 <!-- style sheet -->
 <style type="text/css">
-body{margin:0;padding:0;}
+body{margin:0;padding:0;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;}
+a{text-decoration:none;color:black;}
 /* header style layout start */
-div{padding:0;}
+div{padding:0;margin:0;}
+ul{margin:0;}
 li{list-style:none;}
-#header #smallNav li{float:right;margin-right:30px;cursor:pointer;}
+#header{margin-top:10px;}
+#header #smallNav li{float:right;margin-right:30px;cursor:pointer;font-size:13px;height:13px;}
 #header #smallNav li:first-child, #header #smallNav li:nth-child(0){margin-right:50px;}
 #header #smallNav li:hover{font-weight:bold;}
 #header div{clear:right;margin-right:50px;}
-#header div #mSearch{float:right;height:24px;border:1px solid #999;border-radius:3px;margin-top:10px;margin-right:5px;}
-#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;width:25px;height:25px;display:inline-block;margin-top:10px;cursor:pointer;}
+#header div #mSearch{float:right;height:24px;border:1px solid #999;border-radius:3px;margin-top:10px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
+#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:10px;width:25px;height:25px;display:inline-block;cursor:pointer;}
 #header h1{background-image: url("../../../resources/img/logo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
 #header #nav{width:1200px;margin:0 auto;}
 #header #nav > ul{clear:right;margin:30px 0 0 0;padding:0;}
@@ -207,10 +214,10 @@ li{list-style:none;}
 
 #footer { text-align: center; }
 /* footer style layout */
-=======
+/* ======= */
 /* footer style layout start */
-#footer{height:50px;background-color:#eee;margin:0;padding:0;}
-#footer ul{width:1200px;margin:0 auto;padding:0;text-align: center;}
+#footer{background-color:#eee;margin:0;padding:0;height:100px;padding-top:10px;}
+#footer ul{width:1200px;margin:30px auto;padding:0;text-align: center;}
 #footer ul li{display:inline-block;margin-right:30px;}
 /* footer style layout end */
 /*>>>>>>> main*/
@@ -255,13 +262,13 @@ li{list-style:none;}
 </ul>
 </li>
 <li>제품추천</li>
-<li>제품후기</li>
+<li><a href="/review/list">제품후기</a></li>
 <!-- 제품후기 눌렀을 때 이동 기능 추가 해야한다. -->
 <li>BEST3</li>
-<li>고객센터
+<li><a href="/notice/list">고객센터</a>
 <ul class="subMenu subMenuB">
-<li><a href="/notice/list" style="text-decoration:none;">공지사항</a></li>
-<li><a href="/inquiry/list" style="text-decoration:none;">1:1 문의</a></li>
+<li><a href="/notice/list">공지사항</a></li>
+<li><a href="/inquiry/list">1:1 문의</a></li>
 </ul>
 </li>
 </ul>
