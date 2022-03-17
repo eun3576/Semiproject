@@ -207,6 +207,7 @@ li{list-style:none;}
 
 </head>
 <body>
+<!-- header시작 -->
 <div id="header">
 <ul id="smallNav">
 <%if(null != session.getAttribute("login") && (boolean)session.getAttribute("login")){ %>
@@ -254,9 +255,10 @@ li{list-style:none;}
 </ul>
 </div>
 </div>
+<!-- header끝 -->
 
-<!-- 로그인 -->
-<div id="login" style="width:400px;height:450px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
+<!-- 로그인 시작 -->
+<div id="login" style="display:none;width:400px;height:450px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
 <form action="/user/login" method="post">
 <span id="loginClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:75px;margin:0 auto;">로그인</h3>
@@ -281,9 +283,9 @@ li{list-style:none;}
 </div>
 </form>
 </div>
-
-<!-- 회원가입 -->
-<div id="userJoin" style="width:400px;height:600px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
+<!-- 로그인 끝 -->
+<!-- 회원가입 시작-->
+<div id="userJoin" style="display:none;width:400px;height:600px;background:#fff;border:2px solid #eee;position:fixed;top:10%;left:50%;margin-left:-200px;z-index:1000;">
 <form action="/user/signup" method="post" name="frm">
 <span id="userJoinClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
@@ -333,6 +335,6 @@ li{list-style:none;}
 </div>
 </form>
 </div>
-
+<!-- 회원가입 끝 -->
 
 
