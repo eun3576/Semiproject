@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
 import dao.face.InquiryDao;
 import dao.impl.InquiryDaoImpl;
 import dto.Inquiry;
 import dto.InquiryAnswer;
+import dto.UserInfo;
 import service.face.InquiryService;
 import util.Paging;
 
@@ -44,13 +46,18 @@ public class InquiryServiceImpl implements InquiryService{
 	
 	@Override
 	public void insertInquiry(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		UserInfo userInfo = new UserInfo();
+		userInfo.setId((String)session.getAttribute("userid"));
+		userInfo = inquiryDao.selectUserNoByUserId(conn, userInfo);
+		
 		Inquiry inquiry = new Inquiry();
 		inquiry.setTitle(req.getParameter("title"));
 		inquiry.setPassword(Integer.parseInt(req.getParameter("password")));
 		inquiry.setContent(req.getParameter("content"));
-		
-		//중지
-		//세션으로 아이디필요
+		inquiry.setUser_no(userInfo.getUserNo());
+		inquiryDao.insertInquiry(conn, inquiry);
 		
 	}
 	

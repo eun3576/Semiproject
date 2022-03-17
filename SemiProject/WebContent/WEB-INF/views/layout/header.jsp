@@ -217,8 +217,8 @@ li{list-style:none;}
 <li>BEST3</li>
 <li>고객센터
 <ul class="subMenu subMenuB">
-<li>공지사항</li>
-<li>1:1 문의</li>
+<li><a href="/notice/list" style="text-decoration:none;">공지사항</a></li>
+<li><a href="/inquiry/list" style="text-decoration:none;">1:1 문의</a></li>
 </ul>
 </li>
 </ul>

@@ -17,7 +17,7 @@ $(document).ready(function() {
 		
 		var pwtest = /^[0-9]+$/.test($('#password').val())
 		if(pwtest){
-			$("form").submit()		
+			$("#inquiryform").submit()		
 		}else{
 			alert("비밀번호는 숫자만 입력해주세요.")
 			$('#password').val("")
@@ -39,12 +39,12 @@ $(document).ready(function() {
 #submenu{
 	text-align:center;
 	line-height:40px;
-	background:#78CCC8;
-	height:150px;
+	border:1px solid #ccc;
+	height:180px;
 }
 
-th{
-	text-align:center;
+hr{
+	border:1px solid #ccc;
 }
 
 a{
@@ -53,7 +53,7 @@ a{
 
 a:hover{
 	text-decoration:none;
-	color:blue;
+	color:black;
 }
 
 </style>
@@ -62,14 +62,14 @@ a:hover{
 <br><br><br><br><br>
 
 <div id="submenu" class="col-xs-2">
-<h3><strong>고객센터</strong></h3>
+<h3><strong>고객센터</strong></h3><hr>
 <span><a href="/notice/list">공지사항</a></span><br>
 <span><strong><a href="/inquiry/list">1:1질문</a></strong></span>
 </div>
 
 <div id="write" class="col-xs-10">
 
-<form action="/inquiry/write" method="post">
+<form id="inquiryform" action="./write" method="post">
   <fieldset>
     <legend>문의하기</legend>
  
