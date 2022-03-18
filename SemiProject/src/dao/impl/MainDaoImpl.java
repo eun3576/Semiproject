@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.MainDao;
+import dto.Product;
 import dto.ProductTag;
 import dto.Review;
 
@@ -97,6 +98,46 @@ public class MainDaoImpl implements MainDao{
 		
 		//최종 조회 결과 반환
 		return rList;
+	}
+
+	@Override
+	public List<Product> selectBySearchItems(Connection conn, String[] searchItems) {
+		String sql = "";
+		sql += "SELECT product_name, product_views, product_img  FROM product";
+
+		for(int i=0;i<searchItems.length;i++) {
+			if(i==0) {
+			sql += " WHERE product_content LIKE \'%"+searchItems[i]+"%\'";
+			}else {
+				sql += " OR product_content LIKE \'%"+searchItems[i]+ "%\'";
+			}
+		}
+		sql += " ORDER BY product_views";
+		
+		List<Product> pList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				
+				product.setProduct_name(rs.getString("product_name"));
+				product.setProduct_views(rs.getInt("product_views"));
+				product.setProduct_img(rs.getString("product_img"));
+				
+				pList.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//자원해제
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return pList;
 	}
 
 }
