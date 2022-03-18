@@ -29,6 +29,6 @@ public interface MainDao {
 	 * @param searchItems 검색어(들)
 	 * @return 검색어에 해당하는 객체
 	 */
-	public List<Product> selectBySearchItems(Connection conn, String[] searchItems);
+	public List<Product> selectBySearchItems(Connection conn);
 
 }
