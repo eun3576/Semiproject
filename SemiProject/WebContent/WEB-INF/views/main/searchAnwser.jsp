@@ -6,7 +6,7 @@
 <% List<Product> pList = (List)request.getAttribute("pList"); %>
 <!-- header삽입 -->
 <%@include file="../layout/header.jsp" %>
-<div class="wrapper" style="width:830px;margin:80px auto;clear:left;">
+<div class="wrapper" style="width:830px;height:1000px;margin:80px auto;clear:left;">
 <% if(pList!=null&&pList.size()!=0){ %>
 <% for(int i=0;i<pList.size();i++){ %>
 <div style="width:250px;height:250px;box-shadow:3px 3px 3px #eee;box-sizing: border-box;float:left;margin-right:20px;margin-bottom:20px;cursor:pointer" onclick="alert('상품 상세페이지로 이동 예정입니다');">
@@ -22,4 +22,4 @@
 </div>
 
 <!-- footer삽입 -->
-<%@include file="./views/layout/footer.jsp" %>
+<%@include file="../layout/footer.jsp" %>
