@@ -87,9 +87,7 @@ public class ReviewUpdateController extends HttpServlet {
 		//한글 수정글 인코딩
 		req.setCharacterEncoding("UTF-8");
 
-		//게시글 수정 시 update method review객체가 반영이 안된다.
 		reviewService.update(req);
-		
 		
 		resp.sendRedirect("/review/list");
 	}

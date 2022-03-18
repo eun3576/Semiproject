@@ -91,4 +91,10 @@ public interface ReviewService {
 	 */
 	public List<ReviewComment> getCommentList(Review reviewno);
 	
+	/**
+	 * review_no가 있는 review DTO 객체를 통하여 댓글 작성
+	 * 
+	 * @param reviewno - review_no가 있는 review DTO 객체
+	 */
+	public void writeComment(HttpServletRequest req);
 }

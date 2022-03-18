@@ -173,8 +173,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return review;
 	}
-	
-	
+
 	
 	@Override
 	public UserInfo selectNickSympByReviewno(Connection conn, Review reviewno) {
@@ -249,7 +248,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public UserInfo selectUsernobyNick(Connection conn, UserInfo userInfo) {
+	public UserInfo selectUsernoByNick(Connection conn, UserInfo userInfo) {
 		
 		String sql = "";
 		sql += "SELECT user_no FROM userinfo WHERE nickname = ?";
@@ -306,7 +305,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	
 	
 	@Override
-	public Attachment selectFile(Connection conn, Review reviewno) {
+	public Attachment selectFile(Connection conn, Review review) {
 		
 		//SQL작성
 		String sql = "";
@@ -326,7 +325,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, reviewno.getReview_no());
+			ps.setInt(1, review.getReview_no());
 			
 			rs = ps.executeQuery();
 			
@@ -551,8 +550,35 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 			JDBCTemplate.close(rs);
 		}
+		
 		return commentList;
 	}
 
 
+	@Override
+	public int insertComment(Connection conn, ReviewComment reviewComment) {
+		
+		String sql = "";
+		sql += "INSERT INTO review_comment";
+		sql += " (comment_no, review_no, user_no, comment_text)";
+		sql += " values (review_comment_seq.nextval, ?, ?, ?) ";
+		
+		//결과 값 저장할 변수
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reviewComment.getReview_no());
+			ps.setInt(2, reviewComment.getUser_no());
+			ps.setString(3, reviewComment.getComment_text());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+	}
 }

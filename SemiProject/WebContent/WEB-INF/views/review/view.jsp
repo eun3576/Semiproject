@@ -126,12 +126,14 @@ th {
 	<h1>댓글 작성!!</h1>
 	
 	<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
-		<form action="/review/view" method="post">
+<%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
+		<form action="#" method="post">
 		
+		<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
 		닉네임: <%=sessionNick %><br>
-		작성할 내용: <input type="text">
+		작성할 내용: <input type="text" name="commentText">
 		
-		<button type="submit">작성!</button>
+		<button id="commentWrite" class="btn-xs">작성!</button>
 	<% } %>
 	</form>
 	

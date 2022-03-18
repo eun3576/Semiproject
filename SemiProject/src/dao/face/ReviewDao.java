@@ -59,7 +59,7 @@ public interface ReviewDao {
 	 * @param conn - DB연결 객체
 	 * @return UserInfo - nickname에 대한 userno
 	 */
-	public UserInfo selectUsernobyNick(Connection conn, UserInfo userInfo);
+	public UserInfo selectUsernoByNick(Connection conn, UserInfo userInfo);
 	
 	/**
 	 * 첨부파일 삽입 
@@ -77,7 +77,7 @@ public interface ReviewDao {
 	 * @param reviewno - 조회할 후기글 번호가 있는 DTO객체 
 	 * @return Attachment - 첨부파일 정보
 	 */
-	public Attachment selectFile(Connection conn, Review reviewno);
+	public Attachment selectFile(Connection conn, Review review);
 	
 	/**
 	 * @param conn - DB연결 객체
@@ -130,5 +130,15 @@ public interface ReviewDao {
 	 * @return ReviewComment - 조회된 ReviewComment의 데이터 객체 
 	 */
 	public List<ReviewComment> selectReviewCommentByReviewno(Connection conn, Review reviewno);
+	
+	
+	/**
+	 * review_no를 통하여 ReviewComment에 삽입
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param reviewno - review_no가 저장 되어있는 review DTO 객체
+	 * @return int - 쿼리문 수행 결과
+	 */
+	public int insertComment(Connection conn, ReviewComment reviewComment);
 	
 }

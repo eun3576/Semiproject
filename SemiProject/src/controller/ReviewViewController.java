@@ -53,9 +53,9 @@ public class ReviewViewController extends HttpServlet {
 		//System.out.println("ReviewController userInfo" + userInfo);
 		
 		//list reviewComment 댓글 정보 불러와졌는지 테스트
-		//for (int i = 0; i < reviewComment.size(); i++) {
-		//	System.out.println(reviewComment.get(i));
-		//}
+		for (int i = 0; i < reviewComment.size(); i++) {
+			System.out.println(reviewComment.get(i));
+		}
 		
 		
 		//조회결과 MODEL값 전달
@@ -70,5 +70,18 @@ public class ReviewViewController extends HttpServlet {
 		//VIEW지정 및 응답 - forward
 		req.getRequestDispatcher("/WEB-INF/views/review/view.jsp").forward(req, resp);
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("/review/view [POST]");
+		
+		req.setCharacterEncoding("UTF-8");
+		
+		//view.jsp에서 입력한 폼데이터(댓글) 저장하는 method
+		reviewService.writeComment(req);
+		
+		resp.sendRedirect("#");
 	}
 }
