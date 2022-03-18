@@ -16,9 +16,7 @@
 <script type="text/javascript">
 
 function check(){
-	
-	alert("수정 완료");
-	
+
 	//수정 입력값 받기
 	var nickname = $('#nick').val()
 	var phonenumber = $('#phone').val()
@@ -37,7 +35,10 @@ function check(){
 		data.password = password
 	}
 	
-	// console.log(data) 
+	// console.log(data)
+	
+	ajax(data)
+	
 
 }
 
@@ -47,14 +48,14 @@ function ajax(data){
 	$.ajax({
 		type:"post"
 		,url:"/profile/list"
-		,data:{
-			data:data
-		}
+		,data:data
 		, dataType:"html"
 		, success:function(res){
 			console.log("AJAX 성공")
 			
 			alert("수정되었습니다")
+			
+			
 		}
 		, error:function(){
 			console.log("AJAX 실패")

@@ -65,95 +65,33 @@ public class ProfileDaoImpl implements ProfileDao{
 		//변경된  sql 넣기
 		
 		String sql = "";
-		sql += "updata userinfo";
-		sql += " set ";
-		
-		boolean okinfo = false;
-		
-		if (profile.getNickname()!= null) {
-			sql += "nickname = ? ";
-			okinfo = true;
-	
-		} else {
-			okinfo = false;
-		}
-		
-		if (okinfo) { sql += " , "; }
-		
-		
-		if (profile.getPhonenumber()!= null) {
-			sql += "phonenumber = ? ";
-			
-		} else {
-			okinfo = false;
-		}
-		
-		if (okinfo) { sql += " , "; }
-		
-		if (profile.getPassword()!= null) {
-			sql += "password = ? ";
-			
-		} else {
-			okinfo = false;
-		}
-		
-		
-		
+		sql += "update userinfo";
+		sql += " set nickname = ? , phonenumber = ? , password = ? ";
 		sql += " where id = ? ";
 		
-		List<String> infoList = new ArrayList<>();
 		
-		if (sql.contains("nickname")) {
-			infoList.add("nickname");
-			
-		}
 		
-		if (sql.contains("phonenumber")) {
-			infoList.add("phonenumber");
-			
-		}
-		
-		if (sql.contains("password")) {
-			infoList.add("password");
-			
-		}
-	
 		try {
+			ps = conn.prepareStatement(sql);
 			
-		for (int i=0; i<infoList.size(); i++) {
 			
-			if ("nickname".equals(infoList.get(i) ) ) {
-				
-					ps.setString(i+1, profile.getNickname());
-				
-			}
-			if ("phonenumer".equals(infoList.get(i) ) ) {
-				
-				ps.setString(i+1, profile.getPhonenumber());
-				
-			}
-			if ("password".equals(infoList.get(i) ) ) {
-				
-				ps.setString(i+1, profile.getPassword());
-				
-			}
-		}
-		
-		
-		ps.setString(infoList.size()+1, profile.getId());
-		
-		
-		res = ps.executeUpdate();
-		
-		
+			ps.setString(1, profile.getNickname());
+			ps.setString(2, profile.getPhonenumber());
+			ps.setString(3, profile.getPassword());
+			ps.setString(4, profile.getId());
+			
+			res = ps.executeUpdate();
+					
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			
+			//객체 닫기
 			JDBCTemplate.close(ps);
 			
 		}
+		
+		
 		
 		return res;
 	}

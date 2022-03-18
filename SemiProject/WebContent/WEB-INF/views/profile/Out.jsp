@@ -17,32 +17,28 @@
 </script>
 
 
-<script>
-
-function outbutton(str) { 
+<script type="text/javascript">
+$(document).ready(function() {
 	
-	if(str.search(/\s/) != -1) {  
+	$("#outbutton").click(function() {
 		
-		alert("비밀번호") //공백이 있는 경우
+// 		var pwtest = "".test($('#password').val())
+			
+		if($('#password').val() != "" ){ 
+			
+			alert("변경되었습니다.")	// 
+			
+// 			submitContents( $("#outbutton") );
+// 			$("#").submit()		
+		}else{
+			alert("비밀번호를 입력해주세요.") 
+			$('#password').val("")
+		}
 		
-		return true; 
-		
-	} else { 
-		
-		return false; } }
-
-
-
-// function out() {
-
-
-
-//   alert("탈퇴 되었습니다.");
-
-//   window.location.href = "/main";
-
-// } 
-
+	});
+	
+	
+})
 </script>
 
  
@@ -114,6 +110,8 @@ a:hover{
                     <tr>
                         <td colspan="2" class="text-center">
                          <button id="outbutton" class="btn btn-danger">탈퇴</button>
+                         
+<!--                          <button onclick="out();" id="outbutton" class="btn btn-danger">탈퇴</button> -->
                          
                          <!-- 탈퇴하고 난 페이지 -> 알러트 -> 메인 -->
                     

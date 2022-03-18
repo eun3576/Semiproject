@@ -39,11 +39,19 @@ public class ProfileServiceImpl implements ProfileService{
 	@Override
 	public void updateProfile(HttpServletRequest req) {
 		
+		
+		
 		HttpSession session = req.getSession();
 		
 		Profile profile = new Profile();
 		
+		//가져오기
 		profile.setId((String)session.getAttribute("userid"));
+		profile.setNickname((String)req.getParameter("nickname"));
+		profile.setPhonenumber((String)req.getParameter("phonenumber"));
+		profile.setPassword((String)req.getParameter("password"));
+		
+		System.out.println(profile);
 		
 		ProfileDao profileDao = new ProfileDaoImpl();
 		
