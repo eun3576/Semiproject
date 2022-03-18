@@ -23,7 +23,7 @@ public class SignUpCheckController extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8;");
 		PrintWriter out = resp.getWriter();
 		
-		if(req.getParameter("userJoinid")!=null) {
+		if(req.getParameter("joinUserId")!=null) {
 			//userid를 저장하는 메소드 실행
 			UserInfo user = accountService.getUserJoinId(req);
 			//userid로 기존 아이디인지 확인
@@ -33,12 +33,12 @@ public class SignUpCheckController extends HttpServlet {
 			}
 		}
 		
-		if(req.getParameter("userJoinnick")!=null) {
+		if(req.getParameter("joinUserNick")!=null) {
 			
 			//userNick을 저장하는 메소드 실행
 			UserInfo user = accountService.getUserJoinNick(req);
-			
-			user.setNickname(req.getParameter("userJoinnick"));
+
+			//userNick으로 기존 닉네임인지 확인
 			String str = accountService.userNickCheck(user);
 			if(str!=null) {
 				out.write(str);
