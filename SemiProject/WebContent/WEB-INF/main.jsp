@@ -187,7 +187,7 @@ $(document).ready(function(){
 
 <!-- 베스트 리뷰 -->
 <div id="bestReview" style="width:800px;margin:50px auto 100px;">
-<h1 style="width:210px;margin:20px auto;">BEST REVIEW</h1>
+<h1 style="width:250px;margin:20px auto;">BEST REVIEW</h1>
 <%--리뷰가 있을 때 for문 실행--%>
 <% if(rList.size()>0){%>
 <% for(int i=0; i<rList.size();i++){ %>
