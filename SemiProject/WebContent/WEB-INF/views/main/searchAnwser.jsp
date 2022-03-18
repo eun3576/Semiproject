@@ -20,3 +20,6 @@
 <h3 style="width:160px;margin:0 auto;">검색결과가 없습니다</h3>
 <%} %>
 </div>
+
+<!-- footer삽입 -->
+<%@include file="./views/layout/footer.jsp" %>
