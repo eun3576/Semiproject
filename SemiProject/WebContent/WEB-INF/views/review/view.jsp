@@ -143,9 +143,10 @@ th {
 	<% for(int i=0; i<reviewComment.size(); i++) { %>
 		<small>닉네임: <%=reviewComment.get(i).getNickname() %><br>
 <%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
-		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewComment.get(i).getComment_date()) %>
+		댓글: <%=reviewComment.get(i).getComment_text() %>
 <%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
-		댓글: <%=reviewComment.get(i).getComment_text() %></small>
+		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewComment.get(i).getComment_date()) %><br>
+		</small>
 		
 		<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
 		<form action="#" method="post">
