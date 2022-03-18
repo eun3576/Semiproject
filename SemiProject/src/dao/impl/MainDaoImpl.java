@@ -101,17 +101,9 @@ public class MainDaoImpl implements MainDao{
 	}
 
 	@Override
-	public List<Product> selectBySearchItems(Connection conn, String[] searchItems) {
+	public List<Product> selectBySearchItems(Connection conn) {
 		String sql = "";
-		sql += "SELECT product_name, product_views, product_img  FROM product";
-
-		for(int i=0;i<searchItems.length;i++) {
-			if(i==0) {
-			sql += " WHERE product_content LIKE \'%"+searchItems[i]+"%\'";
-			}else {
-				sql += " OR product_content LIKE \'%"+searchItems[i]+ "%\'";
-			}
-		}
+		sql += "SELECT product_name, product_views, product_img, product_content  FROM product";
 		sql += " ORDER BY product_views";
 		
 		List<Product> pList = new ArrayList<>();
@@ -123,6 +115,7 @@ public class MainDaoImpl implements MainDao{
 			while(rs.next()) {
 				Product product = new Product();
 				
+				product.setProduct_content(rs.getString("product_content"));
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_views(rs.getInt("product_views"));
 				product.setProduct_img(rs.getString("product_img"));
