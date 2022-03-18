@@ -44,7 +44,6 @@
 
 /*베스트 스타일*/
 #bestItem  div{display:inline-block;}
-#bestItem div p{margin:0;}
 
 #bestReview .best_content {
     width: 470px;
@@ -177,7 +176,8 @@ $(document).ready(function(){
 <% for(int i=0; i<TagList.size();i++){ %>
 	<div onclick="alert('준비중입니다')" style="cursor:pointer;">
 	<!-- 이미지가 없을시 대체 이미지 -->
-	<img alt="상품이미지" src="<%=TagList.get(i).getProductImg()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
+	<img alt="상품이미지" src="/upload/<%=TagList.get(i).getProductImg()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
+<!-- 	<img alt="상품이미지" src="../resources/img/best_temp.jpg" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'"> -->
 	<p>#<%=TagList.get(i).getTagName() %></p>
 	<p>조회수: <%=TagList.get(i).getProductViews()%></p>
 	</div>
