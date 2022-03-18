@@ -97,4 +97,6 @@ public interface ReviewService {
 	 * @param reviewno - review_no가 있는 review DTO 객체
 	 */
 	public void writeComment(HttpServletRequest req);
+	
+	
 }

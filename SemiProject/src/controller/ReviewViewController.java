@@ -79,9 +79,27 @@ public class ReviewViewController extends HttpServlet {
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		//view.jsp에서 입력한 폼데이터(댓글) 저장하는 method
-		reviewService.writeComment(req);
+		//어떤 버튼을 눌렀는지 판단하기 위해 post된 데이터 확인
+		String reviewNo = (String) req.getParameter("reviewNo");
+		String commentNo = (String) req.getParameter("commentNo");
+		
+		if (reviewNo == null) {
+			System.out.println("댓글 삭제 버튼을 누름");
+			
+			//reviewService.deleteCommentByCommentno();
+			
+		} else if (commentNo == null) {
+			
+			System.out.println("댓글 작성 버튼을 누름");
+			
+			//view.jsp에서 입력한 폼데이터(댓글) 저장하는 method
+			reviewService.writeComment(req);
+		}
+		
+		
 		
 		resp.sendRedirect("#");
 	}
+	
+
 }

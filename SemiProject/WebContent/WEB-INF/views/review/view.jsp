@@ -43,13 +43,6 @@ $(document).ready(function () {
 		}
 	})
 	
-	//댓글 삭제 버튼을 눌렀을 때
-	$("#commentDel").click(function() {
-		if (confirm("댓글을 삭제 하시겠습니까?")) {
-			$(location).attr("href", "<%=request.getContextPath() %>/review/commentdel");
-		}
-	})
-	
 })
 
 </script>
@@ -134,7 +127,7 @@ th {
 	
 	<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
 <%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
-		<form action="#" method="post">
+	<form action="#" method="post">
 		
 		<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
 		닉네임: <%=sessionNick %><br>
@@ -150,8 +143,15 @@ th {
 <%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
 		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %>
 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
-		댓글: <%=reviewComment.get(i).getComment_text() %></small><br>
-		<button id="commentDel" class="btn-xs" value="<%=reviewComment.get(i).getComment_no() %>" name="commentNo">삭제</button><br><hr>
+		댓글: <%=reviewComment.get(i).getComment_text() %></small>
+		
+		<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
+		<form action="#" method="post">
+			<input type="hidden" name="commentNo" value="<%=reviewComment.get(i).getComment_no() %>">
+		<button id="commentDel" class="btn-xs">삭제</button><br>
+		</form>
+		<% } %>
+		<hr>
 	<% } %>
 
 </div>
