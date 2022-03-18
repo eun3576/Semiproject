@@ -60,7 +60,5 @@ public class ReviewDeleteController extends HttpServlet {
 			resp.sendRedirect("/review/list");
 			
 		}
-		
-		//에러 SLQ더미 데이터로 생성한 게시글은 삭제가 안되지만 client로 생성한 글은 삭제된다.
 	}
 }

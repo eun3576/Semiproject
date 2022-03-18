@@ -53,9 +53,9 @@ public class ReviewViewController extends HttpServlet {
 		//System.out.println("ReviewController userInfo" + userInfo);
 		
 		//list reviewComment 댓글 정보 불러와졌는지 테스트
-		for (int i = 0; i < reviewComment.size(); i++) {
-			System.out.println(reviewComment.get(i));
-		}
+		//for (int i = 0; i < reviewComment.size(); i++) {
+		//	System.out.println(reviewComment.get(i));
+		//}
 		
 		
 		//조회결과 MODEL값 전달

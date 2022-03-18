@@ -8,6 +8,10 @@ import dto.Review;
 import dto.ReviewComment;
 import dto.UserInfo;
 
+/**
+ * @author YoungJae
+ *
+ */
 public interface ReviewDao {
 	
 	/**
@@ -114,6 +118,15 @@ public interface ReviewDao {
 	public int delete(Connection conn, Review review);
 	
 	/**
+	 * 후기글에 해당하는 모든 댓글 조회하여 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삭제할 댓글에 해당되는 게시글 번호
+	 * @return int - 삭제 쿼리문 수행 결과
+	 */
+	public int deleteCommentAllByReview(Connection conn, Review review);
+	
+	/**
 	 * 후기글에 첨부된 파일 기록 삭제
 	 * 
 	 * @param conn - DB연결 객체 
@@ -140,5 +153,13 @@ public interface ReviewDao {
 	 * @return int - 쿼리문 수행 결과
 	 */
 	public int insertComment(Connection conn, ReviewComment reviewComment);
+	
+	/**
+	 * reviewComment
+	 * @param conn
+	 * @param reviewComment
+	 * @return
+	 */
+	public int deleteComment(Connection conn, ReviewComment reviewComment);
 	
 }

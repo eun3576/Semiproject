@@ -449,6 +449,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 	}
 
+	
 	@Override
 	public int delete(Connection conn, Review review) {
 		
@@ -475,7 +476,33 @@ public class ReviewDaoImpl implements ReviewDao {
 		return res;
 	}
 
-
+	@Override
+	public int deleteCommentAllByReview(Connection conn, Review review) {
+		
+		String sql = "";
+		sql += "DELETE review_comment";
+		sql += " WHERE review_no = ?";
+		
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, review.getReview_no());
+			
+			//쿼리문 실행 결과
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return res;
+	}
+	
+	
 	@Override
 	public int deleteFile(Connection conn, Review review) {
 		
@@ -581,4 +608,15 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return res;
 	}
+
+
+	@Override
+	public int deleteComment(Connection conn, ReviewComment reviewComment) {
+		
+		
+		return 0;
+	}
+
+
+
 }

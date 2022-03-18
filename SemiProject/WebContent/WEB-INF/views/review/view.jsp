@@ -38,8 +38,15 @@ $(document).ready(function () {
 	
 	//Delete 버튼을 눌렀을 때 
 	$("#btnDelete").click(function() {
-		if( confirm("게시글을 삭제하시겠습니까?") ) {
+		if( confirm("게시글을 삭제 하시겠습니까?") ) {
 			$(location).attr("href", "<%=request.getContextPath() %>/review/delete?review_no=<%=viewReview.getReview_no() %>");
+		}
+	})
+	
+	//댓글 삭제 버튼을 눌렀을 때
+	$("#commentDel").click(function() {
+		if (confirm("댓글을 삭제 하시겠습니까?")) {
+			$(location).attr("href", "<%=request.getContextPath() %>/review/commentdel");
 		}
 	})
 	
@@ -143,7 +150,8 @@ th {
 <%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
 		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %>
 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
-		댓글: <%=reviewComment.get(i).getComment_text() %></small><br><hr>
+		댓글: <%=reviewComment.get(i).getComment_text() %></small><br>
+		<button id="commentDel" class="btn-xs" value="<%=reviewComment.get(i).getComment_no() %>" name="commentNo">삭제</button><br><hr>
 	<% } %>
 
 </div>

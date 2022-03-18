@@ -461,7 +461,15 @@ public class ReviewServiceImpl implements ReviewService{
 	public void delete(Review review) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-
+	
+		//테이블 구조가 댓글 테이블에 후기 테이블을 참조하기 때문에 
+		//후기글 번호에 해당되는 댓글 테이블의 데이터를 먼저 삭제 해주어야 한다.
+		if (reviewDao.deleteCommentAllByReview(conn, review) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 		if (reviewDao.deleteFile(conn, review) > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
@@ -507,8 +515,8 @@ public class ReviewServiceImpl implements ReviewService{
 		//userInfo에 저장 되어있는 user_no를 reviewComment DTO 에 저장
 		reviewComment.setUser_no(userInfo.getUserNo());
 		
-		//reviewComment객체에 들어갔는지 확인
-		System.out.println("reviewComment user_no + " + reviewComment);
+		//reviewComment객체에 들어갔는지 확인 test
+		//System.out.println("reviewComment user_no + " + reviewComment);
 		
 		
 		if (reviewComment.getComment_text() == null || "".equals(reviewComment.getComment_text())) {
