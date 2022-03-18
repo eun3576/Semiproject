@@ -9,15 +9,15 @@
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="../../resources/js/userJoinCheck.js"></script>
-<script type="text/javascript" src="../resources/js/httpRequest.js"></script>
+<script type="text/javascript" src="/resources/js/httpRequest.js"></script>
+<script type="text/javascript" src="/resources/js/userJoinCheck.js"></script>
 
 <!-- 회원가입 ajax script -->
 <script type="text/javascript">
 function ajaxToServerId(){
 	console.log("ajaxToServerId() called")
 	//전달 파라미터 저장
-	var params = "userJoinid="+userJoinid.value;
+	var params = "joinUserId=" + joinUserId.value;
 	sendRequest("POST", "/user/signup/check", params, ajaxFromServerId);
 	console.log(params)
 	
@@ -25,7 +25,7 @@ function ajaxToServerId(){
 
 function ajaxToServerNick(){
 		//전달 파라미터 저장
-		var params = "userJoinnick="+userJoinnick.value;
+		var params = "joinUserNick=" + joinUserNick.value;
 		console.log(params)
 		sendRequest("POST", "/user/signup/check", params, ajaxFromServerNick);
 }
@@ -74,9 +74,6 @@ function appendResultNick(){
 <!-- 로그인,회원가입 script -->
 <script type="text/javascript">
 $(document).ready(function(){
-// 	$("#loginOpen").click(function(){
-// 		location.href="/user/login";
-// 	}) 
 	//로그인창 닫기 기본설정
 	$("#login").hide();
 	//로그인 창 열기
@@ -124,7 +121,7 @@ $(document).ready(function(){
 		$("#userJoin").css("display","block");
 		$("#userJoin").show();
 		//페이지 접속시 처음 input(아이디)에 포커스
-		$("#userJoinid").focus();
+		$("#joinUserId").focus();
 		
 		if($("#login").show){
 			$("#login").hide();
@@ -132,12 +129,17 @@ $(document).ready(function(){
 	})
 	
 	//사용중인 아이디인지 확인
-	$("#userJoinid").keyup(function(){
+	$("#joinUserId").keyup(function(){
 		ajaxToServerId();
 	})
+	
 	//사용중인 닉네임인지 확인
-	$("#userJoinnick").keyup(function(){
+	$("#joinUserNick").keyup(function(){
 		ajaxToServerNick();
+	})
+	
+	$("#joinUserId").keyup(function(){
+		ajaxToServerId();
 	})
 	
 	//회원가입창 닫기/닫으면서 기록한거 삭제
@@ -146,8 +148,8 @@ $(document).ready(function(){
 		$("#userJoin").hide();
 		
 		//작성한거 삭제
-		$("#userJoinid").val("");
-		$("#userJoinnick").val("");
+		$("#joinUserId").val("");
+		$("#joinUserNick").val("");
 		$("#userJoinpw").val("");
 		$("#userJoinpwcheck").val("");
 		$("#userJoinphone").val("");
@@ -164,25 +166,43 @@ $(document).ready(function(){
 		return check();
 		$(this).parents("form").submit();
 	})
-	//닉네임 입력창에서 엔터키 입력시 submit하도록 한다
-	$("#userJoinnick").keydown(function(e){
+})
+</script>
+
+
+
+<!-- 검색창 script -->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	//검색(돋보기) 버튼 눌렀을 때 submit하도록 한다
+	$("#searchIcon").click(function(){
+		$(this).parents("form").submit();
+	})
+	
+	//검색어 입력창에서 엔터키 입력시 submit하도록 한다
+	$("#mSearch").keydown(function(e){
 		if(e.keyCode == 13){//엔터키
 			$(this).parents("form").submit();
 		}
 	})
-		
 })
 </script>
 
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
 <!-- style sheet -->
 <style type="text/css">
-body{margin:0;padding:0;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;}
 a{text-decoration:none;color:black;}
+p{margin:0;}
 /* header style layout start */
 div{padding:0;margin:0;}
 ul{margin:0;}
@@ -200,15 +220,11 @@ li{list-style:none;}
 #header #nav > ul > li{display:inline-block;font-size:25px;margin-right:169px;width:100px;cursor:pointer;text-align:center;position:relative;}
 #header #nav > ul > li:last-child{margin-right:0;}
 #header #nav > ul > li:hover{font-weight:bold;}
-#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;}
-#header #nav > ul > li:hover > .subMenuA{height:70px;}
-#header #nav > ul > li:hover > .subMenuB{height:50px;} 
-#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;}
-#header #nav > ul > li > .subMenu > li{font-size:16px;font-weight:normal;}
+#header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;height:50px;}
+#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;width:110px;}
+#header #nav > ul > li > .subMenu > li{font-size:16px;font-weight:normal;text-align:center;}
 #header #nav > ul > li > .subMenu > li:hover{font-weight:bold;}
-#header #nav > ul > li > .subMenuA{width:450px;}
-#header #nav > ul > li > .subMenuA > li{margin:0 10px;width:90px;float:left;}
-#header #nav > ul > li > .subMenuB{width:102px;text-align:center;}
+
 /* header style layout end */
 /*<<<<<<< jyj*/
 
@@ -239,36 +255,22 @@ li{list-style:none;}
 <%} %>
 </ul>
 <div>
-<span title="search"></span>
-<input type="text" name="m_search" id="mSearch" placeholder="검색어를 입력해주세요">
+<form action="/main/search" method="get">
+<span id="searchIcon"></span>
+<input type="text" name="mSearch" id="mSearch" placeholder="검색어를 입력해주세요" autocomplete="off">
+</form>
 </div>
 <h1 title="영추영추" onclick="location.href='/'"></h1>
 <div id="nav">
 <ul>
-<li>제품조회
-<ul class="subMenu subMenuA">
-<li>노화방지</li>
-<li>눈 건강</li>
-<li>소화기계</li>
-<li>어린이 건강</li>
-<li>순환기계</li>
-<li>장 건강</li>
-<li>호흡기계</li>
-<li>여성 건강</li>
-<li>관절&amp;연골</li>
-<li>면역계</li>
-<li>에너지</li>
-<li>남성 건강</li>
-</ul>
-</li>
+<li><a href="<%request.getContextPath();%>/product/search">제품조회</a></li>
 <li>제품추천</li>
-<li><a href="/review/list">제품후기</a></li>
-<!-- 제품후기 눌렀을 때 이동 기능 추가 해야한다. -->
+<li><a href="<%request.getContextPath();%>/review/list">제품후기</a></li>
 <li>BEST3</li>
-<li><a href="/notice/list">고객센터</a>
-<ul class="subMenu subMenuB">
-<li><a href="/notice/list">공지사항</a></li>
-<li><a href="/inquiry/list">1:1 문의</a></li>
+<li><a href="<%request.getContextPath();%>/notice/list">고객센터</a>
+<ul class="subMenu">
+<li><a href="<%request.getContextPath();%>/notice/list">공지사항</a></li>
+<li><a href="<%request.getContextPath();%>/inquiry/list">1:1 문의</a></li>
 </ul>
 </li>
 </ul>
@@ -282,11 +284,11 @@ li{list-style:none;}
 <span id="loginClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:75px;margin:0 auto;">로그인</h3>
 <div style="width:300px;margin:50px auto 0;">
-<label for="userid" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<label for="userid" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
 <input id="userid" name="userid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디" type="text">
 </div>
 <div style="clear:left;width:300px;margin:15px auto;">
-<label for="userpw"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<label for="userpw"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
 <input id="userpw" name="userpw"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="비밀번호" type="password"  autocomplete="off">
 </div>
 <div style="width:300px;margin:0 auto;">
@@ -309,29 +311,29 @@ li{list-style:none;}
 <span id="userJoinClose" style="cursor:pointer;float:right;margin-right:10px;margin-top:5px;font-size:20px;font-weight: bold;">X</span>
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
 <div style="width:300px;margin:50px auto 0;">
-<label for="userJoinid" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinid" name="userJoinid" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text">
+<label for="joinUserId" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<input id="joinUserId" name="joinUserId" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text" autocomplete="off">
 <span id="rescheckid" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 <div style="width:300px;margin:0 auto;">
-<label for="userJoinnick" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinnick" name="userJoinnick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
+<label for="joinUserNick" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<input id="joinUserNick" name="joinUserNick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
 <span id="reschecknick" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 
 <div style="clear:left;width:300px;margin:0 auto 18px;">
-<label for="userJoinpw"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<label for="userJoinpw"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
 <input id="userJoinpw" name="userJoinpw"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="비밀번호는 영문, 숫자포함 6~8자" type="password" autocomplete="off">
 </div>
 
 <div  style="width:300px;margin:0 auto;">
-<label for="userJoinpwcheck"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<label for="userJoinpwcheck"  style="cursor:pointer;background:url(../../resources/img/key_pass_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
 <input id="userJoinpwcheck" name="userJoinpwcheck"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="비밀번호 확인" type="password" autocomplete="off">
 </div>
 
 <div  style="width:300px;margin:18px auto;">
-<label for="userJoinphone"  style="cursor:pointer;background:url(../../resources/img/mobile_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:39px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="userJoinphone" name="userJoinphone"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="'-' 제외하고 입력해주세요" type="text">
+<label for="userJoinphone"  style="cursor:pointer;background:url(../../resources/img/mobile_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
+<input id="userJoinphone" name="userJoinphone"  style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="'-' 제외하고 입력해주세요" type="text"">
 </div>
 
 <div style="width:155px;margin:15px auto;">
