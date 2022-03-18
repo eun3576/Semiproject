@@ -17,13 +17,6 @@
 <% List<ReviewComment> reviewComment = (List) request.getAttribute("reviewComment"); %>
 <% String sessionNick = (String)session.getAttribute("usernick"); %>
 
-
-<!-- bootstrap 추가 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
 <script type="text/javascript">
 
 $(document).ready(function () {
@@ -66,7 +59,7 @@ th {
 <h1 align="center">자세히 보기</h1>
 <hr>
 
-<table class="table">
+<table class="table" style="border: 1px solid #dddddd;">
 
 <tr>
 	<th class="danger">ReviewNumber</th><td colspan="1"><%=viewReview.getReview_no() %></td>
@@ -114,6 +107,7 @@ th {
 <%	} %>
 </div>
 
+<br>
 <div class="text-center">
 	<button id="btnList" class="btn btn-primary">List</button>
 	<button id="btnUpdate" class="btn btn-success">Update</button>
