@@ -144,7 +144,7 @@ th {
 		<small>닉네임: <%=reviewComment.get(i).getNickname() %><br>
 <%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
 		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewComment.get(i).getComment_date()) %>
-		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
+<%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
 		댓글: <%=reviewComment.get(i).getComment_text() %></small>
 		
 		<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
