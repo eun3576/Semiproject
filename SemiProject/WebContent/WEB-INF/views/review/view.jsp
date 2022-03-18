@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="dto.Review" %>
 <%@ page import="dto.UserInfo" %>
 <%@ page import="dto.Attachment" %>
@@ -111,31 +112,40 @@ th {
 <%	} %>
 </div>
 
-<hr>
-
-<div>
-<h1>댓글 들어갈 영역!</h1>
-
-<h1>댓글 작성!!</h1>
-<form action="/review/view" method="post">
-
-닉네임: <%=sessionNick %>
-
-</form>
-
-<% for(int i=0; i<reviewComment.size(); i++) { %>
-	닉네임: <%=reviewComment.get(i).getNickname() %><br>
-	작성 날짜: <%=reviewComment.get(i).getComment_date() %>
-	수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
-	댓글: <%=reviewComment.get(i).getComment_text() %><br>
-<% } %>
-</div>
-
 <div class="text-center">
 	<button id="btnList" class="btn btn-primary">List</button>
 	<button id="btnUpdate" class="btn btn-success">Update</button>
 	<button id="btnDelete" class="btn btn-danger">Delete</button>
 </div>
+<hr>
+
+<div>
+
+	<h1>댓글 들어갈 영역!</h1>
+	
+	<h1>댓글 작성!!</h1>
+	
+	<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
+		<form action="/review/view" method="post">
+		
+		닉네임: <%=sessionNick %><br>
+		작성할 내용: <input type="text">
+		
+		<button type="submit">작성!</button>
+	<% } %>
+	</form>
+	
+	<hr>
+	<% for(int i=0; i<reviewComment.size(); i++) { %>
+		<small>닉네임: <%=reviewComment.get(i).getNickname() %><br>
+<%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
+		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %>
+		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
+		댓글: <%=reviewComment.get(i).getComment_text() %></small><br><hr>
+	<% } %>
+
+</div>
+
 
 </div><!-- .container -->
 
