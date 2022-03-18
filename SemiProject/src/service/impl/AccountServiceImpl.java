@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public UserInfo getUserJoinId(HttpServletRequest req) {
 		UserInfo user = new UserInfo();
-		user.setId(req.getParameter("userJoinid"));
+		user.setId(req.getParameter("joinUserId"));
 
 		return user;
 	}
@@ -55,7 +55,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public UserInfo getUserJoinNick(HttpServletRequest req) {
 		UserInfo user = new UserInfo();
-		user.setNickname(req.getParameter("userJoinnick"));
+		user.setNickname(req.getParameter("joinUserNick"));
 		return user;
 	}
 
