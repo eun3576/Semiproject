@@ -3,7 +3,6 @@ package dto;
 import java.util.Date;
 
 public class Review {
-//<<<<<<< jyj
 	
 	private int review_no;
 	private String title;
