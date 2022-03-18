@@ -106,7 +106,7 @@ th {
        
 <tr>   
 	<th class="danger">Nickname</th><td colspan="1"><%=userInfo.getNickname() %></td>
-	<th class="danger">Symptom</th><td colspan="1"><%=userInfo.getSympton() %></td>
+	<th class="danger">Symptom</th><td colspan="1"><%=userInfo.getSymptom() %></td>
 	<th class="danger">Views</th><td colspan="1"><%=viewReview.getViews() %></td>
 </tr>
 

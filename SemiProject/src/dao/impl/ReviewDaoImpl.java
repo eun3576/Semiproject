@@ -105,7 +105,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				UserInfo u = new UserInfo();
 				
 				u.setNickname(rs.getString("nickname"));
-				u.setSympton(rs.getString("sympton"));
+				u.setSymptom(rs.getString("sympton"));
 				
 				//리스트 객체에 조회한 행 객체 저장
 				nickList.add(u);
@@ -206,7 +206,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				//결과값 행 처리
 				userInfo.setNickname(rs.getString("nickname"));
-				userInfo.setSympton(rs.getString("sympton"));
+				userInfo.setSymptom(rs.getString("sympton"));
 				
 			}
 		} catch (SQLException e) {

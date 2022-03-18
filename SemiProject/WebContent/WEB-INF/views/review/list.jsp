@@ -75,7 +75,7 @@ $(document).ready(function () {
 		<div class="list_detail">
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
-			증상: <%=nickList.get(i).getSympton() %><br>
+			증상: <%=nickList.get(i).getSymptom() %><br>
 			작성날짜: <%=reviewList.get(i).getWriteDate() %><br>
 			조회수: <%=reviewList.get(i).getViews() %><br>
 			이미지 준비중<br>

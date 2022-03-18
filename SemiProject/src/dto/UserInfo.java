@@ -6,14 +6,14 @@ public class UserInfo {
     private String password;
     private String gender;
     private String nickname;
-    private String sympton;
+    private String symptom;
     private String phonenumber;
     
     //toString
 	@Override
 	public String toString() {
 		return "UserInfo [userNo=" + userNo + ", id=" + id + ", password=" + password + ", gender=" + gender
-				+ ", nickname=" + nickname + ", sympton=" + sympton + ", phonenumber=" + phonenumber + "]";
+				+ ", nickname=" + nickname + ", symptom=" + symptom + ", phonenumber=" + phonenumber + "]";
 	}
 	
 	//setter, getter
@@ -47,11 +47,11 @@ public class UserInfo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getSympton() {
-		return sympton;
+	public String getSymptom() {
+		return symptom;
 	}
-	public void setSympton(String sympton) {
-		this.sympton = sympton;
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
 	}
 	public String getPhonenumber() {
 		return phonenumber;
