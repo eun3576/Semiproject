@@ -1,6 +1,7 @@
 package service.impl;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
@@ -46,8 +47,24 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public List<Product> searchBysearchItems(String[] searchItems) {
 		Connection conn = JDBCTemplate.getConnection();
-		List<Product> pList = mainDao.selectBySearchItems(conn, searchItems);
-		return pList;
+		//전체 상품 리스트
+		List<Product> pList = mainDao.selectBySearchItems(conn);
+		
+		//검색어에 해당하는 상품리스트
+		List<Product> pResultList = new ArrayList<>();
+		
+		for(int i=0;i<pList.size();i++) {
+			for(int j=0;j<searchItems.length;j++) {
+					if(pList.get(i).getProduct_content().contains(searchItems[j])) {
+					Product product = new Product();
+					product.setProduct_views(pList.get(i).getProduct_views());
+					product.setProduct_img(pList.get(i).getProduct_img());
+					product.setProduct_name(pList.get(i).getProduct_name());
+					pResultList.add(product);
+				}
+			}
+		}
+		return pResultList;
 	}
 
 }
