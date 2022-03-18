@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
 
@@ -82,5 +83,26 @@ public interface ReviewService {
 	 * @param board - 삭제할 게시글 번호를 가진 객체
 	 */
 	public void delete(Review review);
+	
+	/**
+	 * review_no가 있는 review DTO 객체를 통하여 ReviewComment 조회
+	 * @param reviewno - review_no가 있는 review DTO 객체
+	 * @return - ReviewComment 결과
+	 */
+	public List<ReviewComment> getCommentList(Review reviewno);
+	
+	/**
+	 * review_no가 있는 review DTO 객체를 통하여 댓글 작성
+	 * 
+	 * @param reviewno - review_no가 있는 review DTO 객체
+	 */
+	public void writeComment(HttpServletRequest req);
+	
+	/**
+	 * comment_no 가 담겨있는 DTO 객체를 통하여 댓글 삭제
+	 * 
+	 * @param reviewComment - comment_no 담겨있는 DTO객체
+	 */
+	public void deleteCommentByCommentno(ReviewComment reviewComment);
 	
 }

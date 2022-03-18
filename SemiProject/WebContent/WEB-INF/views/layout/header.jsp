@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<!--<<<<<<< jyj-->
-<!--=======-->
 <title>영추영추</title>
-<!-- >>>>>>> main -->
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>

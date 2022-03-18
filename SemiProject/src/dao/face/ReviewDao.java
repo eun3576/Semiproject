@@ -5,8 +5,13 @@ import java.util.List;
 
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
+/**
+ * @author YoungJae
+ *
+ */
 public interface ReviewDao {
 	
 	/**
@@ -58,7 +63,7 @@ public interface ReviewDao {
 	 * @param conn - DB연결 객체
 	 * @return UserInfo - nickname에 대한 userno
 	 */
-	public UserInfo selectUsernobyNick(Connection conn, UserInfo userInfo);
+	public UserInfo selectUsernoByNick(Connection conn, UserInfo userInfo);
 	
 	/**
 	 * 첨부파일 삽입 
@@ -76,7 +81,7 @@ public interface ReviewDao {
 	 * @param reviewno - 조회할 후기글 번호가 있는 DTO객체 
 	 * @return Attachment - 첨부파일 정보
 	 */
-	public Attachment selectFile(Connection conn, Review reviewno);
+	public Attachment selectFile(Connection conn, Review review);
 	
 	/**
 	 * @param conn - DB연결 객체
@@ -113,6 +118,15 @@ public interface ReviewDao {
 	public int delete(Connection conn, Review review);
 	
 	/**
+	 * 후기글에 해당하는 모든 댓글 조회하여 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삭제할 댓글에 해당되는 게시글 번호
+	 * @return int - 삭제 쿼리문 수행 결과
+	 */
+	public int deleteCommentAllByReview(Connection conn, Review review);
+	
+	/**
 	 * 후기글에 첨부된 파일 기록 삭제
 	 * 
 	 * @param conn - DB연결 객체 
@@ -120,4 +134,32 @@ public interface ReviewDao {
 	 * @return int - 쿼리문 수행 결과 
 	 */
 	public int deleteFile(Connection conn, Review review);
+	
+	/**
+	 * review_no를 통하여 ReviewComment 정보 조회
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param reviewno - review_no가 저장 되어있는 review DTO 객체
+	 * @return ReviewComment - 조회된 ReviewComment의 데이터 객체 
+	 */
+	public List<ReviewComment> selectReviewCommentByReviewno(Connection conn, Review reviewno);
+	
+	
+	/**
+	 * review_no를 통하여 ReviewComment에 삽입
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param reviewno - review_no가 저장 되어있는 review DTO 객체
+	 * @return int - 쿼리문 수행 결과
+	 */
+	public int insertComment(Connection conn, ReviewComment reviewComment);
+	
+	/**
+	 * reviewComment
+	 * @param conn
+	 * @param reviewComment
+	 * @return
+	 */
+	public int deleteComment(Connection conn, ReviewComment reviewComment);
+	
 }

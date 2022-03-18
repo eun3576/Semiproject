@@ -20,6 +20,7 @@ import dao.face.ReviewDao;
 import dao.impl.ReviewDaoImpl;
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 import service.face.ReviewService;
 
@@ -257,7 +258,7 @@ public class ReviewServiceImpl implements ReviewService{
 		userInfo.setNickname((String) req.getSession().getAttribute("usernick"));
 		
 		//닉네임을 이용하여 user_no 조회하여 DTO객체에 저장
-		reviewDao.selectUsernobyNick(conn, userInfo);
+		reviewDao.selectUsernoByNick(conn, userInfo);
 		
 		//구한 user_no를 review DTO객체에 저장
 		review.setUser_no(userInfo.getUserNo());
@@ -460,20 +461,85 @@ public class ReviewServiceImpl implements ReviewService{
 	public void delete(Review review) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-
+	
+		//테이블 구조가 댓글 테이블에 후기 테이블을 참조하기 때문에 
+		//후기글 번호에 해당되는 댓글 테이블의 데이터를 먼저 삭제 해주어야 한다.
+		if (reviewDao.deleteCommentAllByReview(conn, review) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 		if (reviewDao.deleteFile(conn, review) > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		
+
 		if(reviewDao.delete(conn, review) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn); 
+		}
+		
+	}
+
+	@Override
+	public List<ReviewComment> getCommentList(Review reviewno) {
+		
+		return reviewDao.selectReviewCommentByReviewno(JDBCTemplate.getConnection(), reviewno);
+		
+	}
+
+	@Override
+	public void writeComment(HttpServletRequest req) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+	
+		ReviewComment reviewComment = new ReviewComment();
+		
+		//form데이터 에서 reviewNo, commentText input값 가져오기 
+		reviewComment.setReview_no(Integer.parseInt(req.getParameter("reviewNo")));
+		reviewComment.setComment_text(req.getParameter("commentText"));
+		
+		//세션 로그인 정보를 이용하여 user_no를 구한다.
+		String sessionNick = (String) req.getSession().getAttribute("usernick");
+		
+		//userInfo 객체를 생성하여 세션닉네임을 저장해준다.
+		UserInfo userInfo = new UserInfo();
+		userInfo.setNickname(sessionNick);
+		
+		//세션 닉네임을 저장한 DTO객체를 이용해 user_no구하는 함수를 이용한다. 
+		reviewDao.selectUsernoByNick(conn, userInfo);
+		
+		//userInfo에 저장 되어있는 user_no를 reviewComment DTO 에 저장
+		reviewComment.setUser_no(userInfo.getUserNo());
+		
+		//reviewComment객체에 들어갔는지 확인 test
+		//System.out.println("reviewComment user_no + " + reviewComment);
+		
+		
+		if (reviewComment.getComment_text() == null || "".equals(reviewComment.getComment_text())) {
+			reviewComment.setComment_text("(내용없음)");
+		}
+		
+		if (reviewDao.insertComment(conn, reviewComment) > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		
-		
 	}
 
+	@Override
+	public void deleteCommentByCommentno(ReviewComment reviewComment) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if (reviewDao.deleteComment(conn, reviewComment) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
 }

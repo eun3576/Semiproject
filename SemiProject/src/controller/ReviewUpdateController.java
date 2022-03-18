@@ -42,19 +42,40 @@ public class ReviewUpdateController extends HttpServlet {
 		
 		
 		//객체에 데이터가 들어갔는지 TEST!
-		System.out.println("객체에 데이터가 들어 갔는지 테스트!"
-				+ "ReviewController viewReview - " + updateReview);
-		System.out.println("ReviewController updateAttach - " + updateAttach);
-		System.out.println("ReviewController userInfo - " + userInfo);
+		//System.out.println("객체에 데이터가 들어 갔는지 테스트!"
+		//		+ "ReviewController viewReview - " + updateReview);
+		//System.out.println("ReviewController updateAttach - " + updateAttach);
+		//System.out.println("ReviewController userInfo - " + userInfo);
 		
-		//조회결과 MODEL값 전달
-		req.setAttribute("userInfo", userInfo);
+		String sessionNick = (String) req.getSession().getAttribute("usernick");
 		
-		//조회결과 MODER값 전달
-		req.setAttribute("updateAttach", updateAttach);
+		//세션의 닉네임 불러오기 테스트
+		//System.out.println("세션 닉네임 : " + sessionNick);
 		
-		//VIEW 지정 및 응답 - forward
-		req.getRequestDispatcher("/WEB-INF/views/review/update.jsp").forward(req, resp);
+		if ("".equals(sessionNick) || sessionNick == null) {
+			
+			System.out.println("로그인이 필요 합니다!");
+			resp.sendRedirect("/");
+			
+		} else if (sessionNick.equals(userInfo.getNickname())) {
+			
+			System.out.println("로그인 닉네임과 게시글의 닉네임 일치한다.");
+			
+			//조회결과 MODEL값 전달
+			req.setAttribute("userInfo", userInfo);
+			
+			//조회결과 MODER값 전달
+			req.setAttribute("updateAttach", updateAttach);
+			
+			//VIEW 지정 및 응답 - forward
+			req.getRequestDispatcher("/WEB-INF/views/review/update.jsp").forward(req, resp);
+			
+		} else {
+			
+			System.out.println("본인이 작성한 글만 수정 가능합니다!!");
+			
+			resp.sendRedirect("/review/list");
+		}
 		
 	}
 
@@ -63,13 +84,10 @@ public class ReviewUpdateController extends HttpServlet {
 		
 		System.out.println("/review/update [POST]");
 		
-		
 		//한글 수정글 인코딩
 		req.setCharacterEncoding("UTF-8");
 
-		//게시글 수정 시 update method review객체가 반영이 안된다.
 		reviewService.update(req);
-		
 		
 		resp.sendRedirect("/review/list");
 	}

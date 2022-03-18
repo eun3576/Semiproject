@@ -11,6 +11,7 @@ import common.JDBCTemplate;
 import dao.face.ReviewDao;
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
 public class ReviewDaoImpl implements ReviewDao {
@@ -172,8 +173,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return review;
 	}
-	
-	
+
 	
 	@Override
 	public UserInfo selectNickSympByReviewno(Connection conn, Review reviewno) {
@@ -248,7 +248,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public UserInfo selectUsernobyNick(Connection conn, UserInfo userInfo) {
+	public UserInfo selectUsernoByNick(Connection conn, UserInfo userInfo) {
 		
 		String sql = "";
 		sql += "SELECT user_no FROM userinfo WHERE nickname = ?";
@@ -305,7 +305,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	
 	
 	@Override
-	public Attachment selectFile(Connection conn, Review reviewno) {
+	public Attachment selectFile(Connection conn, Review review) {
 		
 		//SQL작성
 		String sql = "";
@@ -325,7 +325,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, reviewno.getReview_no());
+			ps.setInt(1, review.getReview_no());
 			
 			rs = ps.executeQuery();
 			
@@ -449,6 +449,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 	}
 
+	
 	@Override
 	public int delete(Connection conn, Review review) {
 		
@@ -475,7 +476,33 @@ public class ReviewDaoImpl implements ReviewDao {
 		return res;
 	}
 
-
+	@Override
+	public int deleteCommentAllByReview(Connection conn, Review review) {
+		
+		String sql = "";
+		sql += "DELETE review_comment";
+		sql += " WHERE review_no = ?";
+		
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, review.getReview_no());
+			
+			//쿼리문 실행 결과
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return res;
+	}
+	
+	
 	@Override
 	public int deleteFile(Connection conn, Review review) {
 		
@@ -501,4 +528,109 @@ public class ReviewDaoImpl implements ReviewDao {
 		return res;
 	}
 
+
+	@Override
+	public List<ReviewComment> selectReviewCommentByReviewno(Connection conn, Review reviewno) {
+		
+		String sql = "";
+		sql += "SELECT comment_no";
+		sql += ", comment_text";
+		sql += ", comment_date";
+		sql += ", comment_update";
+		sql += ", nickname";
+		sql += " FROM review_comment, userinfo";
+		sql += " WHERE review_no = ?";
+		sql += " AND review_comment.user_no = userinfo.user_no";
+		sql += " ORDER BY comment_no DESC";
+		
+		//결과 저장할 List
+		List<ReviewComment> commentList = new ArrayList<>();
+		
+		try {
+			//SQL 수행
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reviewno.getReview_no());
+			
+			//SQL 수행 및 결과 저장
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				//결과 값 저장 객체
+				ReviewComment rc = new ReviewComment();
+				
+				//결과값 한 행 처리
+				rc.setComment_no(rs.getInt("comment_no"));
+				rc.setComment_text(rs.getString("comment_text"));
+				rc.setComment_date(rs.getDate("Comment_date"));
+				rc.setComment_update(rs.getDate("Comment_update"));
+				rc.setNickname(rs.getString("nickname"));
+				
+				//리스트 객체에 조회한 행 객체 저장
+				commentList.add(rc);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//객체닫기
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return commentList;
+	}
+
+
+	@Override
+	public int insertComment(Connection conn, ReviewComment reviewComment) {
+		
+		String sql = "";
+		sql += "INSERT INTO review_comment";
+		sql += " (comment_no, review_no, user_no, comment_text)";
+		sql += " values (review_comment_seq.nextval, ?, ?, ?) ";
+		
+		//결과 값 저장할 변수
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reviewComment.getReview_no());
+			ps.setInt(2, reviewComment.getUser_no());
+			ps.setString(3, reviewComment.getComment_text());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+	}
+
+
+	@Override
+	public int deleteComment(Connection conn, ReviewComment reviewComment) {
+		
+		String sql = "";
+		sql += "DELETE review_comment";
+		sql += " WHERE comment_no = ?";
+		
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reviewComment.getComment_no());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+	}
+	
 }

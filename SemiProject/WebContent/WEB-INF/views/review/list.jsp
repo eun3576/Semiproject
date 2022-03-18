@@ -36,9 +36,6 @@ $(document).ready(function () {
 
 <style type="text/css">
 
-#list{
-	overflow-x:hidden;
-}
 
 .main_list {
     width: 1000px;
@@ -59,6 +56,12 @@ $(document).ready(function () {
     margin: 6px;
     padding: 9px;
     background-color: #f2dede;
+    overflow-x:hidden;
+}
+
+/* 텍스트가 div영역을 초과하면 생기는 스크롤바 숨기기 */
+.list_detail::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 </style>
@@ -73,7 +76,7 @@ $(document).ready(function () {
 
 	<% for(int i=0; i<reviewList.size(); i++) { %>
 
-		<div id="list" class="list_detail">
+		<div class="list_detail">
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
 			증상: <%=nickList.get(i).getSympton() %><br>
