@@ -40,6 +40,10 @@ public class MainServiceImpl implements MainService{
 		search = search.toLowerCase();
 		//문자열을 공백으로 나눈다
 		String[] strs = search.split(" ");
+		
+		//비교 문자열 담을 변수 
+		String str = "";
+
 		return strs;
 	}
 
@@ -52,15 +56,25 @@ public class MainServiceImpl implements MainService{
 		
 		//검색어에 해당하는 상품리스트
 		List<Product> pResultList = new ArrayList<>();
-		
+		Product product = null;
 		for(int i=0;i<pList.size();i++) {
 			for(int j=0;j<searchItems.length;j++) {
-					if(pList.get(i).getProduct_content().contains(searchItems[j])) {
-					Product product = new Product();
-					product.setProduct_views(pList.get(i).getProduct_views());
-					product.setProduct_img(pList.get(i).getProduct_img());
-					product.setProduct_name(pList.get(i).getProduct_name());
-					pResultList.add(product);
+				product = new Product();
+				if(pList.get(i).getProduct_content().contains(searchItems[j])) {
+						product.setProduct_views(pList.get(i).getProduct_views());
+						product.setProduct_img(pList.get(i).getProduct_img());
+						product.setProduct_name(pList.get(i).getProduct_name());
+						pResultList.add(product);
+				}
+			}
+		}
+		
+		//해당 상품 중 중복 제거
+		for(int i=0;i<pResultList.size();i++) {
+			if(i==pResultList.size()) {break;}
+			for(int j=i+1;j<pResultList.size();j++) {
+				if(pResultList.get(i).getProduct_name().equals(pResultList.get(j).getProduct_name())) {
+					pResultList.remove(j);
 				}
 			}
 		}
