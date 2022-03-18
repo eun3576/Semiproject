@@ -39,6 +39,12 @@ public class ProfileListController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+//		System.out.println(req.getParameter("nickname"));
+//		System.out.println(req.getParameter("phonenumber"));
+//		System.out.println(req.getParameter("password"));
+//		
+		
+		
 		ProfileService profileService = new ProfileServiceImpl();
 		
 		profileService.updateProfile(req);
