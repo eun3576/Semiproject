@@ -390,8 +390,6 @@ public class ReviewServiceImpl implements ReviewService{
 					review.setContent(value);
 				}
 				
-				
-				System.out.println("여기 확인좀 하자!!!!" + review);
 			}//if (item.isFormField()) end
 			
 			
@@ -452,8 +450,6 @@ public class ReviewServiceImpl implements ReviewService{
 				JDBCTemplate.rollback(conn);
 			}
 		}
-		
-		System.out.println("첨부파일 수정 ? " + attach);
 		
 	}
 

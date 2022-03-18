@@ -59,7 +59,7 @@ public class ReviewUpdateController extends HttpServlet {
 			
 		} else if (sessionNick.equals(userInfo.getNickname())) {
 			
-			System.out.println("로그인 닉네임과 게시글의 닉네임 일치한다.");
+			System.out.println("로그인 닉네임과 게시글의 닉네임 일치합니다.");
 			
 			//조회결과 MODEL값 전달
 			req.setAttribute("userInfo", userInfo);

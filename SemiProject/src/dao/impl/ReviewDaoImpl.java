@@ -442,10 +442,6 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		System.out.println(review);
-		
-		System.out.println("res 값? " + res);
-		
 		return res;
 		
 	}

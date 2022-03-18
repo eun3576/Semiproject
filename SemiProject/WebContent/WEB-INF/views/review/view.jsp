@@ -27,14 +27,24 @@ $(document).ready(function () {
 	
 	//Update 버튼을 눌렀을 때
 	$("#btnUpdate").click(function() {
-		$(location).attr("href", "<%=request.getContextPath() %>/review/update?review_no=<%=viewReview.getReview_no() %>");
+		<%if (sessionNick != null && sessionNick.equals(userInfo.getNickname())) { %>
+			$(location).attr("href", "<%=request.getContextPath() %>/review/update?review_no=<%=viewReview.getReview_no() %>");
+		<% } else { %>
+			alert("본인이 작성한 글만 수정 가능합니다!!")
+			history.go(0);
+		<% } %>
 	})
 	
 	//Delete 버튼을 눌렀을 때 
 	$("#btnDelete").click(function() {
-		if( confirm("게시글을 삭제 하시겠습니까?") ) {
+		<%if (sessionNick != null && sessionNick.equals(userInfo.getNickname())) { %>
+		if (confirm("게시글을 삭제 하시겠습니까?")) {
 			$(location).attr("href", "<%=request.getContextPath() %>/review/delete?review_no=<%=viewReview.getReview_no() %>");
 		}
+		<% } else { %>
+			alert("본인이 작성한 글만 삭제 가능합니다!!")
+			history.go(0);
+		<% } %>
 	})
 	
 	//댓글 삭제 버튼 (X)처리 
@@ -69,7 +79,7 @@ th {
 	border-top: 1px solid #cfc9c9;
 	margin-top: 5px;
 	display: inline-block;
-	width: 680px;
+	width: 100%;
 }
 
 #commentContent {
@@ -115,25 +125,32 @@ th {
 </tr>
 
 <tr>
-	<td colspan="6"><%=viewReview.getContent() %></td>
+	<td colspan="6">
+	
+	<!-- 첨부파일 -->
+	<div>
+	
+	<%	if( attach != null ) { %>
+	<a href="<%=request.getContextPath() %>/upload/<%=attach.getStored_img() %>"
+	 download="<%=attach.getOrigin_img() %>">
+		<%=attach.getOrigin_img() %>
+	<img alt="이미지를 불러올 수 없음" src="<%=request.getContextPath() %>
+		/upload/<%=attach.getStored_img()%>" width="100%" height="100%">
+	</a>
+	<br><br>
+	<%	} %>
+	
+	<%=viewReview.getContent() %>
+	
+	</div>
+	
+	</td>
 </tr>
 
 <tr>
 
 </tr>
 </table>
-
-<!-- 첨부파일 -->
-<div>
-<%	if( attach != null ) { %>
-<a href="<%=request.getContextPath() %>/upload/<%=attach.getStored_img() %>"
- download="<%=attach.getOrigin_img() %>">
-	<%=attach.getOrigin_img() %>
-<img alt="이미지를 불러올 수 없음" src="<%=request.getContextPath() %>
-	/upload/<%=attach.getStored_img()%>" width="200" height="200">
-</a>
-<%	} %>
-</div>
 
 <br>
 <div class="text-center">
@@ -164,8 +181,8 @@ th {
 	
 	
 	<div id="commentList">
-	<strong style="font-size: 20px;">댓글 목록</strong><br>
-		
+	<strong style="font-size: 20px;">댓글 목록</strong>
+	<small>&nbsp;&nbsp;&nbsp;댓글 수(<%=reviewComment.size() %>)</small><br>
 		<% for(int i=0; i<reviewComment.size(); i++) { %>
 			<div id="commentInfo">
 			

@@ -31,7 +31,7 @@ public class ReviewListController extends HttpServlet {
 		List<Review> reviewList = reviewService.getList();
 		
 		//게시글 전체 조회 test
-//		System.out.println("게시글 전체 조회" + reviewList);
+		System.out.println("게시글 전체 조회" + reviewList);
 		
 		
 		//게시글을 작성한 유저 닉네임 증상 전체 조회 - ReviewService이용
