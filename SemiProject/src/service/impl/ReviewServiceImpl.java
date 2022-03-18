@@ -466,13 +466,12 @@ public class ReviewServiceImpl implements ReviewService{
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		
+
 		if(reviewDao.delete(conn, review) > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
-			JDBCTemplate.rollback(conn);
+			JDBCTemplate.rollback(conn); 
 		}
-		
 		
 	}
 

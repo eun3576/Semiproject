@@ -56,6 +56,9 @@ public class ReviewViewController extends HttpServlet {
 		req.setAttribute("attach", attach);
 		
 		
+		
+		
+		
 		//VIEW지정 및 응답 - forward
 		req.getRequestDispatcher("/WEB-INF/views/review/view.jsp").forward(req, resp);
 		

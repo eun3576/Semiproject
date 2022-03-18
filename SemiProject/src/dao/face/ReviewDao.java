@@ -120,4 +120,5 @@ public interface ReviewDao {
 	 * @return int - 쿼리문 수행 결과 
 	 */
 	public int deleteFile(Connection conn, Review review);
+	
 }
