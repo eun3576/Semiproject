@@ -98,5 +98,11 @@ public interface ReviewService {
 	 */
 	public void writeComment(HttpServletRequest req);
 	
+	/**
+	 * comment_no 가 담겨있는 DTO 객체를 통하여 댓글 삭제
+	 * 
+	 * @param reviewComment - comment_no 담겨있는 DTO객체
+	 */
+	public void deleteCommentByCommentno(ReviewComment reviewComment);
 	
 }

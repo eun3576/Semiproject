@@ -530,4 +530,16 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		
 	}
+
+	@Override
+	public void deleteCommentByCommentno(ReviewComment reviewComment) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if (reviewDao.deleteComment(conn, reviewComment) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
 }

@@ -83,14 +83,22 @@ public class ReviewViewController extends HttpServlet {
 		String reviewNo = (String) req.getParameter("reviewNo");
 		String commentNo = (String) req.getParameter("commentNo");
 		
+		System.out.println(reviewNo);
+		System.out.println(commentNo);
+		
 		if (reviewNo == null) {
-			System.out.println("댓글 삭제 버튼을 누름");
+			//System.out.println("댓글 삭제 버튼을 누름");
 			
-			//reviewService.deleteCommentByCommentno();
+			//전달 파라미터를 reviewComment에 저장!
+			ReviewComment reviewComment = new ReviewComment();
+			reviewComment.setComment_no(Integer.parseInt(req.getParameter("commentNo")));
+			
+			//commment_no가 들어있는 reviewComment DTO 객체를 이용해 댓글 삭제
+			reviewService.deleteCommentByCommentno(reviewComment);
 			
 		} else if (commentNo == null) {
 			
-			System.out.println("댓글 작성 버튼을 누름");
+			//System.out.println("댓글 작성 버튼을 누름");
 			
 			//view.jsp에서 입력한 폼데이터(댓글) 저장하는 method
 			reviewService.writeComment(req);

@@ -613,10 +613,24 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int deleteComment(Connection conn, ReviewComment reviewComment) {
 		
+		String sql = "";
+		sql += "DELETE review_comment";
+		sql += " WHERE comment_no = ?";
 		
-		return 0;
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reviewComment.getComment_no());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
 	}
-
-
-
+	
 }

@@ -4,6 +4,8 @@
 <%@ page import="dto.Attachment" %>
 <%@ page import="dto.ReviewComment" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
