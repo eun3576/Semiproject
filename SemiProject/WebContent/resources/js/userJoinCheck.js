@@ -1,24 +1,24 @@
 function check(){
-	if(document.frm.userJoinid.value==""){
+	if(document.frm.joinUserId.value==""){
 		alert("아이디를 입력해주세요");
-		document.frm.userJoinid.focus();
+		document.frm.joinUserId.focus();
 		return false;
 	} 
-	if(!/^[a-zA-Z0-9]{4,6}$/.test(userJoinid.value)){
+	if(!/^[a-zA-Z0-9]{4,6}$/.test(joinUserId.value)){
 		alert("ID는 4~6자의 영어 대소문자와 숫자로만 입력해주세요")
-		document.frm.userJoinid.value="";
-		document.frm.userJoinid.focus();
+		document.frm.joinUserId.value="";
+		document.frm.joinUserId.focus();
 		return false
 	}
 	
 	
-	if(document.frm.userJoinnick.value==""){
+	if(document.frm.joinUserNick.value==""){
 		alert("닉네임을 입력해주세요");
 		document.frm.userJoinnick.focus();
 		return false;
 	} 
 	
-	if(!/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{4,6}$/.test(userJoinnick.value)){
+	if(!/^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{4,6}$/.test(joinUserNick.value)){
 		alert("닉네임은는 4~6자의 영어 대소문자와 숫자로만 입력해주세요")
 		return false
 	}
