@@ -12,4 +12,8 @@ public interface ProductSearchDao {
 	public Product selectProduct(Connection conn, Product product);
 	
 	public int updateviews(Connection conn, Product product);
+	
+	public List<ProductCategory> selectCategoryList(Connection conn, Product product);
+	
+	
 }

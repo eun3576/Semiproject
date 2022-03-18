@@ -1,7 +1,12 @@
+<%@page import="dto.ProductCategory"%>
+<%@page import="java.util.List"%>
 <%@page import="dto.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Product product = (Product)request.getAttribute("product");%>
+<% 
+	Product product = (Product)request.getAttribute("product");
+	List<ProductCategory> list = (List)request.getAttribute("list");
+%>
 
 <style type="text/css">
 
@@ -26,22 +31,8 @@
 <div style="margin:0 100px;">
 <h4><%=product.getProduct_name() %></h4>
 <div>
-	<% if("child".equals(product.getCategory_name())) { %>
-	#어린이 건강
-	<% }else if("woman".equals(product.getCategory_name())) { %>
-	#여성 건강
-	<% }else if("man".equals(product.getCategory_name())) { %>
-	#남성 건강
-	<% }else if("aged".equals(product.getCategory_name())) { %>
-	#노인 건강
-	<% }else if("eye".equals(product.getCategory_name())) { %>
-	#눈 건강
-	<% }else if("intestine".equals(product.getCategory_name())) { %>
-	#장 건강
-	<% }else if("vitamin".equals(product.getCategory_name())) { %>
-	#비타민
-	<% }else if("exercise".equals(product.getCategory_name())) { %>
-	#운동
+	<% for(int i=0; i<list.size(); i++){ %>
+		#<%=list.get(i).getCategory_name() %>
 	<% } %>
 </div>
 <br><br><br>
