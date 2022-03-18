@@ -134,6 +134,7 @@ hr{
 	</div>
 	<button onclick="search();" class="btn btn-info" style="margin:0 10px;width:90px;">조회</button>
 	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;width:90px;">초기화</button>
+	<button onclick="location.href=''" class="btn btn-info" style="margin:0 10px;width:90px;">전체조회</button>
 </div>
 
 <hr>

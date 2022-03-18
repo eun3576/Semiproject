@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Product;
+import dto.ProductCategory;
 import service.face.ProductService;
 import service.impl.ProductServiceImpl;
 
@@ -21,12 +24,15 @@ public class ProductDetailController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		productService.updateviews(req);
-		
 		Product product = productService.getProduct(req);
 		
+		List<ProductCategory> list = productService.getCategoryList(req);
+		
 		req.setAttribute("product", product);
+		req.setAttribute("list", list);
 		
 		req.getRequestDispatcher("/WEB-INF/views/product_view/productDetail.jsp").forward(req, resp);
 	}
-
+	
+	
 }

@@ -64,7 +64,13 @@ public class ProductServiceImpl implements ProductService{
 			productList.add(exercise);
 		}
 		
-		return productSearchDao.selectProductList(conn, productList);
+		List<Product> list = productSearchDao.selectProductList(conn, productList);
+		
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setProduct_content(productSearchDao.selectProduct(conn, list.get(i)).getProduct_content());
+		}
+		
+		return list;
 	}
 	
 	@Override
@@ -87,5 +93,22 @@ public class ProductServiceImpl implements ProductService{
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
+	}
+	
+	@Override
+	public List<ProductCategory> getCategoryList(HttpServletRequest req) {
+		
+		Product product = new Product();
+		product.setProduct_no(Integer.parseInt(req.getParameter("product_no")));
+		
+		return productSearchDao.selectCategoryList(conn, product);
+	}
+	
+	@Override
+	public List<ProductCategory> getCategoryList(Product product) {
+		
+		List<ProductCategory> list = productSearchDao.selectCategoryList(conn, product);
+		
+		return list;
 	}
 }

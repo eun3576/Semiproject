@@ -18,19 +18,19 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT p.product_no, p.category_name, product_name, product_content, product_views, product_img, category_no ";
-		sql += "FROM product p, product_category c ";
-		sql += "WHERE p.product_no = c.product_no AND (";
+		String sql = "select distinct p.product_no product_no, product_name, product_views, product_img ";
+		sql += "from product p, product_category c ";
+		sql += "where p.product_no = c.product_no and ( ";
 		
 		for(int i=0; i<categoryList.size(); i++) {
-			sql += "p.category_name=?";
+			sql += "c.category_name=?";
 			
 			if(i != categoryList.size()-1) {
 				sql += " or ";
 			}
 		}
 
-		sql += ")";
+		sql += ") ";
 		sql += "ORDER BY p.product_no DESC";
 		
 		List<Product> list = new ArrayList<>();
@@ -45,12 +45,10 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 			
 			while(rs.next()) {
 				Product p = new Product();
-				p.setCategory_name(rs.getString("category_name"));
-				p.setProduct_content(rs.getString("product_content"));
-				p.setProduct_img(rs.getString("product_img"));
 				p.setProduct_no(rs.getInt("product_no"));
 				p.setProduct_name(rs.getString("product_name"));
 				p.setProduct_views(rs.getInt("product_views"));
+				p.setProduct_img(rs.getString("product_img"));
 				
 				list.add(p);
 			}
@@ -80,7 +78,6 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				product.setCategory_name(rs.getString("category_name"));
 				product.setProduct_content(rs.getString("product_content"));
 				product.setProduct_img(rs.getString("product_img"));
 				product.setProduct_name(rs.getString("product_name"));
@@ -120,4 +117,38 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 		
 		return res;
 	}
+	
+	@Override
+	public List<ProductCategory> selectCategoryList(Connection conn, Product product) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ProductCategory> list = new ArrayList<>();
+		
+		String sql = "";
+		sql += "SELECT * FROM product_category ";
+		sql += "WHERE product_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, product.getProduct_no());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				ProductCategory pc = new ProductCategory();
+				pc.setCategory_no(rs.getInt("category_no"));
+				pc.setCategory_name(rs.getString("category_name"));
+				pc.setProduct_no(rs.getInt("product_no"));
+				
+				list.add(pc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
 }
