@@ -1,10 +1,9 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="dto.Review" %>
 <%@ page import="dto.UserInfo" %>
 <%@ page import="dto.Attachment" %>
 <%@ page import="dto.ReviewComment" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -38,6 +37,13 @@ $(document).ready(function () {
 		}
 	})
 	
+	//댓글 삭제 버튼 (X)처리 
+	$("#commentDelBtn").click(function() {
+		if (confirm("댓글을 삭제 하시겠습니까?")) {
+			$("#commentDel").submit();
+		}
+	})
+	
 })
 
 </script>
@@ -52,6 +58,28 @@ th {
 .table {
 	table-layout:fixed;
 }
+
+#commentList, #commentPost {
+	background-color: #f2dede;
+	padding: 12px;
+	border-radius: 5px 5px; 
+}
+
+#commentInfo {
+	border-top: 1px solid #cfc9c9;
+	margin-top: 5px;
+	display: inline-block;
+	width: 680px;
+}
+
+#commentContent {
+	float: left;
+}
+
+#commentDate {
+	float: right;
+}
+
 </style>
 
 <div class="container">
@@ -117,39 +145,55 @@ th {
 
 <div>
 
-	<h1>댓글 들어갈 영역! 로그인을 하면 댓글 작성칸 활성화!</h1>
-	
-	<h1>댓글 작성!!</h1>
-	
-	<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
-<%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
-	<form action="#" method="post">
 		
-		<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
-		닉네임: <%=sessionNick %><br>
-		작성할 내용: <input type="text" name="commentText">
-		
-		<button id="commentWrite" class="btn-xs">작성!</button>
-	<% } %>
-	</form>
-	
-	<hr>
-	<% for(int i=0; i<reviewComment.size(); i++) { %>
-		<small>닉네임: <%=reviewComment.get(i).getNickname() %><br>
-<%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
-		댓글: <%=reviewComment.get(i).getComment_text() %>
-<%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
-		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewComment.get(i).getComment_date()) %><br>
-		</small>
-		
-		<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
+		<!-- 로그인 세션 정보가 있을 때 댓글 작성란 활성화 -->
+		<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
+	<div id="commentPost">
+		<strong style="font-size: 20px;">댓글 입력</strong>
+	<%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
 		<form action="#" method="post">
-			<input type="hidden" name="commentNo" value="<%=reviewComment.get(i).getComment_no() %>">
-		<button id="commentDel" class="btn-xs">삭제</button><br>
+			
+			<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
+			<%=sessionNick %>: <input type="text" name="commentText" placeholder="댓글을 입력 하세요.">
+			
+			<button id="commentWrite" class="btn-xs">등록</button>
 		</form>
+	</div>
+	<hr>
 		<% } %>
-		<hr>
-	<% } %>
+	
+	
+	<div id="commentList">
+	<strong style="font-size: 20px;">댓글 목록</strong><br>
+		
+		<% for(int i=0; i<reviewComment.size(); i++) { %>
+			<div id="commentInfo">
+			
+			<div id="commentContent">
+				<small>
+				<%=reviewComment.get(i).getNickname() %>: <%=reviewComment.get(i).getComment_text() %><br>
+				</small>
+				<br>
+			</div>
+				
+			<div id="commentDate">
+<%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
+<%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
+			<%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %>
+					
+			<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
+			<span id="commentDelBtn" style="color:red; font-weight: bold; cursor: pointer;">X</span>
+			<form id="commentDel" action="#" method="post">
+				<input type="hidden" name="commentNo" value="<%=reviewComment.get(i).getComment_no() %>">
+			</form>
+			<% } %>	
+			</div>
+			
+			</div>
+		<% } %>
+		
+	</div>
+	<hr>
 
 </div>
 

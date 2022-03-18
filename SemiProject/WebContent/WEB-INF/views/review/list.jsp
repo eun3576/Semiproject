@@ -48,7 +48,7 @@ $(document).ready(function () {
     width: 220px;
     height: 170px;
 	border: 2px solid #f2dede;
- 	border-radius: 40px 80px; 
+ 	border-radius: 30px 30px; 
     margin: 6px;
     padding: 9px;
     background-color: #f2dede;
