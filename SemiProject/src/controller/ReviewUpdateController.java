@@ -42,10 +42,10 @@ public class ReviewUpdateController extends HttpServlet {
 		
 		
 		//객체에 데이터가 들어갔는지 TEST!
-		System.out.println("객체에 데이터가 들어 갔는지 테스트!"
-				+ "ReviewController viewReview - " + updateReview);
-		System.out.println("ReviewController updateAttach - " + updateAttach);
-		System.out.println("ReviewController userInfo - " + userInfo);
+		//System.out.println("객체에 데이터가 들어 갔는지 테스트!"
+		//		+ "ReviewController viewReview - " + updateReview);
+		//System.out.println("ReviewController updateAttach - " + updateAttach);
+		//System.out.println("ReviewController userInfo - " + userInfo);
 		
 		String sessionNick = (String) req.getSession().getAttribute("usernick");
 		

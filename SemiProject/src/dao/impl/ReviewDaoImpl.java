@@ -11,6 +11,7 @@ import common.JDBCTemplate;
 import dao.face.ReviewDao;
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
 public class ReviewDaoImpl implements ReviewDao {
@@ -499,6 +500,58 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		
 		return res;
+	}
+
+
+	@Override
+	public List<ReviewComment> selectReviewCommentByReviewno(Connection conn, Review reviewno) {
+		
+		String sql = "";
+		sql += "SELECT comment_no";
+		sql += ", comment_text";
+		sql += ", comment_date";
+		sql += ", comment_update";
+		sql += ", nickname";
+		sql += " FROM review_comment, userinfo";
+		sql += " WHERE review_no = ?";
+		sql += " AND review_comment.user_no = userinfo.user_no";
+		sql += " ORDER BY comment_no DESC";
+		
+		//결과 저장할 List
+		List<ReviewComment> commentList = new ArrayList<>();
+		
+		try {
+			//SQL 수행
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reviewno.getReview_no());
+			
+			//SQL 수행 및 결과 저장
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				//결과 값 저장 객체
+				ReviewComment rc = new ReviewComment();
+				
+				//결과값 한 행 처리
+				rc.setComment_no(rs.getInt("comment_no"));
+				rc.setComment_text(rs.getString("comment_text"));
+				rc.setComment_date(rs.getDate("Comment_date"));
+				rc.setComment_update(rs.getDate("Comment_update"));
+				rc.setNickname(rs.getString("nickname"));
+				
+				//리스트 객체에 조회한 행 객체 저장
+				commentList.add(rc);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//객체닫기
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		return commentList;
 	}
 
 

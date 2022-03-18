@@ -1,6 +1,8 @@
 <%@ page import="dto.Review" %>
 <%@ page import="dto.UserInfo" %>
 <%@ page import="dto.Attachment" %>
+<%@ page import="dto.ReviewComment" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,6 +11,9 @@
 <% Review viewReview = (Review) request.getAttribute("viewReview"); %>
 <% UserInfo userInfo = (UserInfo) request.getAttribute("userInfo"); %>
 <% Attachment attach = (Attachment) request.getAttribute("attach"); %>
+<% List<ReviewComment> reviewComment = (List) request.getAttribute("reviewComment"); %>
+<% String sessionNick = (String)session.getAttribute("usernick"); %>
+
 
 <!-- bootstrap 추가 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -104,6 +109,26 @@ th {
 	/upload/<%=attach.getStored_img()%>" width="200" height="200">
 </a>
 <%	} %>
+</div>
+
+<hr>
+
+<div>
+<h1>댓글 들어갈 영역!</h1>
+
+<h1>댓글 작성!!</h1>
+<form action="/review/view" method="post">
+
+닉네임: <%=sessionNick %>
+
+</form>
+
+<% for(int i=0; i<reviewComment.size(); i++) { %>
+	닉네임: <%=reviewComment.get(i).getNickname() %><br>
+	작성 날짜: <%=reviewComment.get(i).getComment_date() %>
+	수정 날짜: <%=reviewComment.get(i).getComment_update() %><br>
+	댓글: <%=reviewComment.get(i).getComment_text() %><br>
+<% } %>
 </div>
 
 <div class="text-center">

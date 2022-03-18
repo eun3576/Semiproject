@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
 
@@ -84,9 +85,10 @@ public interface ReviewService {
 	public void delete(Review review);
 	
 	/**
-	 * @param reviewno
-	 * @return
+	 * review_no가 있는 review DTO 객체를 통하여 ReviewComment 조회
+	 * @param reviewno - review_no가 있는 review DTO 객체
+	 * @return - ReviewComment 결과
 	 */
-//	public ReviewComment viewComment(Review reviewno);
+	public List<ReviewComment> getCommentList(Review reviewno);
 	
 }

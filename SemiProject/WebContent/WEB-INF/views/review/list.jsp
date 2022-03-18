@@ -76,7 +76,7 @@ $(document).ready(function () {
 
 	<% for(int i=0; i<reviewList.size(); i++) { %>
 
-		<div id="list" class="list_detail">
+		<div class="list_detail">
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
 			증상: <%=nickList.get(i).getSympton() %><br>

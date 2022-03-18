@@ -5,6 +5,7 @@ import java.util.List;
 
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 
 public interface ReviewDao {
@@ -120,5 +121,14 @@ public interface ReviewDao {
 	 * @return int - 쿼리문 수행 결과 
 	 */
 	public int deleteFile(Connection conn, Review review);
+	
+	/**
+	 * review_no를 통하여 ReviewComment 정보 조회
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param reviewno - review_no가 저장 되어있는 review DTO 객체
+	 * @return ReviewComment - 조회된 ReviewComment의 데이터 객체 
+	 */
+	public List<ReviewComment> selectReviewCommentByReviewno(Connection conn, Review reviewno);
 	
 }

@@ -20,6 +20,7 @@ import dao.face.ReviewDao;
 import dao.impl.ReviewDaoImpl;
 import dto.Attachment;
 import dto.Review;
+import dto.ReviewComment;
 import dto.UserInfo;
 import service.face.ReviewService;
 
@@ -472,6 +473,13 @@ public class ReviewServiceImpl implements ReviewService{
 		} else {
 			JDBCTemplate.rollback(conn); 
 		}
+		
+	}
+
+	@Override
+	public List<ReviewComment> getCommentList(Review reviewno) {
+		
+		return reviewDao.selectReviewCommentByReviewno(JDBCTemplate.getConnection(), reviewno);
 		
 	}
 

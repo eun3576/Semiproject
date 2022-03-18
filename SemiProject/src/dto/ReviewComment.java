@@ -10,13 +10,16 @@ public class ReviewComment {
 	private String comment_text;
 	private Date comment_date;
 	private Date comment_update;
+	//DTO nickname 추가
+	private String nickname;
 	
 	@Override
 	public String toString() {
 		return "ReviewComment [comment_no=" + comment_no + ", user_no=" + user_no + ", review_no=" + review_no
 				+ ", comment_text=" + comment_text + ", comment_date=" + comment_date + ", comment_update="
-				+ comment_update + "]";
+				+ comment_update + ", nickname=" + nickname + "]";
 	}
+	
 	public int getComment_no() {
 		return comment_no;
 	}
@@ -53,5 +56,13 @@ public class ReviewComment {
 	public void setComment_update(Date comment_update) {
 		this.comment_update = comment_update;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
+	
+		
 }
