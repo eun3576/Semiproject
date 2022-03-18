@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Review;
+import dto.UserInfo;
 import service.face.ReviewService;
 import service.impl.ReviewServiceImpl;
 
@@ -23,12 +24,41 @@ public class ReviewDeleteController extends HttpServlet {
 
 		System.out.println("/review/delete [GET]");
 		
-		Review review = reviewService.getReviewno(req);
+		//전달 파라미터 review_no가 저장된 DTO를 reviewno에 저장
+		Review reviewno = reviewService.getReviewno(req);
 		
-		reviewService.delete(review);
+		//review_no가 저장된 DTO객체를 이용하여 일치하는 유저의 닉네임과 증상 구하기
+		UserInfo userInfo = reviewService.getNickSymptonByReviewno(reviewno);
 		
-		//목록으로 리다이렉트
-		resp.sendRedirect("/review/list");
+		
+		
+		//세션의 닉네임과 게시글의 닉네임 정보의 일치에 따라 삭제 가능하게 하기
+		String sessionNick = (String) req.getSession().getAttribute("usernick");
+		//세션의 닉네임 불러오기 테스트
+		System.out.println("세션 닉네임 : " + sessionNick);
+		
+		if ("".equals(sessionNick) || sessionNick == null) {
+			
+			System.out.println("로그인이 필요 합니다!");
+			resp.sendRedirect("/");
+			
+		} else if (sessionNick.equals(userInfo.getNickname())) {
+			
+			System.out.println("로그인 닉네임과 게시글의 닉네임이 일치합니다!");
+			
+			//review_no가 저장된 DTO객체를 이용하여 삭제
+			reviewService.delete(reviewno);
+			
+			//목록으로 리다이렉트
+			resp.sendRedirect("/review/list");
+			
+		} else {
+			
+			System.out.println("본인이 작성한 글만 삭제 가능 합니다!");
+			
+			//목록으로 리다이렉트
+			resp.sendRedirect("/review/list");
+			
+		}
 	}
-
 }
