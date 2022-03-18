@@ -17,7 +17,7 @@
 </div>
 <%} %>
 <%} else{ %>
-<h3 style="width:160px;margin:0 auto;">검색결과가 없습니다</h3>
+<h3 style="width:230px;margin:0 auto;">검색결과가 없습니다</h3>
 <%} %>
 </div>
 
