@@ -39,6 +39,8 @@ public class ReviewViewController extends HttpServlet {
 		//reviewno에 따른 유저정보 객체 
 		UserInfo userInfo = reviewService.getNickSymptonByReviewno(reviewno);
 		
+		//댓글 정보 조회
+//		Review Comment = reviewService.viewComment(reviewno);
 		
 		//viewReview, userInfo 중간 test
 //		System.out.println("ReviewController viewReview - " + viewReview);

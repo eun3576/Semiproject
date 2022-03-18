@@ -83,4 +83,10 @@ public interface ReviewService {
 	 */
 	public void delete(Review review);
 	
+	/**
+	 * @param reviewno
+	 * @return
+	 */
+//	public ReviewComment viewComment(Review reviewno);
+	
 }
