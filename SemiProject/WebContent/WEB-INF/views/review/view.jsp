@@ -196,7 +196,7 @@ th {
 			<div id="commentDate">
 <%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
 <%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
-			<%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %>
+			<small><%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %></small>
 					
 			<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
 			<span id="commentDelBtn" style="color:red; font-weight: bold; cursor: pointer;">X</span>
@@ -208,10 +208,10 @@ th {
 			
 			</div>
 		<% } %>
-		
 	</div>
+	
 	<hr>
-
+	
 </div>
 
 
