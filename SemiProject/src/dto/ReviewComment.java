@@ -1,6 +1,6 @@
 package dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ReviewComment {
 
@@ -8,8 +8,8 @@ public class ReviewComment {
 	private int user_no;
 	private int review_no;
 	private String comment_text;
-	private Date comment_date;
-	private Date comment_update;
+	private Timestamp comment_date;
+	private Timestamp comment_update;
 	//DTO nickname 추가
 	private String nickname;
 	
@@ -44,16 +44,16 @@ public class ReviewComment {
 	public void setComment_text(String comment_text) {
 		this.comment_text = comment_text;
 	}
-	public Date getComment_date() {
+	public Timestamp getComment_date() {
 		return comment_date;
 	}
-	public void setComment_date(Date comment_date) {
+	public void setComment_date(Timestamp comment_date) {
 		this.comment_date = comment_date;
 	}
-	public Date getComment_update() {
+	public Timestamp getComment_update() {
 		return comment_update;
 	}
-	public void setComment_update(Date comment_update) {
+	public void setComment_update(Timestamp comment_update) {
 		this.comment_update = comment_update;
 	}
 	public String getNickname() {

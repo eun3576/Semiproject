@@ -10,10 +10,6 @@
 <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
 <% List<UserInfo> nickList = (List) request.getAttribute("nickList"); %>
 <% Boolean isLogin = (Boolean) request.getSession().getAttribute("login"); %>
-<!-- bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
@@ -52,7 +48,7 @@ $(document).ready(function () {
     width: 220px;
     height: 170px;
 	border: 2px solid #f2dede;
- 	border-radius: 40px 80px; 
+ 	border-radius: 30px 30px; 
     margin: 6px;
     padding: 9px;
     background-color: #f2dede;
@@ -79,7 +75,7 @@ $(document).ready(function () {
 		<div class="list_detail">
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
-			증상: <%=nickList.get(i).getSympton() %><br>
+			증상: <%=nickList.get(i).getSymptom() %><br>
 			작성날짜: <%=reviewList.get(i).getWriteDate() %><br>
 			조회수: <%=reviewList.get(i).getViews() %><br>
 			이미지 준비중<br>

@@ -1,10 +1,9 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="dto.Review" %>
 <%@ page import="dto.UserInfo" %>
 <%@ page import="dto.Attachment" %>
 <%@ page import="dto.ReviewComment" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -17,13 +16,6 @@
 <% List<ReviewComment> reviewComment = (List) request.getAttribute("reviewComment"); %>
 <% String sessionNick = (String)session.getAttribute("usernick"); %>
 
-
-<!-- bootstrap 추가 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
 <script type="text/javascript">
 
 $(document).ready(function () {
@@ -35,13 +27,30 @@ $(document).ready(function () {
 	
 	//Update 버튼을 눌렀을 때
 	$("#btnUpdate").click(function() {
-		$(location).attr("href", "<%=request.getContextPath() %>/review/update?review_no=<%=viewReview.getReview_no() %>");
+		<%if (sessionNick != null && sessionNick.equals(userInfo.getNickname())) { %>
+			$(location).attr("href", "<%=request.getContextPath() %>/review/update?review_no=<%=viewReview.getReview_no() %>");
+		<% } else { %>
+			alert("본인이 작성한 글만 수정 가능합니다!!")
+			history.go(0);
+		<% } %>
 	})
 	
 	//Delete 버튼을 눌렀을 때 
 	$("#btnDelete").click(function() {
-		if( confirm("게시글을 삭제 하시겠습니까?") ) {
+		<%if (sessionNick != null && sessionNick.equals(userInfo.getNickname())) { %>
+		if (confirm("게시글을 삭제 하시겠습니까?")) {
 			$(location).attr("href", "<%=request.getContextPath() %>/review/delete?review_no=<%=viewReview.getReview_no() %>");
+		}
+		<% } else { %>
+			alert("본인이 작성한 글만 삭제 가능합니다!!")
+			history.go(0);
+		<% } %>
+	})
+	
+	//댓글 삭제 버튼 (X)처리 
+	$("#commentDelBtn").click(function() {
+		if (confirm("댓글을 삭제 하시겠습니까?")) {
+			$("#commentDel").submit();
 		}
 	})
 	
@@ -59,6 +68,28 @@ th {
 .table {
 	table-layout:fixed;
 }
+
+#commentList, #commentPost {
+	background-color: #f2dede;
+	padding: 12px;
+	border-radius: 5px 5px; 
+}
+
+#commentInfo {
+	border-top: 1px solid #cfc9c9;
+	margin-top: 5px;
+	display: inline-block;
+	width: 100%;
+}
+
+#commentContent {
+	float: left;
+}
+
+#commentDate {
+	float: right;
+}
+
 </style>
 
 <div class="container">
@@ -66,7 +97,7 @@ th {
 <h1 align="center">자세히 보기</h1>
 <hr>
 
-<table class="table">
+<table class="table" style="border: 1px solid #dddddd;">
 
 <tr>
 	<th class="danger">ReviewNumber</th><td colspan="1"><%=viewReview.getReview_no() %></td>
@@ -75,7 +106,7 @@ th {
        
 <tr>   
 	<th class="danger">Nickname</th><td colspan="1"><%=userInfo.getNickname() %></td>
-	<th class="danger">Symptom</th><td colspan="1"><%=userInfo.getSympton() %></td>
+	<th class="danger">Symptom</th><td colspan="1"><%=userInfo.getSymptom() %></td>
 	<th class="danger">Views</th><td colspan="1"><%=viewReview.getViews() %></td>
 </tr>
 
@@ -94,7 +125,26 @@ th {
 </tr>
 
 <tr>
-	<td colspan="6"><%=viewReview.getContent() %></td>
+	<td colspan="6">
+	
+	<!-- 첨부파일 -->
+	<div>
+	
+	<%	if( attach != null ) { %>
+	<a href="<%=request.getContextPath() %>/upload/<%=attach.getStored_img() %>"
+	 download="<%=attach.getOrigin_img() %>">
+		<%=attach.getOrigin_img() %>
+	<img alt="이미지를 불러올 수 없음" src="<%=request.getContextPath() %>
+		/upload/<%=attach.getStored_img()%>" width="100%" height="100%">
+	</a>
+	<br><br>
+	<%	} %>
+	
+	<%=viewReview.getContent() %>
+	
+	</div>
+	
+	</td>
 </tr>
 
 <tr>
@@ -102,18 +152,7 @@ th {
 </tr>
 </table>
 
-<!-- 첨부파일 -->
-<div>
-<%	if( attach != null ) { %>
-<a href="<%=request.getContextPath() %>/upload/<%=attach.getStored_img() %>"
- download="<%=attach.getOrigin_img() %>">
-	<%=attach.getOrigin_img() %>
-<img alt="이미지를 불러올 수 없음" src="<%=request.getContextPath() %>
-	/upload/<%=attach.getStored_img()%>" width="200" height="200">
-</a>
-<%	} %>
-</div>
-
+<br>
 <div class="text-center">
 	<button id="btnList" class="btn btn-primary">List</button>
 	<button id="btnUpdate" class="btn btn-success">Update</button>
@@ -123,40 +162,56 @@ th {
 
 <div>
 
-	<h1>댓글 들어갈 영역! 로그인을 하면 댓글 작성칸 활성화!</h1>
-	
-	<h1>댓글 작성!!</h1>
-	
-	<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
-<%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
-	<form action="#" method="post">
 		
-		<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
-		닉네임: <%=sessionNick %><br>
-		작성할 내용: <input type="text" name="commentText">
-		
-		<button id="commentWrite" class="btn-xs">작성!</button>
-	<% } %>
-	</form>
+		<!-- 로그인 세션 정보가 있을 때 댓글 작성란 활성화 -->
+		<% if(!"".equals(sessionNick) && !(sessionNick == null)) { %>
+	<div id="commentPost">
+		<strong style="font-size: 20px;">댓글 입력</strong>
+	<%-- 		<form action="/review/view?review_no=<%=viewReview.getReview_no() %>" method="post"> --%>
+		<form action="#" method="post">
+			
+			<input type="hidden" name="reviewNo" value="<%=viewReview.getReview_no() %>">
+			<%=sessionNick %>: <input type="text" name="commentText" placeholder="댓글을 입력 하세요.">
+			
+			<button id="commentWrite" class="btn-xs">등록</button>
+		</form>
+	</div>
+	<hr>
+		<% } %>
+	
+	
+	<div id="commentList">
+	<strong style="font-size: 20px;">댓글 목록</strong>
+	<small>&nbsp;&nbsp;&nbsp;댓글 수(<%=reviewComment.size() %>)</small><br>
+		<% for(int i=0; i<reviewComment.size(); i++) { %>
+			<div id="commentInfo">
+			
+			<div id="commentContent">
+				<small>
+				<%=reviewComment.get(i).getNickname() %>: <%=reviewComment.get(i).getComment_text() %><br>
+				</small>
+				<br>
+			</div>
+				
+			<div id="commentDate">
+<%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
+<%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
+			<small><%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(reviewComment.get(i).getComment_date()) %></small>
+					
+			<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
+			<span id="commentDelBtn" style="color:red; font-weight: bold; cursor: pointer;">X</span>
+			<form id="commentDel" action="#" method="post">
+				<input type="hidden" name="commentNo" value="<%=reviewComment.get(i).getComment_no() %>">
+			</form>
+			<% } %>	
+			</div>
+			
+			</div>
+		<% } %>
+	</div>
 	
 	<hr>
-	<% for(int i=0; i<reviewComment.size(); i++) { %>
-		<small>닉네임: <%=reviewComment.get(i).getNickname() %><br>
-<%-- 		작성 날짜: <%=reviewComment.get(i).getComment_date() %> --%>
-		댓글: <%=reviewComment.get(i).getComment_text() %>
-<%-- 		수정 날짜: <%=reviewComment.get(i).getComment_update() %><br> --%>
-		작성 날짜: <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewComment.get(i).getComment_date()) %><br>
-		</small>
-		
-		<% if (sessionNick != null && sessionNick.equals(reviewComment.get(i).getNickname())) { %>
-		<form action="#" method="post">
-			<input type="hidden" name="commentNo" value="<%=reviewComment.get(i).getComment_no() %>">
-		<button id="commentDel" class="btn-xs">삭제</button><br>
-		</form>
-		<% } %>
-		<hr>
-	<% } %>
-
+	
 </div>
 
 

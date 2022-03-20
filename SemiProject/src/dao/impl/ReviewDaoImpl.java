@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				UserInfo u = new UserInfo();
 				
 				u.setNickname(rs.getString("nickname"));
-				u.setSympton(rs.getString("sympton"));
+				u.setSymptom(rs.getString("sympton"));
 				
 				//리스트 객체에 조회한 행 객체 저장
 				nickList.add(u);
@@ -205,7 +206,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				//결과값 행 처리
 				userInfo.setNickname(rs.getString("nickname"));
-				userInfo.setSympton(rs.getString("sympton"));
+				userInfo.setSymptom(rs.getString("sympton"));
 				
 			}
 		} catch (SQLException e) {
@@ -441,10 +442,6 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		System.out.println(review);
-		
-		System.out.println("res 값? " + res);
-		
 		return res;
 		
 	}
@@ -562,10 +559,10 @@ public class ReviewDaoImpl implements ReviewDao {
 				//결과값 한 행 처리
 				rc.setComment_no(rs.getInt("comment_no"));
 				rc.setComment_text(rs.getString("comment_text"));
-				rc.setComment_date(rs.getDate("Comment_date"));
-				rc.setComment_update(rs.getDate("Comment_update"));
+				rc.setComment_date(rs.getTimestamp("comment_date"));
+				rc.setComment_update(rs.getTimestamp("comment_update"));
 				rc.setNickname(rs.getString("nickname"));
-				
+			
 				//리스트 객체에 조회한 행 객체 저장
 				commentList.add(rc);
 			}

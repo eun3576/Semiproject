@@ -35,7 +35,7 @@ public class ReviewDeleteController extends HttpServlet {
 		//세션의 닉네임과 게시글의 닉네임 정보의 일치에 따라 삭제 가능하게 하기
 		String sessionNick = (String) req.getSession().getAttribute("usernick");
 		//세션의 닉네임 불러오기 테스트
-		System.out.println("세션 닉네임 : " + sessionNick);
+		//System.out.println("세션 닉네임 : " + sessionNick);
 		
 		if ("".equals(sessionNick) || sessionNick == null) {
 			
