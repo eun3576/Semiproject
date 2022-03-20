@@ -12,13 +12,15 @@ import dao.impl.ProductSearchDaoImpl;
 import dto.Product;
 import dto.ProductCategory;
 import service.face.ProductService;
+import util.Paging;
+import util.ProductPaging;
 
 public class ProductServiceImpl implements ProductService{
 	Connection conn = JDBCTemplate.getConnection();
-	ProductSearchDao productSearchDao = new ProductSearchDaoImpl(); 
+	ProductSearchDao productSearchDao = new ProductSearchDaoImpl();
 	
 	@Override
-	public List<Product> getProductList(HttpServletRequest req) {
+	public List<Product> getProductList(HttpServletRequest req, ProductPaging paging) {
 		
 		List<ProductCategory> productList = new ArrayList<>();
 		
@@ -64,13 +66,67 @@ public class ProductServiceImpl implements ProductService{
 			productList.add(exercise);
 		}
 		
-		List<Product> list = productSearchDao.selectProductList(conn, productList);
+		List<Product> list = productSearchDao.selectProductList(conn, productList, paging);
 		
 		for(int i=0; i<list.size(); i++) {
 			list.get(i).setProduct_content(productSearchDao.selectProduct(conn, list.get(i)).getProduct_content());
 		}
 		
 		return list;
+	}
+	
+	@Override
+	public ProductPaging getPaging(HttpServletRequest req) {
+		
+		String sql = "";
+		sql += "select count(*) cnt from ( ";
+		sql += "select distinct p.product_no product_no, product_name, product_views, product_img ";
+		sql += "from product p, product_category c ";
+		sql += "where p.product_no = c.product_no and ( ";
+		
+		List<String> nullcheck = new ArrayList<>();
+		List<String> paramList = new ArrayList<>();
+		
+		nullcheck.add(req.getParameter("child"));
+		nullcheck.add(req.getParameter("woman"));
+		nullcheck.add(req.getParameter("man"));
+		nullcheck.add(req.getParameter("aged"));
+		nullcheck.add(req.getParameter("eye"));
+		nullcheck.add(req.getParameter("intestine"));
+		nullcheck.add(req.getParameter("vitamin"));
+		nullcheck.add(req.getParameter("exercise"));
+		
+		for(int i=0; i<nullcheck.size(); i++) {
+			if(nullcheck.get(i) != null) {
+				paramList.add(nullcheck.get(i));
+			}
+		}
+		
+		System.out.println(paramList);
+		
+		for(int i=0; i<paramList.size()-1; i++) {
+			sql += "c.category_name='"+paramList.get(i)+"' or ";
+		}
+		
+		int lastcheck = paramList.size();
+		
+		sql += "c.category_name='"+paramList.get(lastcheck-1)+"' ";
+		
+		sql += " ) ORDER BY p.product_no DESC )";
+		
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param != null && !"".equals( param ) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[WARN] BoardService getPaging() - curPage값이 null이거나 비어있음");
+		}
+		
+		int totalCount = productSearchDao.productCntAll(conn, sql);
+		
+		ProductPaging paging = new ProductPaging(totalCount, curPage);
+		
+		return paging;
 	}
 	
 	@Override
