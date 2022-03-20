@@ -11,10 +11,19 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	ajax(arrAllCheck())		
-
+	var url = document.location.href.split("?")
+	console.log(url[1])
+	
+	if(url[1] != null){
+		ajax(pagingCheck())
+	}else{
+		ajax(arrAllCheck())		
+	}
+	
 })
 
+
+	
 function search(){
 	
 	var checked = ischecked()
@@ -27,8 +36,8 @@ function search(){
 
 function ajax(checked){
 	$.ajax({
-		type:"post"
-		,url:"/product/search"
+		type:"get"
+		,url:"/product/result"
 		,data:checked
 		, dataType:"html"
 		, success:function(res){
@@ -42,7 +51,39 @@ function ajax(checked){
 	})
 }	
 
-function arrAllCheck(){
+function pagingCheck(){
+	var checked = {}
+	if(null != "<%=request.getParameter("child")%>"){
+		checked.child = "<%=request.getParameter("child")%>"
+	}
+	if(null != "<%=request.getParameter("woman")%>"){
+		checked.woman = "<%=request.getParameter("woman")%>"
+	}
+	if(null != "<%=request.getParameter("man")%>"){
+		checked.man = "<%=request.getParameter("man")%>"
+	}
+	if(null != "<%=request.getParameter("aged")%>"){
+		checked.aged = "<%=request.getParameter("aged")%>"
+	}
+	if(null != "<%=request.getParameter("eye")%>"){
+		checked.eye = "<%=request.getParameter("eye")%>"
+	}
+	if(null != "<%=request.getParameter("intestine")%>"){
+		checked.intestine = "<%=request.getParameter("intestine")%>"
+	}
+	if(null != "<%=request.getParameter("vitamin")%>"){
+		checked.vitamin = "<%=request.getParameter("vitamin")%>"
+	}
+	if(null != "<%=request.getParameter("exercise")%>"){
+		checked.exercise = "<%=request.getParameter("exercise")%>"
+	}
+	if(null != "<%=request.getParameter("curPage")%>"){
+		checked.curPage = "<%=request.getParameter("curPage")%>"
+	}
+	return checked
+}
+
+function arrAllCheck(curPage){
 	
 	var checked = {
 			child:$('input:checkbox[id="btncheck1"]').val()
@@ -58,7 +99,7 @@ function arrAllCheck(){
 	return checked
 }
 
-function ischecked(){
+function ischecked(curPage){
 	
 	var checked = {}
 	
@@ -86,6 +127,7 @@ function ischecked(){
 	if($('input:checkbox[id="btncheck8"]').is(":checked") == true){
 		checked.exercise = $('input:checkbox[id="btncheck8"]').val()
 	}
+	
 	
 	return checked
 }
@@ -134,7 +176,7 @@ hr{
 	</div>
 	<button onclick="search();" class="btn btn-info" style="margin:0 10px;width:90px;">조회</button>
 	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;width:90px;">초기화</button>
-	<button onclick="location.href=''" class="btn btn-info" style="margin:0 10px;width:90px;">전체조회</button>
+	<button onclick="location.href='/product/search'" class="btn btn-info" style="margin:0 10px;width:90px;">전체조회</button>
 </div>
 
 <hr>
@@ -144,5 +186,7 @@ hr{
 
 
 </div>
+
+
 </body>
 </html>

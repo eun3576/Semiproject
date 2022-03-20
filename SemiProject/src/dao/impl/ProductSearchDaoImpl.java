@@ -11,14 +11,18 @@ import common.JDBCTemplate;
 import dao.face.ProductSearchDao;
 import dto.Product;
 import dto.ProductCategory;
+import util.ProductPaging;
 
 public class ProductSearchDaoImpl implements ProductSearchDao{
 	@Override
-	public List<Product> selectProductList(Connection conn, List<ProductCategory> categoryList) {
+	public List<Product> selectProductList(Connection conn, List<ProductCategory> categoryList, ProductPaging paging) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql = "select distinct p.product_no product_no, product_name, product_views, product_img ";
+		String sql = "";
+		sql += "select * from ( ";
+		sql += "select rownum rnum, t.* from( ";
+		sql += "select distinct p.product_no product_no, product_name, product_views, product_img  ";
 		sql += "from product p, product_category c ";
 		sql += "where p.product_no = c.product_no and ( ";
 		
@@ -31,8 +35,9 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 		}
 
 		sql += ") ";
-		sql += "ORDER BY p.product_no DESC";
-		
+		sql += "ORDER BY p.product_no DESC ";
+		sql += ") t ";
+		sql += ") where rnum between ? and ?";
 		List<Product> list = new ArrayList<>();
 		
 		try {
@@ -41,6 +46,10 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 			for(int i=1; i<categoryList.size()+1; i++) {
 				ps.setString(i, categoryList.get(i-1).getCategory_name());
 			}
+			
+			ps.setInt(categoryList.size()+1, paging.getStartNo());
+			ps.setInt(categoryList.size()+2, paging.getEndNo());
+			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -61,6 +70,30 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 		}
 		
 		return list;
+	}
+	
+	@Override
+	public int productCntAll(Connection conn, String sql) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
 	}
 	
 	@Override
