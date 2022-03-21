@@ -538,4 +538,11 @@ public class ReviewServiceImpl implements ReviewService{
 			JDBCTemplate.rollback(conn);
 		}
 	}
+
+	@Override
+	public List<Attachment> getAttachList() {
+		
+		return reviewDao.selectStoredImg(JDBCTemplate.getConnection());
+	}
+
 }

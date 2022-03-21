@@ -105,4 +105,11 @@ public interface ReviewService {
 	 */
 	public void deleteCommentByCommentno(ReviewComment reviewComment);
 	
+	/** 
+	 * Attachment의 review_no 에 따른 attachment의 리스트를 구한다.
+	 *  
+	 * @return - Attachment review_no와 stored_img 리스트
+	 */
+	public List<Attachment> getAttachList();
+	
 }

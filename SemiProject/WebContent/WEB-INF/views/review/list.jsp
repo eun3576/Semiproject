@@ -1,6 +1,7 @@
 <%@ page import="dto.Review" %>
 <%@ page import="dto.UserInfo" %>
 <%@ page import="java.util.List" %>
+<%@ page import="dto.Attachment" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +11,7 @@
 <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
 <% List<UserInfo> nickList = (List) request.getAttribute("nickList"); %>
 <% Boolean isLogin = (Boolean) request.getSession().getAttribute("login"); %>
+<% List<Attachment> attachList = (List) request.getAttribute("attachList"); %>
 
 <script type="text/javascript">
 
@@ -46,7 +48,7 @@ $(document).ready(function () {
 .list_detail {
     display: inline-block;
     width: 220px;
-    height: 170px;
+    height: 280px;
 	border: 2px solid #f2dede;
  	border-radius: 30px 30px; 
     margin: 6px;
@@ -58,6 +60,15 @@ $(document).ready(function () {
 /* 텍스트가 div영역을 초과하면 생기는 스크롤바 숨기기 */
 .list_detail::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
+}
+
+#reviewImg { 
+	display: inline-block;
+	width: 195px;
+	height: 135px;
+	text-align: center;
+	border-radius: 30px 30px; 
+	border: 2px solid #f9b3b3;
 }
 
 </style>
@@ -73,12 +84,22 @@ $(document).ready(function () {
 	<% for(int i=0; i<reviewList.size(); i++) { %>
 
 		<div class="list_detail">
+		
+			<div id="reviewImg">
+			<% if(attachList.get(i).getStored_img() != null || "".equals(attachList.get(i).getStored_img())) { %>
+			<img src="<%=request.getContextPath() %>
+			/upload/<%=attachList.get(i).getStored_img() %>" width="100%" height="100%"><br>
+			<% } else { %>
+			사진이 없음
+			<% } %>
+			</div>
+			<small>
 			제목: <%=reviewList.get(i).getTitle() %><br>
 			닉네임: <%=nickList.get(i).getNickname() %><br>
 			증상: <%=nickList.get(i).getSymptom() %><br>
 			작성날짜: <%=reviewList.get(i).getWriteDate() %><br>
 			조회수: <%=reviewList.get(i).getViews() %><br>
-			이미지 준비중<br>
+			</small>
 			<button class="btn-primary btn-xs" onclick="location.href='./view?review_no=<%=reviewList.get(i).getReview_no() %>'">자세히 보기
 			</button>
 <%-- 		<a href="./view?reviewno=<%=reviewList.get(i).getReview_no() %>">자세히 보기</a>  --%>

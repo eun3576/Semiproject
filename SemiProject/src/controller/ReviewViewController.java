@@ -58,7 +58,6 @@ public class ReviewViewController extends HttpServlet {
 		//}
 		
 		
-		System.out.println(userInfo);
 		//조회결과 MODEL값 전달
 		req.setAttribute("viewReview", viewReview);
 		//유저 정보 조회 결과 MODEL값 전달

@@ -51,6 +51,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				//결과 값 저장 객체
 				Review r = new Review();
 				
+				
 				//결과 값 한 행 처리 
 				r.setReview_no(rs.getInt("review_no"));
 				r.setTitle(rs.getString("title"));
@@ -628,6 +629,50 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 		}
 		return res;
+	}
+
+
+	@Override
+	public List<Attachment> selectStoredImg(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT review.review_no, attachment.stored_img";
+		sql += " FROM review LEFT OUTER JOIN attachment";
+		sql += " ON review.review_no = attachment.review_no";
+		sql += " ORDER BY review_no desc";
+		
+		//결과 저장할 List
+		List<Attachment> attachList = new ArrayList<>();
+		
+		try {
+			//SQL수행 
+			ps = conn.prepareStatement(sql);
+			
+			//조회 결과 집합 저장
+			rs = ps.executeQuery();
+			
+			
+			while (rs.next()) {
+				//결과 값 저장 객체
+				Attachment at = new Attachment();
+				
+				//결과 값 한 행처리
+				at.setReview_no(rs.getInt("review_no"));
+				at.setStored_img(rs.getString("stored_img"));
+				
+				//리스트 객체에 조회한 행 객체 저장
+				attachList.add(at);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//객체 닫기
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return attachList;
 	}
 	
 }
