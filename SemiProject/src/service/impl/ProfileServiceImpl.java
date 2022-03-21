@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
+import dao.face.InquiryDao;
 import dao.face.ProfileDao;
 import dao.impl.ProfileDaoImpl;
+import dto.Inquiry;
 import dto.Profile;
+import dto.UserInfo;
 import service.face.ProfileService;
 
 public class ProfileServiceImpl implements ProfileService{
@@ -69,6 +72,45 @@ public class ProfileServiceImpl implements ProfileService{
 		
 	}
 	
+	@Override
+	public void deleteProfile(HttpServletRequest req) {
+
+		//객체생성
+		UserInfo userinfo = new UserInfo();
+		
+		HttpSession session = req.getSession();
+		
+		
+		
+		userinfo.setId((String)session.getAttribute("userid"));
+		
+		ProfileDao profileDao = new ProfileDaoImpl();
+
+		
+		userinfo = profileDao.selectProfile(conn, userinfo) ;
+		
+		userinfo.setId((String)session.getAttribute("userid"));
+
+		if (req.getParameter("password").equals(userinfo.getPassword())) {
+			
+		int res = profileDao.deleteProfile(conn, userinfo);
+		
+		if ( res > 0 ) {
+			
+			
+			JDBCTemplate.commit(conn);
+			
+		} else {
+			
+			System.out.println("true");
+			JDBCTemplate.rollback(conn);
+			
+		}
+		
+		}
+		
+	}
 	
+
 	
 }

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Profile;
 import service.face.ProfileService;
@@ -27,10 +28,15 @@ public class ProfileOutController extends HttpServlet {
 		Profile profile = profileService.getProfile(req);
 		req.setAttribute("profile", profile );	
 		
+		HttpSession session = req.getSession();
+		
+		String id = (String)session.getAttribute("userid");
+		
+		req.setAttribute("userid", id);
 		
 		req.getRequestDispatcher("/WEB-INF/views/profile/Out.jsp").forward(req, resp);
-
 		
+		 
 		
 		}
 	
@@ -38,6 +44,16 @@ public class ProfileOutController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+//		System.out.println("test");
+		
+		ProfileService profileService = new ProfileServiceImpl();
+		
+		profileService.deleteProfile(req);
+		
+		req.getSession().invalidate();
+		
+	
+		req.getRequestDispatcher("/WEB-INF/views/profile/Out_ok.jsp").forward(req, resp);
 		
 		
 	}

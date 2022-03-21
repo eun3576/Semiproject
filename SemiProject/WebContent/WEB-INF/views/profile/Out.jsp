@@ -1,7 +1,10 @@
+<%@page import="dao.face.ProfileDao"%>
 <%@page import="dto.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../layout/header.jsp" %>
+
+
 
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -26,10 +29,10 @@ $(document).ready(function() {
 			
 		if($('#password').val() != "" ){ 
 			
-			alert("변경되었습니다.")	// 
+		submit();
 			
-// 			submitContents( $("#outbutton") );
-// 			$("#").submit()		
+			
+			
 		}else{
 			alert("비밀번호를 입력해주세요.") 
 			$('#password').val("")
@@ -45,6 +48,8 @@ $(document).ready(function() {
  <% 
 
 Profile profile = (Profile)request.getAttribute("profile");
+
+String id = (String)request.getAttribute("userid");
  
  %>
 
@@ -93,23 +98,24 @@ a:hover{
                     <h2 class="text-center">회원 탈퇴</h2>
                      
 <br>
+                     <form action="/profile/out" method="post">
                      
                     <table class="table table-striped">
                       <tr>
                         <td>아이디</td>
-                        <td><%= request.getParameter("id") %></td>
+                        <td><%= id %></td>
                       </tr>
                        
                       <tr>
                         <td>패스워드</td>
                         <td>
-                        <input type="password"  id="password" class="form-control">
+                        <input type="password"  id="password" name="password" class="form-control">
                         </td>
                       </tr>
                        
                     <tr>
                         <td colspan="2" class="text-center">
-                         <button id="outbutton" class="btn btn-danger">탈퇴</button>
+						<button id="outbutton" class="btn btn-danger">탈퇴</button>
                          
 <!--                          <button onclick="out();" id="outbutton" class="btn btn-danger">탈퇴</button> -->
                          
@@ -125,6 +131,8 @@ a:hover{
                     </tr>
                            
                     </table>
+                    
+                    </form>
                  
                 </div>
         </div> <!-- col-sm-12 -->
