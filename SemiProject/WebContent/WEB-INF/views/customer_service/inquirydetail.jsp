@@ -87,3 +87,6 @@ button{
 </div>
 
 </div>
+
+<br><br>
+<%@ include file="../layout/footer.jsp" %>

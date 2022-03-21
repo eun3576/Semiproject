@@ -21,9 +21,15 @@ public class NoticeDetailController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		NoticeService noticeService = new NoticeServiceImpl();
+		
+		//문의글의 총 개수 가져오기
 		int cntList = noticeService.cntList();
+		
+		//문의글 총 개수 전달
 		req.setAttribute("cntList", cntList);
+		
 		req.getRequestDispatcher("/WEB-INF/views/customer_service/noticedetail.jsp").forward(req, resp);
 		
 	}
@@ -31,8 +37,11 @@ public class NoticeDetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		NoticeService noticeService = new NoticeServiceImpl();
+		
+		//문의글 DTO 가져오기
 		Notice notice = noticeService.getNoticeDetail(req);
 		
+		//문의글 전달
 		req.setAttribute("notice", notice);
 
 		req.getRequestDispatcher("/WEB-INF/views/customer_service/noticedetailajaxpage.jsp").forward(req, resp);

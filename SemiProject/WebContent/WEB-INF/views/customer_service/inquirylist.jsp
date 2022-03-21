@@ -95,6 +95,7 @@ a:hover{
 </div>
 
 <%@ include file="./layout/inquiryPaging.jsp" %>
+<%@ include file="../layout/footer.jsp" %>
 
 
 
@@ -102,8 +103,3 @@ a:hover{
 
 
 
-
-
-
-</body>
-</html>

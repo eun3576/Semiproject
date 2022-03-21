@@ -4,20 +4,14 @@
     pageEncoding="UTF-8"%>
 <%@include file="../layout/header.jsp" %>
 
+<!-- 공지사항 리스트 가져오기 -->
 <% List<Notice> list = (List)request.getAttribute("list");%>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
 <style type="text/css">
-
 
 #submenu{
 	text-align:center;
@@ -63,7 +57,9 @@ a:hover{
 	<th>날짜</th>
 </tr>
 
+<!-- 공지사항 목록 보여주기 -->
 <%	for(int i=0; i<list.size(); i++) { %>
+<!-- 해당 공지사항 행을 누르면 해당 공지사항 번호를 상세보기 서블릿으로 전달 후 이동 -->
 <tr onclick="location.href='/notice/detail?notice_no=<%=list.get(i).getNotice_no() %>'">
 	<td><%=list.get(i).getNotice_no() %></td>
 	<td><%=list.get(i).getTitle() %></td>
@@ -78,15 +74,4 @@ a:hover{
 </div>
 
 <%@ include file="./layout/noticePaging.jsp" %>
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+<%@ include file="../layout/footer.jsp" %>

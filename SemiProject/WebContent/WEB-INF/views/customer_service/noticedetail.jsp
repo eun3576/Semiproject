@@ -5,47 +5,62 @@
 <%@include file="../layout/header.jsp" %>
 
 <% 
+	//공지사항 번호 가져오기
 	int notice_no = Integer.parseInt(request.getParameter("notice_no"));
+
+	//공지사항 총 개수 가져오기
 	int cntList = (int)request.getAttribute("cntList");
 %>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
-
 $(document).ready(function(){
+	
+	//현재 공지사항 번호 저장
 	var curNo = <%=notice_no%>
+	
+	//총 공지사항 개수 저장
 	var cntList = <%=cntList %>
 	
+	//현재 공지사항번호 전달하여 ajax 호출
 	ajax(curNo)
 	
+	//다음 버튼이 눌리면 이벤트 발생
 	$("#btnNext").click(function(){
+		
+		//현재 공지사항 번호가 1보다 크다면 
 		if(curNo > 1){
+			//이전 공지사항 번호로 지정
 			curNo = curNo - 1
+			//이전 공지사항 번호를 전달하여 ajax호출
 			ajax(curNo)
 		}else{
+			//마지막 공지사항일 경우 창 띄우기
 			alert("마지막 페이지입니다.")
 		}
 	})
 	
+	//이전 버튼 눌리면 이벤트 발생
 	$("#btnPre").click(function(){
+		
+		//현재 공지사항 번호가 총 공지사항 개수보다 작으면
 		if(curNo < cntList){
+			//다음 공지사항 번호로 지정
 			curNo = curNo + 1
+			//다음 공지사항 번호를 전달하여 ajax 호출
 			ajax(curNo)
 		}else{
+			//마지막 공지사항일 경우 창 띄우기
 			alert("마지막 페이지입니다.")
 		}
 	})
 })
 
+//공지사항 번호를 전달 받는 ajax
 function ajax(curNo){
 	$.ajax({
 		type:"post"
@@ -114,3 +129,5 @@ a:hover{
 </div>
 
 </div>
+<br><br>
+<%@ include file="../layout/footer.jsp" %>
