@@ -3,11 +3,6 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-<!-- bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <!-- 스마트에디터2 설치 -->
 <script type="text/javascript" src="../resources/se2/js/service/HuskyEZCreator.js"></script>
 
@@ -61,9 +56,6 @@ function submitContents( elClickedObj ) {
 <!-- 후기 작성 입력 폼데이터 start -->
 
 	<table class="table table-bordered" style="text-align: center; border: 1px solid #234;">
-	
-	<!-- 작성자의 정보를 매개변수로 받아서 
-	작성 페이지에 반영하는 것 추후에 추가 해야한다. -->
 	
 		<tr>
 			<th colspan="1">후기 남기기</th>

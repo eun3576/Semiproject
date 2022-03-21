@@ -10,11 +10,6 @@
 <% UserInfo userInfo = (UserInfo) request.getAttribute("userInfo"); %>
 <% Attachment updateAttach = (Attachment) request.getAttribute("updateAttach"); %>
 
-<!-- bootstrap 추가 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <!-- 스마트에디터 2 -->
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
 

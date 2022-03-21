@@ -15,7 +15,7 @@ import dto.UserInfo;
 public interface ReviewDao {
 	
 	/**
-	 * Review 테이블 전체 조회
+	 * Review 테이블 전체 조회 
 	 * @param conn - DB 연결 객체
 	 * @return List<Review> - Review 테이블 전체 조회 결과 목록
 	 */
@@ -155,11 +155,21 @@ public interface ReviewDao {
 	public int insertComment(Connection conn, ReviewComment reviewComment);
 	
 	/**
-	 * reviewComment
-	 * @param conn
-	 * @param reviewComment
+	 * comment_no가 같은 comment를 삭제
+	 * @param conn - DB 연결 객체
+	 * @param reviewComment - comment_no와 review_no가 있는 DTO 객체
 	 * @return
 	 */
 	public int deleteComment(Connection conn, ReviewComment reviewComment);
+	
+	/**
+	 * 아우터 조인을 이용하여 stored_img가 없더라도 null값으로 대체하고
+	 * review_no에 따른 stored_img조회
+	 * 
+	 * @param conn - DB 연결 객체 
+	 * @param reviewno - review_no가 있는 DTO 객체 
+	 * @return - Attachment의 List
+	 */
+	public List<Attachment> selectStoredImg(Connection conn);
 	
 }

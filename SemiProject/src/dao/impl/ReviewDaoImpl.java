@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				//결과 값 저장 객체
 				Review r = new Review();
+				
 				
 				//결과 값 한 행 처리 
 				r.setReview_no(rs.getInt("review_no"));
@@ -104,7 +106,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				UserInfo u = new UserInfo();
 				
 				u.setNickname(rs.getString("nickname"));
-				u.setSympton(rs.getString("sympton"));
+				u.setSymptom(rs.getString("sympton"));
 				
 				//리스트 객체에 조회한 행 객체 저장
 				nickList.add(u);
@@ -205,7 +207,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				//결과값 행 처리
 				userInfo.setNickname(rs.getString("nickname"));
-				userInfo.setSympton(rs.getString("sympton"));
+				userInfo.setSymptom(rs.getString("sympton"));
 				
 			}
 		} catch (SQLException e) {
@@ -441,10 +443,6 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		System.out.println(review);
-		
-		System.out.println("res 값? " + res);
-		
 		return res;
 		
 	}
@@ -562,10 +560,10 @@ public class ReviewDaoImpl implements ReviewDao {
 				//결과값 한 행 처리
 				rc.setComment_no(rs.getInt("comment_no"));
 				rc.setComment_text(rs.getString("comment_text"));
-				rc.setComment_date(rs.getDate("Comment_date"));
-				rc.setComment_update(rs.getDate("Comment_update"));
+				rc.setComment_date(rs.getTimestamp("comment_date"));
+				rc.setComment_update(rs.getTimestamp("comment_update"));
 				rc.setNickname(rs.getString("nickname"));
-				
+			
 				//리스트 객체에 조회한 행 객체 저장
 				commentList.add(rc);
 			}
@@ -631,6 +629,50 @@ public class ReviewDaoImpl implements ReviewDao {
 			JDBCTemplate.close(ps);
 		}
 		return res;
+	}
+
+
+	@Override
+	public List<Attachment> selectStoredImg(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT review.review_no, attachment.stored_img";
+		sql += " FROM review LEFT OUTER JOIN attachment";
+		sql += " ON review.review_no = attachment.review_no";
+		sql += " ORDER BY review_no desc";
+		
+		//결과 저장할 List
+		List<Attachment> attachList = new ArrayList<>();
+		
+		try {
+			//SQL수행 
+			ps = conn.prepareStatement(sql);
+			
+			//조회 결과 집합 저장
+			rs = ps.executeQuery();
+			
+			
+			while (rs.next()) {
+				//결과 값 저장 객체
+				Attachment at = new Attachment();
+				
+				//결과 값 한 행처리
+				at.setReview_no(rs.getInt("review_no"));
+				at.setStored_img(rs.getString("stored_img"));
+				
+				//리스트 객체에 조회한 행 객체 저장
+				attachList.add(at);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//객체 닫기
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return attachList;
 	}
 	
 }
