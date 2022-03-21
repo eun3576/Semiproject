@@ -159,41 +159,47 @@ hr{
 	border:1px solid #ccc;
 }
 
+label{
+	margin:3px 5px;
+}
+
 </style>
 
 <div class="container">
 
 <div id="checklist" class="text-center" style="margin:30px auto;">
 	<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-	  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="category" value="child">
-	  <label class="btn btn-primary" for="btncheck1">어린이 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="category" value="woman">
-	  <label class="btn btn-primary" for="btncheck2">여성 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="category" value="man">
-	  <label class="btn btn-primary" for="btncheck3">남성 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="category" value="aged">
-	  <label class="btn btn-primary" for="btncheck4">노인 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="category" value="eye">
-	  <label class="btn btn-primary" for="btncheck5">눈 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="category" value="intestine">
-	  <label class="btn btn-primary" for="btncheck6">장 건강</label>
-	  <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" name="category" value="vitamin">
-	  <label class="btn btn-primary" for="btncheck7">비타민</label>
-	  <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="category" value="exercise">
-	  <label class="btn btn-primary" for="btncheck8">운동</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck1" autocomplete="off" name="category" value="child">
+	  <label for="btncheck1">어린이 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck2" autocomplete="off" name="category" value="woman">
+	  <label for="btncheck2">여성 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck3" autocomplete="off" name="category" value="man">
+	  <label for="btncheck3">남성 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck4" autocomplete="off" name="category" value="aged">
+	  <label for="btncheck4">노인 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck5" autocomplete="off" name="category" value="eye">
+	  <label for="btncheck5">눈 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck6" autocomplete="off" name="category" value="intestine">
+	  <label for="btncheck6">장 건강</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck7" autocomplete="off" name="category" value="vitamin">
+	  <label for="btncheck7">비타민</label>
+	  <input type="checkbox" class="form-check-input" id="btncheck8" autocomplete="off" name="category" value="exercise">
+	  <label for="btncheck8">운동</label>
 	</div>
-	<button onclick="search();" class="btn btn-info" style="margin:0 10px;width:90px;">조회</button>
-	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 10px;width:90px;">초기화</button>
-	<button onclick="location.href='/product/search'" class="btn btn-info" style="margin:0 10px;width:90px;">전체조회</button>
 </div>
 
+<div class="text-center">
+	<button onclick="search();" class="btn btn-info" style="margin:0 5px;width:70px;">조회</button>
+	<button onclick="resetCheck();" class="btn btn-info" style="margin:0 5px;width:70px;">초기화</button>
+	<button onclick="location.href='/product/search'" class="btn btn-info" style="margin:0 5px;width:70px;">전체조회</button>
+</div>
 <hr>
 
 <div id="resultLayout"></div>
 
 
-
 </div>
-
+<a href="#header" style="cursor:pointer;background:url('../resources/img/arrows_circle_top_icon.png');background-size:40px;width:40px;height:40px;position:fixed;right:20px;top:46%;margin-top:-20px;z-index:100;"></a>
+<a href="#footer" style="cursor:pointer;background:url('../resources/img/arrows_bottom_circle_icon.png');background-size:40px;width:40px;height:40px;position:fixed;right:20px;top:54%;margin-top:-20px;z-index:100;"></a>
 <br><br><br>
 <%@ include file="../layout/footer.jsp" %>
