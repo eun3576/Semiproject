@@ -54,11 +54,14 @@ a:hover{
 
 <br><br>
 
+<form action=>
+
 <tr>
 	<th>비밀번호</th>
-	<td><input type="password"  name="pass"><button type="submit" onclick="checkit();">확인</button></td>
+	<td><input type="password"  name="password"><button type="submit">확인</button></td>
 </tr>
 
+</form>
 
 
 
