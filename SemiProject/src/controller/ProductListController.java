@@ -25,22 +25,4 @@ public class ProductListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/views/product_view/productSearch.jsp").forward(req, resp);
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		List<Product> list = productService.getProductList(req);
-		
-		List<ProductCategory> categoryList = new ArrayList<>();
-		for(int i=0; i<list.size(); i++) {
-			for(int j=0; j<productService.getCategoryList(list.get(i)).size(); j++) {
-				categoryList.add(productService.getCategoryList(list.get(i)).get(j));
-			}
-		}
-		req.setAttribute("list", list);
-		req.setAttribute("categoryList", categoryList);
-		
-		req.getRequestDispatcher("/WEB-INF/views/product_view/productList.jsp").forward(req, resp);
-
-	}
 }
