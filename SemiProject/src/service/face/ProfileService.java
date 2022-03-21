@@ -29,6 +29,8 @@ public interface ProfileService {
 	public void deleteProfile(HttpServletRequest req);
 	
 
+	//회원 정보 비밀번호 확인
+	public int checkProfile(HttpServletRequest req);
 	
 	
 	

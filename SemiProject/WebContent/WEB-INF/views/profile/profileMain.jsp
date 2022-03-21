@@ -54,8 +54,10 @@ a:hover{
 
 <br><br>
 
-<form action=>
+<form action="/profile/main" method="post">
 
+
+<h3>비밀번호를 입력하시면 회원수정페이지로 이동합니다.</h3><br>
 <tr>
 	<th>비밀번호</th>
 	<td><input type="password"  name="password"><button type="submit">확인</button></td>

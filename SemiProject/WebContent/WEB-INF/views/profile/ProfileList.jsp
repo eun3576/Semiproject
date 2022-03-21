@@ -125,8 +125,8 @@ a:hover{
                      
                     <table class="table table-striped">
                       <tr>
-                        <td>아이디</td>
-                         <td><%= profile.getId() %></td> 
+                        <td class="info">아이디</td>
+                         <td class="info"><%= profile.getId() %></td> 
                       </tr>
                        
                       <tr>
@@ -152,7 +152,7 @@ a:hover{
                        
                     <tr>
                         <td colspan="2" class="text-center">
-                         <button type="submit" onclick="check();" class="btn btn-success"><a href="/profile/list">확인</a></button>
+                         <button type="submit" onclick="check();" class="btn btn-info"><a href="/profile/list">확인</a></button>
                          
                          </td>    
                     </tr>

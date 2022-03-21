@@ -102,8 +102,8 @@ a:hover{
                      
                     <table class="table table-striped">
                       <tr>
-                        <td>아이디</td>
-                        <td><%= id %></td>
+                        <td class="info">아이디</td>
+                        <td class="info"><%= id %></td>
                       </tr>
                        
                       <tr>

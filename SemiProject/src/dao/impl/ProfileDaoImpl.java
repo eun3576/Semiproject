@@ -122,7 +122,7 @@ public class ProfileDaoImpl implements ProfileDao{
 			
 			while (rs.next()) {
 				
-				info.setUserNo(rs.getInt("userno"));
+				info.setUserNo(rs.getInt("user_no"));
 				info.setPassword(rs.getString("password"));
 				
 			}

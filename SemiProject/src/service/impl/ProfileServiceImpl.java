@@ -102,7 +102,7 @@ public class ProfileServiceImpl implements ProfileService{
 			
 		} else {
 			
-			System.out.println("true");
+//			System.out.println("true");
 			JDBCTemplate.rollback(conn);
 			
 		}
@@ -111,6 +111,46 @@ public class ProfileServiceImpl implements ProfileService{
 		
 	}
 	
-
+	@Override
+	public int checkProfile(HttpServletRequest req) {
 	
-}
+
+			//객체생성
+			UserInfo userinfo = new UserInfo();
+			
+			HttpSession session = req.getSession();
+			
+			
+			
+			userinfo.setId((String)session.getAttribute("userid"));
+			
+			ProfileDao profileDao = new ProfileDaoImpl();
+
+			
+			userinfo = profileDao.selectProfile(conn, userinfo) ;
+			
+			userinfo.setId((String)session.getAttribute("userid"));
+
+			int res = 0;
+
+			if (req.getParameter("password").equals(userinfo.getPassword())) {
+				
+				//비밀번호가 맞을 경우
+			res = 1;
+			
+			} else {
+				
+				//틀릴경우
+				res = 0;
+				
+			}
+			
+			//반환
+			 return res;
+		}
+		
+		
+		
+	}
+	
+
