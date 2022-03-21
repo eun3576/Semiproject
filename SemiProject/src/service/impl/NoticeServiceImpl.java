@@ -18,7 +18,10 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public List<Notice> getNoticeList(Paging paging) {
+		
+		//문의글 리스트 가져오기 후 반환
 		return noticeDao.getNoticeList(conn, paging);
+		
 	}
 	
 	@Override
@@ -43,15 +46,24 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public Notice getNoticeDetail(HttpServletRequest req) {
+		
+		//문의글 DTO 생성
 		Notice notice = new Notice();
+		
+		//문의글 DTO에 문의글 번호 입력
 		notice.setNotice_no(Integer.parseInt(req.getParameter("notice_no")));
 		
+		//문의글 DTO 가져오기 후 반환
 		return noticeDao.getNoticeList(conn, notice);
 	}
 	
 	@Override
 	public int cntList() {
+		
+		//전체 문의글 개수 가져오기
 		int cntList = noticeDao.selectCntAll(conn);
+		
+		//전체 문의글 개수 반환
 		return cntList;
 	}
 }

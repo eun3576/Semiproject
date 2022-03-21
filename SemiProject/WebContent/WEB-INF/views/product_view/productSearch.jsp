@@ -3,37 +3,41 @@
 <%@include file="../layout/header.jsp" %>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/bootstrap.min.css">
 
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//url에서 '?'를 기준으로 문자열 추출'
 	var url = document.location.href.split("?")
-	console.log(url[1])
 	
 	if(url[1] != null){
+		//요청파라미터가 존재하면 ajax로 파라미터 값 전달하기
 		ajax(pagingCheck())
 	}else{
+		//요청파라미터가 없으면 체크박스 전체 체크한 값 ajax로 전달하기
 		ajax(arrAllCheck())		
 	}
 	
 })
 
-
-	
+//조회 버튼용 함수
 function search(){
 	
+	//체크된 값 가져오기
 	var checked = ischecked()
+	
+	
 	if(Object.keys(checked).length===0){
+		//체크된 값이 없으면 창 띄우기
 		alert('조회 대상을 선택해주세요.')
 	}else{
+		//체크된 값을 ajax로 전달하기
 		ajax(checked)				
 	}
 }
 
+//체크된 값을 전달받아 서버와 통신
 function ajax(checked){
 	$.ajax({
 		type:"get"
@@ -51,6 +55,7 @@ function ajax(checked){
 	})
 }	
 
+//요청 파라미터에 정보를 가져와 object타입으로 변환
 function pagingCheck(){
 	var checked = {}
 	if(null != "<%=request.getParameter("child")%>"){
@@ -83,6 +88,7 @@ function pagingCheck(){
 	return checked
 }
 
+//초기 화면을 위한 체크박스 전체 값 전달기능
 function arrAllCheck(curPage){
 	
 	var checked = {
@@ -99,6 +105,7 @@ function arrAllCheck(curPage){
 	return checked
 }
 
+//사용자가 체크한 값들 전달하는 기능
 function ischecked(curPage){
 	
 	var checked = {}
@@ -132,6 +139,7 @@ function ischecked(curPage){
 	return checked
 }
 
+//초기화 버튼 클릭시 체크박스 전체 해제
 function resetCheck(){
 	$('#btncheck1').attr('checked', false);
 	$('#btncheck2').attr('checked', false);
@@ -187,6 +195,5 @@ hr{
 
 </div>
 
-
-</body>
-</html>
+<br><br><br>
+<%@ include file="../layout/footer.jsp" %>
