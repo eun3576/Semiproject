@@ -59,7 +59,7 @@ String id = (String)request.getAttribute("userid");
 #submenu{
 	text-align:center;
 	line-height:40px;
-	background:#78CCC8;
+	background:#B0E0E6;
 	height:150px;
 }
 
@@ -84,7 +84,7 @@ a:hover{
 <br><br>
 <div id="submenu" class="col-xs-2">
 <h3><strong><a href="/profile/main">마이페이지</a></strong></h3>
-<span><a href="/profile/list">회원수정</a></span><br>
+<span><a href="/profile/main">회원수정</a></span><br>
 <span><a href="/profile/out">회원탈퇴</a></span>
 </div>
 
@@ -122,9 +122,7 @@ a:hover{
                          <!-- 탈퇴하고 난 페이지 -> 알러트 -> 메인 -->
                     
                          
-                         
-                         <!-- 메인페이지로 가는 버튼 -->
-                        <a href="/main"><input type="submit" value="메인" class="btn btn-info"></a>
+                 
                          
 
                          </td>    

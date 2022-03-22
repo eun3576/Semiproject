@@ -20,21 +20,21 @@ public class ProfileListController extends HttpServlet {
 	
 	
 	
-//	
-//	@Override
-//		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//	
-//		ProfileService profileService = new ProfileServiceImpl();
-//			
-//		//profile을 Servlet으로 가져오기
-//		Profile profile = profileService.getProfile(req);
-//		req.setAttribute("profile", profile );	
-//		
-//		
-//		req.getRequestDispatcher("/WEB-INF/views/profile/ProfileList.jsp").forward(req, resp);
-//		
-//		
-//		}
+	
+	@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		ProfileService profileService = new ProfileServiceImpl();
+			
+		//profile을 Servlet으로 가져오기
+		Profile profile = profileService.getProfile(req);
+		req.setAttribute("profile", profile );	
+		
+		
+		req.getRequestDispatcher("/WEB-INF/views/profile/ProfileList.jsp").forward(req, resp);
+		
+		
+		}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

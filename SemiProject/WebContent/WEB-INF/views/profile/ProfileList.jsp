@@ -81,7 +81,7 @@ function ajax(data){
 #submenu{
 	text-align:center;
 	line-height:40px;
-	background:#78CCC8;
+	background:#B0E0E6;
 	height:150px;
 }
 
