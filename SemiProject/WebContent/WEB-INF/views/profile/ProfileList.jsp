@@ -77,12 +77,11 @@ function ajax(data){
 
 <style type="text/css">
 
-
 #submenu{
 	text-align:center;
 	line-height:40px;
 	background:#B0E0E6;
-	height:150px;
+	height:190px;
 }
 
 th{
@@ -98,7 +97,40 @@ a:hover{
 	color:blue;
 }
 
+
+/* footer 하단 고정 [S] */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#body-wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#body-content {
+    margin-top: 100px;
+    padding-bottom: 100px; /* footer의 높이 */
+}
+
+footer {
+    width: 100%;
+    height: 100px; /* footer의 높이 */
+    position: absolute;  
+    bottom: 0;
+    left: 0;
+}
+/* footer 하단 고정 [E] */
+
+
 </style>
+
+<body>
+
+<div id="body wrapper">
+  <div id="body-conten">
 
 <div class="container text-center">
 <br><br>
@@ -109,7 +141,8 @@ a:hover{
 
 <div id="submenu" class="col-xs-2">
 <h3><strong><a href="/profile/main">마이페이지</a></strong></h3>
-<span><a href="/profile/list">회원수정</a></span><br>
+<span><a href="/profile/board">나의게시판</a></span><br>
+<span><a href="/profile/main">회원수정</a></span><br>
 <span><a href="/profile/out">회원탈퇴</a></span>
 </div>
 
@@ -121,7 +154,9 @@ a:hover{
             <div class="col-sm-2"></div>
                 <div class="col-sm-9">
                     <h2 class="text-center">회원 정보 수정</h2>
-<br>                     
+                    
+<br>                
+<hr>     
                      
                     <table class="table table-striped">
                       <tr>
@@ -166,8 +201,14 @@ a:hover{
 </div> <!-- class="col-xs-2"> -->
 
 
+</div> <!-- body-conten -->
+  
+  
+    <!-- footer삽입 -->
+<footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
+  
+</div>
 
 
 
 </body>
-</html>

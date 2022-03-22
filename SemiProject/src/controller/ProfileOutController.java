@@ -58,7 +58,21 @@ public class ProfileOutController extends HttpServlet {
 		//맞는 조건
 		if (res > 0){
 			req.getSession().invalidate();
-			resp.sendRedirect("/");
+			
+			
+			//한글설정
+			resp.setContentType("text/html;charset=utf-8");
+			
+			//html
+			PrintWriter out = resp.getWriter();
+			
+			out.println("<script> alert ('탈퇴되었습니다.'); location.href = '/main' </script>");
+			
+			//비우기
+			out.flush();
+			
+			//닫기
+			out.close();
 			
 			
 		} else {

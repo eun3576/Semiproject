@@ -96,93 +96,84 @@ public class ProfileServiceImpl implements ProfileService{
 		int res = 0;
 		
 		if (req.getParameter("password").equals(userinfo.getPassword())) {
+
+
+			res = profileDao.deleteProfile(conn, userinfo);
 			
+			
+			if ( res > 0 ) {
+				JDBCTemplate.commit(conn);
+			} else {
+//				System.out.println("true");
+				JDBCTemplate.rollback(conn);
+			}
+				return 1;
+			} else {
+				return 0;
+			}
 		
-		
-		Inquiry inquiry = new Inquiry();
-		
-		inquiry.setUser_no(userinfo.getUserNo());
-		
-		res = profileDao.deleteInquiry(conn , inquiry);
-		
-		if ( res > 0 ) {
-			
-			
-			JDBCTemplate.commit(conn);
-			
-		} else {
-			
-//			System.out.println("true");
-			JDBCTemplate.rollback(conn);
-			
 		}
 		
+//		Inquiry inquiry = new Inquiry();
+//		
+//		inquiry.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteInquiry(conn , inquiry);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
+//		
+//		
+//		
+//		ReviewComment reviewcomment = new ReviewComment();
+//		
+//		reviewcomment.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteReComment (conn , reviewcomment);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
+//		
+//		Review review = new Review();
+//		
+//		review.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteReview(conn , review);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
 		
 		
-		ReviewComment reviewcomment = new ReviewComment();
-		
-		reviewcomment.setUser_no(userinfo.getUserNo());
-		
-		res = profileDao.deleteReComment (conn , reviewcomment);
-		
-		if ( res > 0 ) {
-			
-			
-			JDBCTemplate.commit(conn);
-			
-		} else {
-			
-//			System.out.println("true");
-			JDBCTemplate.rollback(conn);
-			
-		}
-		
-		Review review = new Review();
-		
-		review.setUser_no(userinfo.getUserNo());
-		
-		res = profileDao.deleteReview(conn , review);
-		
-		if ( res > 0 ) {
-			
-			
-			JDBCTemplate.commit(conn);
-			
-		} else {
-			
-//			System.out.println("true");
-			JDBCTemplate.rollback(conn);
-			
-		}
 		
 		
-		
-		
-		res = profileDao.deleteProfile(conn, userinfo);
-		
-		
-		
-		if ( res > 0 ) {
-			
-			
-			JDBCTemplate.commit(conn);
-			
-		} else {
-			
-//			System.out.println("true");
-			JDBCTemplate.rollback(conn);
-			
-		}
-		
-			return 1;
-		
-		} else {
-			
-			return 0;
-		}
-	
-		
-	}
+
 	
 	
 	
