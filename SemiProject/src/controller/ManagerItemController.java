@@ -20,6 +20,8 @@ public class ManagerItemController extends HttpServlet{
 	private ManagerService managerSevice= new ManagerServiceImpl();
 	private ReviewService reviewService = new ReviewServiceImpl();
 		
+	//push test
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 						
