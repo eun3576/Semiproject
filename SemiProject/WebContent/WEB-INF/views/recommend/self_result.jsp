@@ -27,6 +27,20 @@
 
 <style type="text/css">
 
+#btnDiv {text-align:center;}
+
+button {
+	border: 2px solid #ddd;
+	background-color: #eaf3fd;
+	padding: 5px;
+}
+
+button:active {
+	border: 2px solid #ddd;
+	background-color: #709dcf;
+	padding: 5px;
+}
+
 .title {
 	text-align: center;
     border: 2px solid #dddddd;
@@ -76,5 +90,5 @@ strong {font-size: 60px;}
 <br>
 <div id="btnDiv">
 	<button onClick="window.location.reload()">재검사</button>
-	<button onclick="/nutrient/recommend">영양소 추천받기</button>
+	<button onclick="location.href='/nutrient/recommend'">영양소 추천받기</button>
 </div>

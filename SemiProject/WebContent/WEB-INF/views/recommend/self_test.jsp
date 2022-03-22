@@ -11,16 +11,14 @@ $(document).ready(function() {
 	$("#btnResult").click(function() {
 		console.log("#btnResult clicked")
 		
-		console.log("유효성 검사")
-		
-		if ($("input[type=radio]:checked").size()  < 20){
+		if ($("input[type=radio]:checked").size() < 20){
 				alert("모든 문항을 체크 하세요!")
 		} else {
 			
 			//AJAX 처리 
 			$.ajax({
 				type: "get" //요청 메소드
-				, url: "/nutrient/recommend/result" //요청 URL
+				, url: "/nutrient/self/result" //요청 URL
 				, data: { //요청 파라미터
 					q_1: $("input[name=q_1]:checked").val()
 					, q_2: $("input[name=q_2]:checked").val()
@@ -99,7 +97,7 @@ thead {
 <hr>
 
 
-	<div id="selfDia">
+	<div>
 	
 	<table class="table table-bordered">
 	<thead>

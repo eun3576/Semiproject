@@ -21,10 +21,10 @@ public class NutrientSelfTestController extends HttpServlet {
 		//세션 닉네임 가져오기
 		String sessionNick = (String) req.getSession().getAttribute("usernick");
 		//세션 닉네임 TEST
-		System.out.println(sessionNick);
+//		System.out.println(sessionNick);
 		
 		if (sessionNick == null || "".equals(sessionNick) ) {
-			System.out.println("비로그인 상태");
+//			System.out.println("비로그인 상태");
 			resp.sendRedirect("/");
 		} else {
 			
