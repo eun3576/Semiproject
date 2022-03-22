@@ -46,39 +46,11 @@ a:hover{
 	color:blue;
 }
 
-/* footer 하단 고정 [S] */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-#body-wrapper {
-    min-height: 100%;
-    position: relative;
-}
-
-#body-content {
-    margin-top: 100px;
-    padding-bottom: 100px; /* footer의 높이 */
-}
-
-footer {
-    width: 100%;
-    height: 100px; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
-}
-/* footer 하단 고정 [E] */
 
 
 </style>
 
-<body>
 
-<div id="body wrapper">
-  <div id="body-conten">
 
 <div class="container text-center">
 <br><br>
@@ -127,15 +99,10 @@ footer {
 
 </div> <!-- class="col-xs-2"> -->
 
+<%@ include file="../profile/paging.jsp" %>
 
-
-</div> <!-- body-conten -->
-  
     <!-- footer삽입 -->
 <footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
   
-</div>
 
 
-
-</body>

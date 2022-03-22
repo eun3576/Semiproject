@@ -12,6 +12,7 @@ import dao.impl.ProfileBoardImpl;
 import dto.Review;
 import dto.UserInfo;
 import service.face.ProfileBoardService;
+import util.Paging;
 
 public class ProfileBoardServiceImpl implements ProfileBoardService {
 	
@@ -35,4 +36,51 @@ public class ProfileBoardServiceImpl implements ProfileBoardService {
 		
 	}
 
+	
+	@Override
+	public List<Review> Blist(HttpServletRequest req, Paging paging) {
+		
+		HttpSession session = req.getSession();
+		
+		UserInfo userinfo = new UserInfo();
+		userinfo.setId((String)session.getAttribute("userid"));
+		
+		//페이징 적용해서 조회결과 반환
+		return profileboard.Blist(conn, userinfo , paging);
+	}
+	
+	
+	@Override
+	public Paging getPaging(HttpServletRequest req) {
+		
+		//전달파라미터 curPage 추출하기
+		ProfileBoard profileboard = new ProfileBoardImpl();
+		
+		HttpSession session = req.getSession();
+		
+		UserInfo userinfo = new UserInfo();
+		userinfo.setId((String)session.getAttribute("userid"));
+		
+		String param = req.getParameter("curPage");
+		
+		int curPage = 0;
+		if (param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			
+			System.out.println("[warn] ProfileBoardService getPaging ");
+		}
+		
+		//총 게시글 조회하기
+		int totalCount = profileboard.selectCntAll(conn , userinfo);
+		
+		//Paging객체 생성 - 페이징 계산
+		Paging paging = new Paging(totalCount, curPage);
+		
+		
+		return paging;
+	}
+	
+	
+	
 }
