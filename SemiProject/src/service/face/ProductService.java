@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dto.Attachment;
 import dto.Product;
 import dto.ProductCategory;
 import util.ProductPaging;
@@ -51,4 +52,11 @@ public interface ProductService {
 	 * @return 페이지 처리된 결과
 	 */
 	public ProductPaging getPaging(HttpServletRequest req);
+	
+	/**
+	 * 해당 상품의 첨부파일을 가져온다
+	 * @param req 요청 정보 객체
+	 * @return 첨부파일리스트
+	 */
+	public List<Attachment> getAttachmentByNo(HttpServletRequest req);
 }

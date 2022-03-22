@@ -1,3 +1,5 @@
+<%@page import="dto.Attachment"%>
+<%@page import="java.util.List"%>
 <%@page import="dto.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,7 +7,10 @@
 	int curNotice_no = 0;
 %>
 
-<% 	Notice notice = (Notice)request.getAttribute("notice"); %>
+<% 	
+	Notice notice = (Notice)request.getAttribute("notice");
+	List<Attachment> atlist = (List)request.getAttribute("attachment");
+%>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -22,11 +27,10 @@ $(document).ready(function() {
 		<div class="col-xs-12">
 			<h3 id="title" align="left"></h3>
 			<h6 id="write_date" align="left"></h6><hr>
-			<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+			<% for(int i=0; i<atlist.size(); i++) { %>
+			<img src="<%=request.getContextPath() %>/upload/<%=atlist.get(i).getStored_img() %>" alt=" " width="200" height="200" />
+			<% } %>
 			<p id="content"></p>
-			<div class="btn-group btn-group-md" role="group">
-				 
-			</div>
 		</div>
 	</div>
 </div>

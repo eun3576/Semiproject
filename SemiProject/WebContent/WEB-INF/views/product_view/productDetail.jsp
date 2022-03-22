@@ -1,3 +1,4 @@
+<%@page import="dto.Attachment"%>
 <%@page import="dto.ProductCategory"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Product"%>
@@ -6,6 +7,8 @@
 <% 
 	Product product = (Product)request.getAttribute("product");
 	List<ProductCategory> list = (List)request.getAttribute("list");
+	List<Attachment> atlist = (List)request.getAttribute("atlist");
+	System.out.println(atlist.size());
 %>
 
 <style type="text/css">
@@ -46,6 +49,9 @@
 
 <h2>제품 설명</h2>
 <br>
+<%for(int i=0; i<atlist.size(); i++){ %>
+	<img src="<%=request.getContextPath() %>/upload/<%=atlist.get(i).getStored_img() %>" alt=" " width="200" height="200" />
+<% } %>
 <%=product.getProduct_content() %>
 </div>
 

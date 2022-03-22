@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import dao.face.NoticeDao;
 import dao.impl.NoticeDaoImpl;
+import dto.Attachment;
 import dto.Notice;
 import service.face.NoticeService;
 import util.Paging;
@@ -65,5 +66,13 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		//전체 문의글 개수 반환
 		return cntList;
+	}
+	
+	@Override
+	public List<Attachment> getAttachmentByNo(HttpServletRequest req) {
+		Notice notice = new Notice();
+		notice.setNotice_no(Integer.parseInt(req.getParameter("notice_no")));
+	
+		return noticeDao.getAttachmentList(conn, notice);
 	}
 }

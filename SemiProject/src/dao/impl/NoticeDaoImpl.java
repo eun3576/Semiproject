@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.NoticeDao;
+import dto.Attachment;
 import dto.Notice;
 import util.Paging;
 
@@ -113,5 +114,39 @@ public class NoticeDaoImpl implements NoticeDao{
 		}
 		
 		return n;
+	}
+	
+	@Override
+	public List<Attachment> getAttachmentList(Connection conn, Notice notice) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<Attachment> list = new ArrayList();
+		
+		String sql = "";
+		sql += "SELECT * FROM attachment ";
+		sql += "WHERE notice_no=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notice.getNotice_no());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Attachment at = new Attachment();
+				at.setNotice_no(rs.getInt("notice_no"));
+				at.setStored_img(rs.getString("stored_img"));
+				at.setOrigin_img(rs.getString("origin_img"));
+				list.add(at);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return list;
 	}
 }

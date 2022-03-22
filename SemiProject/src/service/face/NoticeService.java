@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dto.Attachment;
 import dto.Notice;
 import util.Paging;
 
@@ -35,5 +36,12 @@ public interface NoticeService {
 	 * @return 전체 문의글 개수 
 	 */
 	public int cntList();
+	
+	/**
+	 * 공지사항 번호에 해당하는 첨부파일 가져오기
+	 * @param req 요청 정보 객체
+	 * @return 첨부파일
+	 */
+	public List<Attachment> getAttachmentByNo(HttpServletRequest req);
 	
 }
