@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import dao.face.ProductSearchDao;
 import dao.impl.ProductSearchDaoImpl;
+import dto.Attachment;
 import dto.Product;
 import dto.ProductCategory;
 import service.face.ProductService;
@@ -195,5 +196,13 @@ public class ProductServiceImpl implements ProductService{
 		List<ProductCategory> list = productSearchDao.selectCategoryList(conn, product);
 		
 		return list;
+	}
+	
+	@Override
+	public List<Attachment> getAttachmentByNo(HttpServletRequest req) {
+		Product product = new Product();
+		product.setProduct_no(Integer.parseInt(req.getParameter("product_no")));
+		
+		return productSearchDao.getAttachmentList(conn, product);
 	}
 }

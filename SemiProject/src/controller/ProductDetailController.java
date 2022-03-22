@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Attachment;
 import dto.Product;
 import dto.ProductCategory;
 import service.face.ProductService;
@@ -28,8 +28,11 @@ public class ProductDetailController extends HttpServlet {
 		
 		List<ProductCategory> list = productService.getCategoryList(req);
 		
+		List<Attachment> atlist = productService.getAttachmentByNo(req);
+		
 		req.setAttribute("product", product);
 		req.setAttribute("list", list);
+		req.setAttribute("atlist", atlist);
 		
 		req.getRequestDispatcher("/WEB-INF/views/product_view/productDetail.jsp").forward(req, resp);
 	}
