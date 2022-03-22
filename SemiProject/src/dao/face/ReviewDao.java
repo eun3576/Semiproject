@@ -172,4 +172,7 @@ public interface ReviewDao {
 	 */
 	public List<Attachment> selectStoredImg(Connection conn);
 	
+	
+	/* 제목 리뷰 검색 조회 */
+	public List<Review> searchTitleList(Connection conn, String searchTitleap);
 }
