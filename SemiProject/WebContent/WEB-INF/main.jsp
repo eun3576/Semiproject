@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <% List<ProductTag> TagList = (List)request.getAttribute("productTag"); %>
 <% List<Review> rList = (List)request.getAttribute("reviewList"); %>
+<% String userid = (String)session.getAttribute("userid"); %>
 
 <!-- header삽입 -->
 <%@include file="./views/layout/header.jsp" %>
@@ -18,7 +19,7 @@
 /*이미지 슬라이드 스타일*/
 #sliderbox{
 	width:1200px;
-	height:500px;
+	height:364px;
 /* 	border:1px solid #ccc; */
 	margin:0 auto;
 	
@@ -39,7 +40,7 @@
 
 #slider li img{
 	width:1200px;
-	height:500px;
+	height:364px;
 }
 
 /*베스트 스타일*/
@@ -153,6 +154,15 @@ $(document).ready(function(){
 	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,2000)});
 	
 })//$(document)
+
+function chatOpen(){
+<%if(userid!=null&&!userid.equals("")){%>
+	window.open('/chat/user','_blank','width=655, height=805')
+<%} else{%>
+	alert("로그인 후 이용 가능합니다")
+	return false;
+<%}%>
+}
 </script>
 
 <!-- top, bottom 화살표 버튼 -->
@@ -161,11 +171,8 @@ $(document).ready(function(){
 <div id="sliderbox" style="position:relative;">
 	<img src="../resources/img/arrow_left_icon.png" id="arrowLeft" style="position:absolute;left:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 <ul id="slider">
-	<li><img src="http://i.imgur.com/viuPHoS.gif"/></li>
-	<li><img src="http://i.imgur.com/i7sW1WN.jpg"/></li>
-	<li><img src="http://i.imgur.com/MrZcQnN.jpg"/></li>
-	<li><img src="http://i.imgur.com/hhsrPwq.jpg"/></li>
-	<li><img src="http://i.imgur.com/RstXW7v.jpg"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/product/search'"><img src="../resources/img/sildeImg1.jpg"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/review/list'"><img src="../resources/img/sildeImg2.jpg"/></li>
 </ul>
 	<img src="../resources/img/arrow_right_icon.png" id="arrowRight" style="position:absolute;right:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 </div>
@@ -211,6 +218,9 @@ $(document).ready(function(){
 <%} %>
 
 <%} %>
+</div>
+<div style="width:70px;height:70px;background:url('../../resources/img/chat_icon.png') no-repeat center white;background-size:50px;border:1px solid black;border-radius:50px;cursor:pointer;position:fixed;bottom:100px;right:60px;z-index:1000;"
+onclick="chatOpen();">
 </div>
 <!-- >>>>>>> main -->
 

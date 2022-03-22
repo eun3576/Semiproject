@@ -1,7 +1,10 @@
+<%@page import="dao.face.ProfileDao"%>
 <%@page import="dto.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../layout/header.jsp" %>
+
+
 
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -26,10 +29,10 @@ $(document).ready(function() {
 			
 		if($('#password').val() != "" ){ 
 			
-			alert("변경되었습니다.")	// 
+		submit();
 			
-// 			submitContents( $("#outbutton") );
-// 			$("#").submit()		
+			
+			
 		}else{
 			alert("비밀번호를 입력해주세요.") 
 			$('#password').val("")
@@ -45,6 +48,8 @@ $(document).ready(function() {
  <% 
 
 Profile profile = (Profile)request.getAttribute("profile");
+
+String id = (String)request.getAttribute("userid");
  
  %>
 
@@ -54,8 +59,8 @@ Profile profile = (Profile)request.getAttribute("profile");
 #submenu{
 	text-align:center;
 	line-height:40px;
-	background:#78CCC8;
-	height:150px;
+	background:#B0E0E6;
+	height:190px;
 }
 
 th{
@@ -71,15 +76,47 @@ a:hover{
 	color:blue;
 }
 
+/* footer 하단 고정 [S] */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#body-wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#body-content {
+    margin-top: 100px;
+    padding-bottom: 100px; /* footer의 높이 */
+}
+
+footer {
+    width: 100%;
+    height: 100px; /* footer의 높이 */
+    position: absolute;  
+    bottom: 0;
+    left: 0;
+}
+/* footer 하단 고정 [E] */
+
+
 </style>
 
+<body>
+
+<div id="body wrapper">
+  <div id="body-conten">
 <div class="container text-center">
 <br><br>
 <div class="col-xs-offset-11 col-xs-1 btn-xs" onclick="location.href='/inquiry/write'"><button>문의하기</button></div>
 <br><br>
 <div id="submenu" class="col-xs-2">
 <h3><strong><a href="/profile/main">마이페이지</a></strong></h3>
-<span><a href="/profile/list">회원수정</a></span><br>
+<span><a href="/profile/board">나의게시판</a></span><br>
+<span><a href="/profile/main">회원수정</a></span><br>
 <span><a href="/profile/out">회원탈퇴</a></span>
 </div>
 
@@ -93,38 +130,40 @@ a:hover{
                     <h2 class="text-center">회원 탈퇴</h2>
                      
 <br>
+<hr>
+                     <form action="/profile/out" method="post">
                      
                     <table class="table table-striped">
                       <tr>
-                        <td>아이디</td>
-                        <td><%= request.getParameter("id") %></td>
+                        <td class="info">아이디</td>
+                        <td class="info"><%= id %></td>
                       </tr>
                        
                       <tr>
                         <td>패스워드</td>
                         <td>
-                        <input type="password"  id="password" class="form-control">
+                        <input type="password"  id="password" name="password" class="form-control">
                         </td>
                       </tr>
                        
                     <tr>
                         <td colspan="2" class="text-center">
-                         <button id="outbutton" class="btn btn-danger">탈퇴</button>
+						<button id="outbutton" class="btn btn-danger">탈퇴</button>
                          
 <!--                          <button onclick="out();" id="outbutton" class="btn btn-danger">탈퇴</button> -->
                          
                          <!-- 탈퇴하고 난 페이지 -> 알러트 -> 메인 -->
                     
                          
-                         
-                         <!-- 메인페이지로 가는 버튼 -->
-                        <a href="/main"><input type="submit" value="메인" class="btn btn-info"></a>
+                 
                          
 
                          </td>    
                     </tr>
                            
                     </table>
+                    
+                    </form>
                  
                 </div>
         </div> <!-- col-sm-12 -->
@@ -133,6 +172,14 @@ a:hover{
 
 </div>
 
+</div> <!-- body-conten -->
+  
+  
+    <!-- footer삽입 -->
+<footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
+  
+</div>
+
+
 
 </body>
-</html>

@@ -9,6 +9,8 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.ProductSearchDao;
+import dto.Attachment;
+import dto.Notice;
 import dto.Product;
 import dto.ProductCategory;
 import util.ProductPaging;
@@ -180,6 +182,40 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+		
+		return list;
+	}
+	
+	@Override
+	public List<Attachment> getAttachmentList(Connection conn, Product product) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<Attachment> list = new ArrayList<>();
+		
+		String sql = "";
+		sql += "SELECT * FROM attachment ";
+		sql += "WHERE product_no=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, product.getProduct_no());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Attachment at = new Attachment();
+				at.setProduct_no(rs.getInt("product_no"));
+				at.setStored_img(rs.getString("stored_img"));
+				at.setOrigin_img(rs.getString("origin_img"));
+				list.add(at);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
 		
 		return list;
 	}

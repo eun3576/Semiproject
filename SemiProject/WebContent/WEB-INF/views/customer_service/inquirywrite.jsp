@@ -121,5 +121,5 @@ nhn.husky.EZCreator.createInIFrame({
 })
 </script>
 
-</body>
-</html>
+<br><br>
+<%@ include file="../layout/footer.jsp" %>

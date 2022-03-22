@@ -19,8 +19,11 @@ public class InquiryDeleteController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//문의글, 문의글 답변 삭제
 		inquiryService.deleteInquiry(req);
 		
+		//문의글 목록페이지로 리다이렉트
 		resp.sendRedirect("/inquiry/list");
 	}
 	

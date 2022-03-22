@@ -23,6 +23,9 @@ public class ProductListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//페이지 이동
 		req.getRequestDispatcher("/WEB-INF/views/product_view/productSearch.jsp").forward(req, resp);
+		
 	}
 }

@@ -244,7 +244,7 @@ li{list-style:none;}
 <%if(null != session.getAttribute("login") && (boolean)session.getAttribute("login")){ %>
 <%--로그인 상태 --%>
 <li onclick="location.href='/user/logout'">로그아웃</li>
-<li><%=session.getAttribute("usernick") %>님</li>
+<li onclick="location.href='/profile/main'"><%=session.getAttribute("usernick") %>님</li>
 <%} else{ %>
 <%--비로그인 상태 --%>
 <li id="userJoinOpen">회원가입</li>

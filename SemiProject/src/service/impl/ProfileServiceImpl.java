@@ -6,9 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
+import dao.face.InquiryDao;
 import dao.face.ProfileDao;
 import dao.impl.ProfileDaoImpl;
+import dto.Inquiry;
 import dto.Profile;
+import dto.Review;
+import dto.ReviewComment;
+import dto.UserInfo;
 import service.face.ProfileService;
 
 public class ProfileServiceImpl implements ProfileService{
@@ -69,6 +74,149 @@ public class ProfileServiceImpl implements ProfileService{
 		
 	}
 	
+	@Override
+	public int deleteProfile(HttpServletRequest req) {
+
+		//객체생성
+		UserInfo userinfo = new UserInfo();
+		
+		HttpSession session = req.getSession();
+		
+		
+		
+		userinfo.setId((String)session.getAttribute("userid"));
+		
+		ProfileDao profileDao = new ProfileDaoImpl();
+
+		
+		userinfo = profileDao.selectProfile(conn, userinfo) ;
+		
+		userinfo.setId((String)session.getAttribute("userid"));
+
+		int res = 0;
+		
+		if (req.getParameter("password").equals(userinfo.getPassword())) {
+
+
+			res = profileDao.deleteProfile(conn, userinfo);
+			
+			
+			if ( res > 0 ) {
+				JDBCTemplate.commit(conn);
+			} else {
+//				System.out.println("true");
+				JDBCTemplate.rollback(conn);
+			}
+				return 1;
+			} else {
+				return 0;
+			}
+		
+		}
+		
+//		Inquiry inquiry = new Inquiry();
+//		
+//		inquiry.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteInquiry(conn , inquiry);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
+//		
+//		
+//		
+//		ReviewComment reviewcomment = new ReviewComment();
+//		
+//		reviewcomment.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteReComment (conn , reviewcomment);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
+//		
+//		Review review = new Review();
+//		
+//		review.setUser_no(userinfo.getUserNo());
+//		
+//		res = profileDao.deleteReview(conn , review);
+//		
+//		if ( res > 0 ) {
+//			
+//			
+//			JDBCTemplate.commit(conn);
+//			
+//		} else {
+//			
+////			System.out.println("true");
+//			JDBCTemplate.rollback(conn);
+//			
+//		}
+		
+		
+		
+		
+
 	
 	
-}
+	
+	@Override
+	public int checkProfile(HttpServletRequest req) {
+	
+
+			//객체생성
+			UserInfo userinfo = new UserInfo();
+			
+			HttpSession session = req.getSession();
+			
+			
+			
+			userinfo.setId((String)session.getAttribute("userid"));
+			
+			ProfileDao profileDao = new ProfileDaoImpl();
+
+			
+			userinfo = profileDao.selectProfile(conn, userinfo) ;
+			
+			userinfo.setId((String)session.getAttribute("userid"));
+
+			int res = 0;
+
+			if (req.getParameter("password").equals(userinfo.getPassword())) {
+				
+				//비밀번호가 맞을 경우
+			res = 1;
+			
+			} else {
+				
+				//틀릴경우
+				res = 0;
+				
+			}
+			
+			//반환
+			return res;
+		}
+		
+		
+		
+	}
+	
+

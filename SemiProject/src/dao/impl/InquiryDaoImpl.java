@@ -98,8 +98,6 @@ public class InquiryDaoImpl implements InquiryDao{
 		sql += "INSERT INTO inquiry(inquiry_no, title, content, user_no, password) ";
 		sql += "VALUES(inquiry_seq.nextval, ?, ?, ?, ?)";
 		
-		System.out.println(inquiry);
-		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, inquiry.getTitle());

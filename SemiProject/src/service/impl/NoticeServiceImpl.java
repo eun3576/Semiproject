@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import dao.face.NoticeDao;
 import dao.impl.NoticeDaoImpl;
+import dto.Attachment;
 import dto.Notice;
 import service.face.NoticeService;
 import util.Paging;
@@ -18,7 +19,10 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public List<Notice> getNoticeList(Paging paging) {
+		
+		//문의글 리스트 가져오기 후 반환
 		return noticeDao.getNoticeList(conn, paging);
+		
 	}
 	
 	@Override
@@ -43,15 +47,32 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public Notice getNoticeDetail(HttpServletRequest req) {
+		
+		//문의글 DTO 생성
 		Notice notice = new Notice();
+		
+		//문의글 DTO에 문의글 번호 입력
 		notice.setNotice_no(Integer.parseInt(req.getParameter("notice_no")));
 		
+		//문의글 DTO 가져오기 후 반환
 		return noticeDao.getNoticeList(conn, notice);
 	}
 	
 	@Override
 	public int cntList() {
+		
+		//전체 문의글 개수 가져오기
 		int cntList = noticeDao.selectCntAll(conn);
+		
+		//전체 문의글 개수 반환
 		return cntList;
+	}
+	
+	@Override
+	public List<Attachment> getAttachmentByNo(HttpServletRequest req) {
+		Notice notice = new Notice();
+		notice.setNotice_no(Integer.parseInt(req.getParameter("notice_no")));
+	
+		return noticeDao.getAttachmentList(conn, notice);
 	}
 }

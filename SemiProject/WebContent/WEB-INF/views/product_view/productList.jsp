@@ -6,9 +6,13 @@
     pageEncoding="UTF-8"%>
 
 <% 
+	//제품 리스트 가져오기
 	List<Product> list = (List)request.getAttribute("list");
+	//카테고리 리스트 가져오기
 	List<ProductCategory> categoryList = (List)request.getAttribute("categoryList");
 	
+	//URL에 전달될 값을 위한 변수 생성 
+	//-> productPaging.jsp에서 사용하기위함
 	String child = "";
 	String woman = "";
 	String man = "";
@@ -18,6 +22,8 @@
 	String vitamin = "";
 	String exercise = "";
 	
+	//쿼리스트링으로 전달된 값들 가져오기 
+	//-> productPaging.jsp에서 사용하기위함
 	if("child".equals((String)request.getAttribute("child"))){
 		child = (String)request.getAttribute("child");
 	}
@@ -48,10 +54,13 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
+
+//선택된 제품번호를 전달받아 상세보기 ajax호출
 function detail(product_no){
 	detailajax(product_no)
 }
 
+//제품번호를 이용하여 서버와 통신
 function detailajax(product_no){
 	$.ajax({
 		type:"get"

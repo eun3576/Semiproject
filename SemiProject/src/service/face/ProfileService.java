@@ -25,6 +25,14 @@ public interface ProfileService {
 	//프로필업데이트
 	public void updateProfile(HttpServletRequest req);
 	
+	//회원탈퇴
+	public int deleteProfile(HttpServletRequest req);
+	
+
+	//회원 정보 비밀번호 확인
+	public int checkProfile(HttpServletRequest req);
+	
+	
 	
 }
 
