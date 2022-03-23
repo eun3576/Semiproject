@@ -182,9 +182,9 @@ public class InquiryAnswerDaoImpl implements InquiryAnswerDao {
 
 	@Override
 	public int insert(Connection conn, ManagerInquiryAnswer inquiryAnswer) {
-		
+		System.out.println("@@@@@@@@@@@" + inquiryAnswer);
 		String sql = "";
-		sql += "INSERT INTO INQUIRY_ANSWER(ANSWER_NO, CONTENT, MANAGER_NO, INQUIRY_NO)";
+		sql += "INSERT INTO INQUIRY_ANSWER(ANSWER_NO, CONTENT, MANAGER_NO, INQUIRY_NO) ";
 		sql += "VALUES (INQUIRY_ANSWER_seq.nextval, ?, ?, ?)";
 		
 		int res = 0;

@@ -15,7 +15,7 @@ $(document).ready(function(){
 	
 	//수정
 	$("#btnUpdate").click(function(){
-		$(location).attr("href", "<%=request.getContextPath() %>/inquiryanswer/update?answerNo=<%=viewInquiryAnswer.getAnswerNo() %>");
+		$(location).attr("href", "<%=request.getContextPath() %>/inquiryanswer/update?inquiryNo=<%=viewInquiryAnswer.getInquiryNo() %>");
 	})
 	
 	//삭제

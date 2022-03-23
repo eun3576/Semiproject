@@ -6,8 +6,8 @@
 <%@ include file="../managerLayout/header.jsp" %>    
     
 <%
-        	List<ManagerReviewComment> reviewCommentList = (List) request.getAttribute("reviewCommentList");
-        %>
+    List<ManagerReviewComment> reviewCommentList = (List) request.getAttribute("reviewCommentList");
+%>
 
 <script type="text/javascript">
 
