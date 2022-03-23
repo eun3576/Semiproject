@@ -31,10 +31,9 @@
 				<ul class="admin-aside-side_menus">
 					<li><a href="<%=root%>/manager/review">게시글 조회/관리</a></li>
 <!-- <<<<<<< mej -->
-					<li><a href="<%=root%>/manager/review">댓글 관리</a></li>
-					<li><a href="<%=root%>/manager/review">1:1문의 관리</a></li>
-					<li><a href="<%=root%>/manager/review">공지사항 관리</a></li>
-					<li><a href="<%=root%>/manager/review">배너 관리</a></li>
+					<li><a href="<%=root%>/reviewcomment/list">댓글 관리</a></li>
+					<li><a href="<%=root%>/inquiryanswer/list">1:1문의 관리</a></li>
+					<li><a href="<%=root%>/managernotice/list">공지사항 관리</a></li>
 				</ul>
 			</li>
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text"></span>
