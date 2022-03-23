@@ -46,39 +46,20 @@ a:hover{
 	color:blue;
 }
 
-/* footer 하단 고정 [S] */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+tr:hover { 
+	background-color: lightgray; 
+
 }
 
-#body-wrapper {
-    min-height: 100%;
-    position: relative;
-}
+#title {
+	text-align: left;
 
-#body-content {
-    margin-top: 100px;
-    padding-bottom: 100px; /* footer의 높이 */
 }
-
-footer {
-    width: 100%;
-    height: 100px; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
-}
-/* footer 하단 고정 [E] */
 
 
 </style>
 
-<body>
 
-<div id="body wrapper">
-  <div id="body-conten">
 
 <div class="container text-center">
 <br><br>
@@ -98,24 +79,24 @@ footer {
 <!--     <div class="row"> -->
         <div class="col-xs-10">
             <div class="col-sm-2"></div>
-                <div class="col-sm-9">
+                <div class="col-sm-10">
                     <h2 class="text-center">나의 게시판</h2>
 <br>     
 <hr>                
                      
    <table class="table table-striped">
    <tr class="info">
-   		<th>제목</th>
-   		<th>조회수</th>
-   		<th>작성일</th>
+   		<th width="20%">작성일</th>
+   		<th id="titile" width="70%">제목</th>
+   		<th width="10%">조회수</th>
    	</tr>
    	
  <%	for(int i=0; i<Blist.size(); i++) { %>
  
 <tr>
-	<td><%=Blist.get(i).getTitle() %></td>
-	<td><%=Blist.get(i).getViews() %></td>
 	<td><%=Blist.get(i).getWriteDate() %></td>
+	<td><a href="/review/view?review_no=<%=Blist.get(i).getReview_no() %>"><%=Blist.get(i).getTitle() %></a></td>
+	<td><%=Blist.get(i).getViews() %></td>
 </tr>
 <%	} %>
 
@@ -127,15 +108,10 @@ footer {
 
 </div> <!-- class="col-xs-2"> -->
 
+<%@ include file="../profile/paging.jsp" %>
 
-
-</div> <!-- body-conten -->
-  
     <!-- footer삽입 -->
 <footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
   
-</div>
 
 
-
-</body>
