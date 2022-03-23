@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <meta charset="UTF-8">
-<title> 영추영추! [관리자 페이지] </title>
+<title> 영추영추 [관리자 페이지] </title>
 
 <style type="text/css">
 
@@ -94,9 +94,9 @@ ul.nav > li > a:hover {
 </head>
 <body>
 
-<div id="header"> <h1><a href="/managerMain">관리자페이지</a></h1>
+<!-- <div id="header"> <h1><a href="/managerMain">관리자페이지</a></h1>
 
-</div>
+</div> -->
 
 
  

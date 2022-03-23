@@ -14,7 +14,7 @@
 </head>
 <body>
 	<aside>
-		<div class="admin-logo"><a href="<%=root%>/admin/adminHome.jsp">영추영추</a><p class="admin-label">관리자페이지</p></div>
+		<div class="admin-logo"><a href="<%=root%>/">영추영추</a><p class="admin-label">관리자페이지</p></div>
 		<ul>
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text">회원</span>
 				<ul class="admin-aside-side_menus">
@@ -30,11 +30,9 @@
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text">게시글</span>
 				<ul class="admin-aside-side_menus">
 					<li><a href="<%=root%>/manager/review">게시글 조회/관리</a></li>
-				</ul>
-			</li>
-			<li class="admin-aside-top_menu"><span class="admin-aside-top_text"></span>
-				<ul class="admin-aside-side_menus">
-					<li><a href="<%=root%>/">메인 페이지</a></li>
+					<li><a href="<%=root%>/reviewcomment/list">댓글 조회/관리</a></li>
+              		<li><a href="<%=root%>/inquiryanswer/list">1:1문의 관리</a></li>
+               		<li><a href="<%=root%>/managernotice/list">공지사항 관리</a></li>
 				</ul>
 			</li>
 		</ul>
