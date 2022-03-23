@@ -169,7 +169,9 @@ function userSearchBtn() {
 	
 	<div class="admin-content_area">
 		<div class="admin-content">
-			<div class="admin-content_title">공지사항 관리</div>
+			
+			<div class="admin-content_title">공지사항 관리 <button id="btnWrite" class=" btn-primary pull-right">공지사항 작성하기</button> </div>
+			
 		</div>
 	</div>
 	
@@ -187,16 +189,16 @@ function userSearchBtn() {
 
 <div class="admin-content_area">
 			<div class="admin-content">
-				<div class="admin-content_title">댓글 목록</div>
+				<div class="admin-content_title">공지사항 목록</div>
 				<div class="align-row choice-genre-area">
 					<div class="search-table" style="min-height: 550px;">
 						<table class="table table-border table-hover table-striped" style="text-align: center;">
 							<thead>
 								<tr>
-									<th style="width: 1%;">글번호</th>
+									<th style="width: 0.25%;">글번호</th>
 									<th style="width: 1%;">제목</th>
-									<th style="width: 1%;">작성일</th>
-									<th style="width: 1%;">작성자</th>
+									<th style="width: 0.25%;">작성일</th>
+									<th style="width: 0.25%;">작성자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -212,18 +214,13 @@ function userSearchBtn() {
 						</table>
 					</div>
 				</div>
-				<!-- 페이지 네비게이션 자리 -->
-				<div class="pagination">
-					
-				</div>
-					
-				<form class="page-form" action="notice.jsp" method="post">
-					<input type="hidden" name="pageNo">
-				</form>
+				
+				<%@ include file="../notice/paging.jsp" %>
+			
 			</div>
 			
 		</div>
-
+</section>	
 
 <%-- <table class="table table-striped table-hover table-condensed">
 
@@ -246,12 +243,6 @@ function userSearchBtn() {
 
 </table> --%>
 
-<!-- 글쓰기 버튼 -->
-<div id="btnBox" class="pull-right">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
-
-</section>	
 
 <%-- <%@ include file="../notice/paging.jsp" %>
 

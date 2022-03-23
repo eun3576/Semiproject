@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <% List<Product> pList = (List)request.getAttribute("pList"); %>
 <% List<Review> rList = (List)request.getAttribute("reviewList"); %>
-<% String userid = (String)session.getAttribute("userid"); %>
+
 
 <!-- header삽입 -->
 <%@include file="./views/layout/header.jsp" %>
@@ -149,15 +149,6 @@ $(document).ready(function(){
 	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,2000)});
 	
 })//$(document)
-
-function chatOpen(){
-<%if(userid!=null&&!userid.equals("")){%>
-	window.open('/chat/user','_blank','width=655, height=805')
-<%} else{%>
-	alert("로그인 후 이용 가능합니다")
-	return false;
-<%}%>
-}
 </script>
 
 <!-- top, bottom 화살표 버튼 -->

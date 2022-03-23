@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String userid = (String)session.getAttribute("userid"); %>
 <!DOCTYPE html>
 <html>
 <title>영추영추</title>
@@ -190,6 +191,15 @@ $(document).ready(function(){
 		}
 	})
 })
+
+function chatOpen(){
+<%if(userid!=null&&!userid.equals("")){%>
+	window.open('/chat/user','_blank','width=655, height=805')
+<%} else{%>
+	alert("로그인 후 이용 가능합니다")
+	return false;
+<%}%>
+}
 </script>
 
 <!-- 로그인 실패 script -->
