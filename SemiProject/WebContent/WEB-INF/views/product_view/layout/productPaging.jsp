@@ -53,7 +53,7 @@ function getQueryString(){
 	var queryString = ""
 	
 	//선언된 모든 변수를 배열로 저장
-	var check = ["<%=child%>", "<%=woman%>", "<%=man%>", "<%=aged%>", "<%=eye%>", "<%=intestine%>", "<%=vitamin%>", "<%=exercise%>"]
+	<%-- var check = ["<%=child%>", "<%=woman%>", "<%=man%>", "<%=aged%>", "<%=eye%>", "<%=intestine%>", "<%=vitamin%>", "<%=exercise%>"] --%>
 	
 	//값이 존재하는 데이터만 저장할 배열
 	var okcheck = []
