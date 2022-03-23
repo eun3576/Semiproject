@@ -60,4 +60,13 @@ public interface ProductSearchDao {
 	 */
 	public List<Attachment> getAttachmentList(Connection conn, Product product);
 	
+	/**
+	 * 제품의 조회수 상위 3품목을 조회한다.
+	 * 
+	 * @param conn DB연결 객체
+	 * @param product 제품 정보 객체
+	 * @return 조회수 상위 3품목 리스트
+	 */
+	public List<Product> getProductByViews(Connection conn, Product product);
+	
 }

@@ -205,4 +205,12 @@ public class ProductServiceImpl implements ProductService{
 		
 		return productSearchDao.getAttachmentList(conn, product);
 	}
+
+	@Override
+	public List<Product> getProductByBest() {
+		Product product = new Product();
+		return productSearchDao.getProductByViews(conn, product);
+	}
+	
+	
 }

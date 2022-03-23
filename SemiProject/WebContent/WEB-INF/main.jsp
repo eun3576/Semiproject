@@ -1,9 +1,9 @@
+<%@page import="dto.Product"%>
 <%@page import="dto.Review"%>
-<%@page import="dto.ProductTag"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<ProductTag> TagList = (List)request.getAttribute("productTag"); %>
+<% List<Product> pList = (List)request.getAttribute("pList"); %>
 <% List<Review> rList = (List)request.getAttribute("reviewList"); %>
 <% String userid = (String)session.getAttribute("userid"); %>
 
@@ -175,13 +175,12 @@ function chatOpen(){
 <!-- 베스트 아이템 -->
 <div id="bestItem" style="width:900px;margin:50px auto;text-align: center;">
 <h1>BEST ITEM</h1>
-<% for(int i=0; i<TagList.size();i++){ %>
-	<div onclick="alert('준비중입니다')" style="cursor:pointer;">
+<% for(int i=0; i<pList.size();i++){ %>
+	<div onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'" style="cursor:pointer;">
 	<!-- 이미지가 없을시 대체 이미지 -->
-	<img alt="상품이미지" src="/upload/<%=TagList.get(i).getProductImg()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
-<!-- 	<img alt="상품이미지" src="../resources/img/best_temp.jpg" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'"> -->
-	<p>#<%=TagList.get(i).getTagName() %></p>
-	<p>조회수: <%=TagList.get(i).getProductViews()%></p>
+	<img alt="상품이미지" src="/upload/<%=pList.get(i).getProduct_img()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
+	<p>제품명: <%=pList.get(i).getProduct_name() %></p>
+	<p>조회수: <%=pList.get(i).getProduct_views()%></p>
 	</div>
 <% } %>
 </div>
