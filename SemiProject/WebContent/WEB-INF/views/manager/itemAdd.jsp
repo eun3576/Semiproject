@@ -47,14 +47,31 @@
 			</script>
 			
 			<style type="text/css">
-			#content {
-				width: 100%;
-			}
+				#content {
+					width: 100%;
+				}
+							
+				.item-add-title{
+					font-size: 16px;
+				    padding: 15px;
+				    color: #949ca6;
+				    width: 100%;
+				    border-bottom: 1px solid rgba(0,0,0,0.2);
+				}
+				
+				.add-btn{
+					height: 30px;
+				    width: 100px;
+				    margin: 5px 0;
+				    background-color: white;
+				    border: 1px solid gray;
+				    border-radius: 5px;
+				}
 			</style>
 			
 			<div class="container">
 			
-			<h3>게시글 쓰기</h3>
+			<h3 class="item-add-title">게시글 쓰기</h3>
 			<hr>
 			
 			<div>
@@ -92,9 +109,9 @@
 			</form>
 			</div>
 			
-			<div class="text-center">	
-				<button type="button" id="btnWrite" class="btn btn-info">작성</button>
-				<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+			<div class="text-center" style="margin: 5px;">	
+				<button type="button" id="btnWrite" class="btn btn-info add-btn">작성</button>
+				<button type="button" id="btnCancel" class="btn btn-danger add-btn">취소</button>
 			</div>
 			
 			<!-- .container -->
