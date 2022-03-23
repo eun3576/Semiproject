@@ -5,7 +5,10 @@
 <%@include file="../layout/header.jsp" %>
 
 
-
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -102,6 +105,10 @@ footer {
 }
 /* footer 하단 고정 [E] */
 
+body{ 
+    font-family : 'Jua', sans-serif;
+}
+
 
 </style>
 
@@ -127,7 +134,7 @@ footer {
          <div class="col-xs-10">
             <div class="col-sm-2"></div>
                 <div class="col-sm-9">
-                    <h2 class="text-center">회원 탈퇴</h2>
+<!--                     <h2 class="text-center">회원 탈퇴</h2> -->
                      
 <br>
 <hr>
