@@ -212,12 +212,12 @@ div{padding:0;margin:0;}
 ul{margin:0;}
 li{list-style:none;}
 #header{margin-top:10px;}
-#header #smallNav li{float:right;margin-right:30px;cursor:pointer;font-size:13px;height:13px;}
+#header #smallNav li{float:right;margin-right:30px;cursor:pointer;font-size:16px;height:16px;}
 #header #smallNav li:first-child, #header #smallNav li:nth-child(0){margin-right:50px;}
 #header #smallNav li:hover{font-weight:bold;}
 #header div{clear:right;margin-right:50px;}
-#header div #mSearch{float:right;height:24px;border:1px solid #999;border-radius:3px;margin-top:10px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
-#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:10px;width:25px;height:25px;display:inline-block;cursor:pointer;}
+#header div #mSearch{float:right;width:200px;height:30px;border:1px solid #999;border-radius:3px;margin-top:20px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
+#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:20px;width:30px;height:30px;display:inline-block;cursor:pointer;}
 #header h1{background-image: url("../../../resources/img/logo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
 #header #nav{width:1200px;margin:0 auto;}
 #header #nav > ul{clear:right;margin:30px 0 0 0;padding:0;}
