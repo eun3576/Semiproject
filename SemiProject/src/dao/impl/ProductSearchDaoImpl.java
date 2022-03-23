@@ -220,5 +220,51 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 		
 		return list;
 	}
+
+	@Override
+	public List<Product> getProductByViews(Connection conn, Product product) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		String sql = "";
+		sql += "SELECT * FROM"; 
+		sql += " (SELECT product.product_no";
+		sql += ", product.product_name"; 
+		sql += ", product.product_content"; 
+		sql += ", product.product_views "; 
+		sql += ", product.product_img"; 
+		sql += ", product_category.category_name";  
+		sql += " FROM product, product_category WHERE product_category.product_no = product.product_no"; 
+		sql += " ORDER BY product_views DESC)"; 
+		sql += " WHERE rownum <= 3 ";
+		
+		//조회수 상위 3품목 저장하기 위한 리스트 객체
+		List<Product> list = new ArrayList<>();
+		
+		try {
+			//SQL 실행
+			ps = conn.prepareStatement(sql);
+			
+			//SQL실행 결과 집합 저장
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Product p = new Product();
+				p.setProduct_no(rs.getInt("product_no"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_content(rs.getString("product_content"));
+				p.setProduct_views(rs.getInt("product_views"));
+				p.setProduct_img(rs.getString("product_img"));
+				p.setCategory_name(rs.getString("category_name"));
+				
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 }
