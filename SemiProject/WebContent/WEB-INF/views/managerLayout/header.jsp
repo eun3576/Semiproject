@@ -13,14 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <meta charset="UTF-8">
-<<<<<<< HEAD
+
 <title> 영추영추 [관리자 페이지] </title>
-=======
-
-
-
-<title> 영추영추! [관리자 페이지] </title>
->>>>>>> ac310301a5c92917c6ffdcccebd4bd241b598408
 
 <style type="text/css">
 
