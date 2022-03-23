@@ -133,18 +133,14 @@ $(document).ready(function(){
 	})
 	
 	//사용중인 아이디인지 확인
-	$("#joinUserId").keyup(function(){
-		ajaxToServerId();
-	})
+// 	$("#joinUserId").keyup(function(){
+// 		ajaxToServerId();
+// 	})
 	
 	//사용중인 닉네임인지 확인
-	$("#joinUserNick").keyup(function(){
-		ajaxToServerNick();
-	})
-	
-	$("#joinUserId").keyup(function(){
-		ajaxToServerId();
-	})
+// 	$("#joinUserNick").keyup(function(){
+// 		ajaxToServerNick();
+// 	})
 	
 	//회원가입창 닫기/닫으면서 기록한거 삭제
 	$("#userJoinClose").click(function(){
@@ -337,12 +333,14 @@ li{list-style:none;}
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
 <div style="width:300px;margin:50px auto 0;">
 <label for="joinUserId" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="joinUserId" name="joinUserId" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text" autocomplete="off">
+<input id="joinUserId" name="joinUserId" style="width:180px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text" autocomplete="off">
+<button type="button" onclick="ajaxToServerId();">중복확인</button>
 <span id="rescheckid" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 <div style="width:300px;margin:0 auto;">
 <label for="joinUserNick" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="joinUserNick" name="joinUserNick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
+<input id="joinUserNick" name="joinUserNick" style="width:180px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
+<button type="button" onclick="ajaxToServerNick();">중복확인</button>
 <span id="reschecknick" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 
