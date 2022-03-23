@@ -31,23 +31,25 @@ public class UserLoginController extends HttpServlet {
 		user.setPassword(upw);
 		int logincnt = userLoginService.login(user);
 //		System.out.println(logincnt);
+		
+		//세션정보 저장하기
+		HttpSession session = req.getSession();
+		
+		
 		//세션 정보 처리
-		if( logincnt > 0 ) { //로그인 인증 성공
+		if( logincnt == 1) { //로그인 인증 성공
 			
-//			System.out.println(user);
 			user = userLoginService.info(user);
-//			System.out.println(user);
-			
-			//세션정보 저장하기
-			HttpSession session = req.getSession();
 			
 			session.setAttribute("login", true);
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("usernick", user.getNickname());
+		}else {
+			session.setAttribute("login",false);
 		}
 		
-			//메인페이지로 리다이렉트
-			resp.sendRedirect("/");
+		//메인페이지로 리다이렉트
+		resp.sendRedirect("/");
 		
 	}
 
