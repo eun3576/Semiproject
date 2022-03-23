@@ -262,6 +262,8 @@ li{list-style:none;}
 /* footer style layout end */
 </style>
 
+<link rel="shortcut icon" href="/resources/img/favicon.ico">
+
 </head>
 <body>
 <!-- header시작 -->
