@@ -46,6 +46,15 @@ a:hover{
 	color:blue;
 }
 
+tr:hover { 
+	background-color: lightgray; 
+
+}
+
+#title {
+	text-align: left;
+
+}
 
 
 </style>
@@ -70,24 +79,24 @@ a:hover{
 <!--     <div class="row"> -->
         <div class="col-xs-10">
             <div class="col-sm-2"></div>
-                <div class="col-sm-9">
+                <div class="col-sm-10">
                     <h2 class="text-center">나의 게시판</h2>
 <br>     
 <hr>                
                      
    <table class="table table-striped">
    <tr class="info">
-   		<th>제목</th>
-   		<th>조회수</th>
-   		<th>작성일</th>
+   		<th width="20%">작성일</th>
+   		<th id="titile" width="70%">제목</th>
+   		<th width="10%">조회수</th>
    	</tr>
    	
  <%	for(int i=0; i<Blist.size(); i++) { %>
  
 <tr>
-	<td><%=Blist.get(i).getTitle() %></td>
-	<td><%=Blist.get(i).getViews() %></td>
 	<td><%=Blist.get(i).getWriteDate() %></td>
+	<td><a href="/review/view?review_no=<%=Blist.get(i).getReview_no() %>"><%=Blist.get(i).getTitle() %></a></td>
+	<td><%=Blist.get(i).getViews() %></td>
 </tr>
 <%	} %>
 

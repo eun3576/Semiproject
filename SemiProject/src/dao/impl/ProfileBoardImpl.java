@@ -22,7 +22,7 @@ public class ProfileBoardImpl implements ProfileBoard{
 		ResultSet rs = null;
 		
 		String sql = "";
-		sql += "select title , views , write_date";
+		sql += "select review_no , title , views , write_date";
 		sql += " from userinfo u";
 		sql += " inner join review r ";
 		sql += " on u.user_no = r.user_no";
@@ -49,7 +49,6 @@ public class ProfileBoardImpl implements ProfileBoard{
 				review.setTitle(rs.getString("title"));
 				review.setViews(rs.getInt("views"));
 				review.setWriteDate(rs.getDate("write_date"));
-				
 				
 				Blist.add(review);
 				
@@ -122,7 +121,7 @@ public class ProfileBoardImpl implements ProfileBoard{
 		String sql = "";
 		sql += "select * from (";
 		sql += "	select rownum rnum, R.* from (";
-		sql += "	select title , views , write_date";
+		sql += "	select review_no , title , views , write_date";
 		sql += "	    from userinfo u";
 		sql += "		inner join review r";
 		sql += "		on u.user_no = r.user_no";
@@ -157,6 +156,9 @@ public class ProfileBoardImpl implements ProfileBoard{
 				review.setTitle(rs.getString("title"));
 				review.setViews(rs.getInt("views"));
 				review.setWriteDate(rs.getDate("write_date"));
+				review.setReview_no(rs.getInt("review_no"));
+				
+//				System.out.println("테스트");
 				
 				
 				Blist.add(review);
@@ -175,4 +177,5 @@ public class ProfileBoardImpl implements ProfileBoard{
 		return Blist;
 	}
 	
+
 }

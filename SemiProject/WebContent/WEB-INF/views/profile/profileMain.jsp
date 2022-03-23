@@ -6,6 +6,11 @@
 
 <% List<Profile> list = (List)request.getAttribute("profile");%>
 
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -18,6 +23,11 @@
 
 
 <style type="text/css">
+
+
+h1, h2, h3, h4, h5, h6, p , {
+    font-family: 'Jua' !important;
+    }
 
 
 
@@ -67,6 +77,9 @@ footer {
 }
 /* footer 하단 고정 [E] */
 
+body{ 
+    font-family : 'Jua', sans-serif;
+}
 
 </style>
 
@@ -91,7 +104,7 @@ footer {
 <form action="/profile/main" method="post">
 
 
-<h3>비밀번호를 입력하시면 회원수정페이지로 이동합니다.</h3>
+<h3 font-family: 'Jua', sans-serif;>비밀번호를 입력하시면 회원수정페이지로 이동합니다.</h3>
 <br>
 <hr>
 
@@ -99,6 +112,7 @@ footer {
 	<th>비밀번호</th>
 	<td><input type="password"  name="password"><button type="submit">확인</button></td>
 </tr>
+
 
 </form>
 
@@ -111,7 +125,6 @@ footer {
 <footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
   
 </div>
-
 
 
 </body>

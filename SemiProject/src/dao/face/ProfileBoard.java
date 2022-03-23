@@ -37,9 +37,17 @@ public interface ProfileBoard {
 	 */
 	public int selectCntAll(Connection conn, UserInfo userinfo);
 
-	
-	
-	
+//	/**
+//	 * 리뷰글 조회
+//	 * 
+//	 * @param conn
+//	 * @param review
+//	 * @return
+//	 */
+//	
+//	public Review selectReview(Connection conn , Review review );
+//	
+//	
 	
 
 }

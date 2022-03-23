@@ -81,6 +81,17 @@ public class ProfileBoardServiceImpl implements ProfileBoardService {
 		return paging;
 	}
 	
-	
-	
+//
+//	@Override
+//	public Review getReviewno(Review review) {
+//		
+//		ProfileBoard profileboard = new ProfileBoardImpl();
+//		
+//		review = profileboard.selectReview(conn, review);
+//		
+//		
+//		
+//		
+//		return review;
+//	}
 }

@@ -37,8 +37,17 @@ public interface ProfileBoardService {
 	
 	public Paging getPaging(HttpServletRequest req);
 
-	
-	
+//	
+//	/**
+//	 * 요청 파라미터 얻기
+//	 * 
+//	 * @param req
+//	 * @return
+//	 */
+//	
+//	public Review getReviewno(Review review);
+//	
+//	
 
 	
 
