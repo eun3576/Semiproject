@@ -221,11 +221,11 @@ li{list-style:none;}
 #header h1{background-image: url("../../../resources/img/logo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
 #header #nav{width:1200px;margin:0 auto;}
 #header #nav > ul{clear:right;margin:30px 0 0 0;padding:0;}
-#header #nav > ul > li{display:inline-block;font-size:25px;margin-right:169px;width:100px;cursor:pointer;text-align:center;position:relative;}
+#header #nav > ul > li{display:inline-block;font-size:25px;margin-right:130px;width:130px;cursor:pointer;text-align:center;position:relative;}
 #header #nav > ul > li:last-child{margin-right:0;}
 #header #nav > ul > li:hover{font-weight:bold;}
 #header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;height:50px;}
-#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;width:110px;}
+#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;width:130px;}
 #header #nav > ul > li > .subMenu > li{font-size:16px;font-weight:normal;text-align:center;}
 #header #nav > ul > li > .subMenu > li:hover{font-weight:bold;}
 
