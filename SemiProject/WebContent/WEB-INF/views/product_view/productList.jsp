@@ -130,7 +130,7 @@ table, th{
 
 <tr>
 	<!-- 여기 썸네일 파일 추가해야함 -->
-	<td class="bottomLine"><img src="https://cdn.pixabay.com/photo/2021/12/01/15/00/christmas-background-6838204_960_720.png" width="80%" height="200" onclick="detail(<%=list.get(i).getProduct_no() %>);" /></td>
+	<td class="bottomLine"><img src="<%=request.getContextPath() %>/upload/<%=list.get(i).getProduct_img() %>" width="80%" height="200" onclick="detail(<%=list.get(i).getProduct_no() %>);" /></td>
 </tr>
 
 <tr>

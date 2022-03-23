@@ -29,7 +29,7 @@
 
 <div class="title">
 
-<img src="https://cdn.pixabay.com/photo/2021/12/01/15/00/christmas-background-6838204_960_720.png" width="200" height="200">
+<img src="<%=request.getContextPath() %>/upload/<%=product.getProduct_img() %>" alt="이미지 준비중" width="200" height="200" />
 
 <div style="margin:0 100px;">
 <h4><%=product.getProduct_name() %></h4>
@@ -49,8 +49,8 @@
 
 <h2>제품 설명</h2>
 <br>
-<%for(int i=0; i<atlist.size(); i++){ %>
-	<img src="<%=request.getContextPath() %>/upload/<%=atlist.get(i).getStored_img() %>" alt=" " width="200" height="200" />
+<%for(int i=0; i<atlist.size()-1; i++){ %>
+	<img src="<%=request.getContextPath() %>/upload/<%=atlist.get(i).getStored_img() %>" alt=" " width="50%" height="50%" /><br>
 <% } %>
 <%=product.getProduct_content() %>
 </div>

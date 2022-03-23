@@ -84,6 +84,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "SELECT";
 		sql += " nickname";
 		sql	+= ", sympton";
+		sql	+= ", id";
 		sql += " FROM review, userinfo";
 		sql += " WHERE review.user_no = userinfo.user_no";
 		sql += " ORDER BY review_no DESC";
@@ -104,6 +105,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				//결과 값 저장 객체
 				UserInfo u = new UserInfo();
 				
+				u.setId(rs.getString("id"));
 				u.setNickname(rs.getString("nickname"));
 				u.setSymptom(rs.getString("sympton"));
 				
@@ -672,6 +674,46 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		
 		return attachList;
+	}
+
+
+	@Override
+	public List<Review> searchTitleList(Connection conn, String searchTitle) {
+		//SQL 작성
+		String sql = "SELECT * from review where title like ? order by review_no desc";
+		
+		//결과 저장할 List
+		List<Review> reviewList = new ArrayList<>();
+		
+		try {
+			//SQL 수행 객체
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + searchTitle + "%");
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Review r = new Review();
+				r.setReview_no(rs.getInt("review_no"));
+				r.setTitle(rs.getString("title"));
+				r.setContent(rs.getString("content"));
+				r.setWriteDate(rs.getDate("write_date"));
+				r.setUpdateDate(rs.getDate("update_date"));
+				r.setViews(rs.getInt("views"));
+				r.setUser_no(rs.getInt("user_no"));
+
+				reviewList.add(r);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//객체 닫기
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return reviewList;
+		
 	}
 	
 }

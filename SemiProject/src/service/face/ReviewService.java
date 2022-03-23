@@ -112,4 +112,8 @@ public interface ReviewService {
 	 */
 	public List<Attachment> getAttachList();
 	
+	
+	/* 리뷰 제목으로 검색 조회 */
+	public List<Review> searchTitleList(String searchTitle);
+	
 }
