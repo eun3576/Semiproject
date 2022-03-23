@@ -136,7 +136,7 @@ button{
   </div>
   <div class="button-1">
     <div class="eff-1"></div>
-    <a href="/manager/user"> 제품 관리 </a>
+    <a href="/manager/item"> 제품 관리 </a>
   </div>
   <div class="button-1">
     <div class="eff-1"></div>
