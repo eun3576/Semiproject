@@ -102,7 +102,7 @@ public class MainDaoImpl implements MainDao{
 	@Override
 	public List<Product> selectBySearchItems(Connection conn) {
 		String sql = "";
-		sql += "SELECT product_name, product_views, product_img, product_content  FROM product";
+		sql += "SELECT product_name, product_views, product_img, product_content, product_no  FROM product";
 		sql += " ORDER BY product_views";
 		
 		List<Product> pList = new ArrayList<>();
@@ -118,6 +118,7 @@ public class MainDaoImpl implements MainDao{
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_views(rs.getInt("product_views"));
 				product.setProduct_img(rs.getString("product_img"));
+				product.setProduct_no(rs.getInt("product_no"));
 				
 				pList.add(product);
 			}
