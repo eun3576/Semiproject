@@ -75,6 +75,7 @@ a:hover{
 
 <table class="table table-striped table-hover table-condensed">
 <tr>
+	<th>번호</th>
 	<th>제목</th>
 	<th>작성자</th>
 	<th>날짜</th>
@@ -82,6 +83,7 @@ a:hover{
 
 <%	for(int i=0; i<list.size(); i++) { %>
 <tr onclick="pwtest(<%=list.get(i).getInquiry_no() %>, <%=list.get(i).getPassword()%>);">
+	<td><%=list.get(i).getInquiry_no() %></td>
 	<td><%=list.get(i).getTitle() %></td>
 	<td><%=list.get(i).getId() %></td>
 	<td><%=list.get(i).getWrite_date() %></td>
