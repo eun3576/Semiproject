@@ -41,9 +41,6 @@
 				<ul class="admin-aside-side_menus">
 					<li><a href="<%=root%>/">메인 페이지</a></li>
 <!-- ======= -->
-					<li><a href="<%=root%>/reviewcomment/list">댓글 조회/관리</a></li>
-              		<li><a href="<%=root%>/inquiryanswer/list">1:1문의 관리</a></li>
-               		<li><a href="<%=root%>/managernotice/list">공지사항 관리</a></li>
 <!-- >>>>>>> main -->
 				</ul>
 			</li>
