@@ -62,7 +62,7 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public List<Chat> getChatList() {
 		Connection conn = JDBCTemplate.getConnection();
-		return chatDao.SelectList(conn);
+		return chatDao.selectList(conn);
 	}
 
 	@Override
