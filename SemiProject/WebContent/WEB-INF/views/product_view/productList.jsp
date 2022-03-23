@@ -85,22 +85,31 @@ function detailajax(product_no){
 
 <style type="text/css">
 
-.row{
-	height:300px;
-	display: flex;
-    justify-content: center;
-    margin: 30px 0 30px 0;
+.main_list {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.list_start {
+    text-align: center;
+}
+
+.list_detail {
+    display: inline-block;
+    width: 310px;
+    height: 280px;
+	border: 2px solid #f2dede;
+ 	border-radius: 30px 30px; 
+    margin: 6px;
+    padding: 9px;
+    background-color: #f2dede;
 }
 
 .paging{
 	display: flex;
     justify-content: center;
-    margin-top: 500px;
-}
-
-.product{
-	width:300px;
-	margin:20px 20px;
+    margin-top: 50px;
 }
 
 table, th{
@@ -115,41 +124,38 @@ table, th{
 }
 
 
+
 </style>
 
-<div class="row">
 
+<div class="main_list">
 <%for(int i=0; i<list.size(); i++) {%>
-
-<div class="product" style="border:1px solid #ccc;">
-<table>
-<tr>
-	<th style="text-align:center;"><a onclick="detail(<%=list.get(i).getProduct_no() %>);"><%=list.get(i).getProduct_name() %></a></th>
-</tr>
-
-
-<tr>
-	<!-- 여기 썸네일 파일 추가해야함 -->
-	<td class="bottomLine"><img src="<%=request.getContextPath() %>/upload/<%=list.get(i).getProduct_img() %>" width="80%" height="200" onclick="detail(<%=list.get(i).getProduct_no() %>);" /></td>
-</tr>
-
-<tr>
-	<td>
-	<%for(int j=0; j<categoryList.size(); j++){ %>
-		<%if(list.get(i).getProduct_no() == categoryList.get(j).getProduct_no()) {%>
-			#<%=categoryList.get(j).getCategory_name() %>
-		<% } %>
-	<% } %>
-	</td>
-</tr>
-</table>
+	<div class="list_detail">
+		<div class="product">
+			<table>
+				<tr>
+					<th style="text-align:center;"><div style="min-height:40px;"><a onclick="detail(<%=list.get(i).getProduct_no() %>);"><%=list.get(i).getProduct_name() %></a></div></th>
+				</tr>
+				
+				<tr>
+					<!-- 여기 썸네일 파일 추가해야함 -->
+					<td class="bottomLine"><img src="<%=request.getContextPath() %>/upload/<%=list.get(i).getProduct_img() %>" width="80%" height="200" onclick="detail(<%=list.get(i).getProduct_no() %>);" /></td>
+				</tr>
+				
+				<tr>
+					<td>
+					<%for(int j=0; j<categoryList.size(); j++){ %>
+						<%if(list.get(i).getProduct_no() == categoryList.get(j).getProduct_no()) {%>
+							#<%=categoryList.get(j).getCategory_name() %>
+						<% } %>
+					<% } %>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+<% } %>
 </div>
-
-	<% } %>
-
-
-</div>
-
 
 <div class="paging">
 	<%@ include file="./layout/productPaging.jsp" %>

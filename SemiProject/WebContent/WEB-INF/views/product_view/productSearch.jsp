@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="../layout/header.jsp" %>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/bootstrap.min.css">
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/minty/bootstrap.min.css"> -->
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -195,7 +195,7 @@ label{
 </div>
 <hr>
 
-<div id="resultLayout"></div>
+<div id="resultLayout" style="height:100%;"></div>
 
 
 </div>
