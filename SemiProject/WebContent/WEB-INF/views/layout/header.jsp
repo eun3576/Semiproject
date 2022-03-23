@@ -230,17 +230,15 @@ li{list-style:none;}
 #header #nav > ul > li > .subMenu > li:hover{font-weight:bold;}
 
 /* header style layout end */
-/*<<<<<<< jyj*/
 
 #footer { text-align: center; }
 /* footer style layout */
-/* ======= */
+
 /* footer style layout start */
 #footer{background-color:#eee;margin:0;padding:0;height:100px;padding-top:10px;}
 #footer ul{width:1200px;margin:30px auto;padding:0;text-align: center;}
 #footer ul li{display:inline-block;margin-right:30px;}
 /* footer style layout end */
-/*>>>>>>> main*/
 </style>
 
 </head>
@@ -270,7 +268,7 @@ li{list-style:none;}
 <li><a href="<%request.getContextPath();%>/product/search">제품조회</a></li>
 <li><a href="<%request.getContextPath();%>/nutrient/self">제품추천</a></li>
 <li><a href="<%request.getContextPath();%>/review/list">제품후기</a></li>
-<li>BEST3</li>
+<li><a href="<%request.getContextPath();%>/product/best">BEST3</a></li>
 <li><a href="<%request.getContextPath();%>/notice/list">고객센터</a>
 <ul class="subMenu">
 <li><a href="<%request.getContextPath();%>/notice/list">공지사항</a></li>

@@ -59,4 +59,11 @@ public interface ProductService {
 	 * @return 첨부파일리스트
 	 */
 	public List<Attachment> getAttachmentByNo(HttpServletRequest req);
+	
+	/**
+	 * 조회수가 높은 상위 3품목의 리스트를 불러온다.
+	 * 
+	 * @return - Product객체의 리스트
+	 */
+	public List<Product> getProductByBest();
 }
