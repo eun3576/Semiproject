@@ -26,6 +26,7 @@
 
 
 <style>
+
 	.pagination{
 		padding: 10px 0;
 		margin: 0 auto;
@@ -177,7 +178,7 @@ function userSearchBtn() {
    <!--     		<input type="search" placeholder="댓글내용을 입력하세요" required autocomplete="on" id="search" name="search">
        		<input type="submit" value="검색" onclick="clickEvent();"> -->
        		
-       		<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 댓글을 입력해주세요.">
+       		<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 댓글을 입력해주세요." required autocomplete="on">
 			<button class="manager_btn" onclick="userSearchBtn();">검색</button>
 
   	</div>
@@ -195,13 +196,13 @@ function userSearchBtn() {
 						<table class="table table-border table-hover table-striped" style="text-align: center;">
 							<thead>
 								<tr>
-									<th style="width: 1%;">댓글번호</th>
-									<th style="width: 1%;">유저번호</th>
+									<th style="width: 0.1%;">댓글번호</th>
+									<th style="width: 0.1%;">유저번호</th>
 									<th style="width: 1%;">댓글내용</th>
-									<th style="width: 1%;">작성날짜</th>
-									<th style="width: 1%;">수정날짜</th>
-									<th style="width: 1%;">수정번호</th>
-									<th style="width: 1%;">삭제</th>
+									<th style="width: 0.1%;">작성날짜</th>
+									<th style="width: 0.1%;">수정날짜</th>
+									<th style="width: 0.1%;">수정번호</th>
+									<th style="width: 0.1%;">삭제</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -220,14 +221,11 @@ function userSearchBtn() {
 						</table>
 					</div>
 				</div>
-				<!-- 페이지 네비게이션 자리 -->
-				<div class="pagination">
+				
+				
+				<%@ include file="../reviewComment/paging.jsp" %>
 					
-				</div>
-					
-				<form class="page-form" action="notice.jsp" method="post">
-					<input type="hidden" name="pageNo">
-				</form>
+				
 			</div>
 			
 		</div>
@@ -261,6 +259,6 @@ function userSearchBtn() {
 
 </section>	
 
-<%-- <%@ include file="../reviewComment/paging.jsp" 
+<%-- <%@ include file="../reviewComment/paging.jsp" %>
 
 <%@ include file="../managerLayout/footer.jsp" %>  --%>

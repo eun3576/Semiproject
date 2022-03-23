@@ -157,7 +157,7 @@ function userSearchBtn() {
 <section>
 	<div class="admin-content_area">
 		<div class="admin-content">
-			<div class="admin-content_title">1:1문의 관리</div>
+			<div class="admin-content_title">1:1문의 관리 <button id="btnWrite" class=" btn-primary pull-right">1:1문의 답변하기</button> </div>
 		</div>
 	</div>
 
@@ -189,10 +189,10 @@ function userSearchBtn() {
 						<table class="table table-border table-hover table-striped" style="text-align: center;">
 							<thead>
 								<tr>
-									<th style="width: 1%;">답변번호</th>
-									<th style="width: 1%;">작성날짜</th>
-									<th style="width: 1%;">작성자</th>
-									<th style="width: 1%;">문의번호</th>
+									<th style="width: 0.1%;">답변번호</th>
+									<th style="width: 0.1%;">작성날짜</th>
+									<th style="width: 0.1%;">작성자</th>
+									<th style="width: 0.1%;">문의번호</th>
 									<th style="width: 1%;">내용</th>
 								</tr>
 							</thead>
@@ -211,6 +211,12 @@ function userSearchBtn() {
 					</div>
 				</div>
 
+				<%@ include file="../inquiryAnswer/paging.jsp"%>
+				
+				</div>
+			</div>
+		</section>
+				
 
 <%-- 	<table class="table table-striped table-hover table-condensed">
 		<tr class="success">
@@ -237,12 +243,8 @@ function userSearchBtn() {
 		%>
 	</table> --%>
 
-	<!-- 글쓰기 버튼 -->
-	<div id="btnBox" class="pull-right">
-		<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-	</div>
 
-</div>
+
 <!-- .container -->
 
 <%-- <%@ include file="../inquiryAnswer/paging.jsp"%>
