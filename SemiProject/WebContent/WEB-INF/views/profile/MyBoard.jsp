@@ -9,7 +9,10 @@
 
 <% List<Review> Blist = (List)request.getAttribute("Blist"); %>
 
-
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -51,11 +54,9 @@ tr:hover {
 
 }
 
-#title {
-	text-align: left;
-
+body{ 
+    font-family : 'Jua', sans-serif;
 }
-
 
 </style>
 
@@ -79,8 +80,8 @@ tr:hover {
 <!--     <div class="row"> -->
         <div class="col-xs-10">
             <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                    <h2 class="text-center">나의 게시판</h2>
+<!--                 <div class="col-sm-10"> -->
+<!--                     <h2 class="text-center">나의 게시판</h2> -->
 <br>     
 <hr>                
                      
@@ -103,7 +104,7 @@ tr:hover {
    </table>                  
   
                 </div>
-        </div> <!-- col-sm-12 --> 
+<!--         </div> col-sm-10  -->
 </div> <!-- container end-->
 
 </div> <!-- class="col-xs-2"> -->
