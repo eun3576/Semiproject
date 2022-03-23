@@ -43,7 +43,7 @@ img {
 	/upload/<%=productList.get(i).getProduct_img() %>">
 	</div>
 	<div class="productContent">
-	<h2 style="color: #00db58a8;">조회 수 BEST<%=i+1 %></h2>
+	<h2 style="color: #00db58a8;">조회 수(<%=productList.get(i).getProduct_views() %>) BEST<%=i+1 %></h2>
 	<small>제품명:&nbsp;<%=productList.get(i).getProduct_name() %><br>
 	제품 설명:&nbsp;<%=productList.get(i).getProduct_content() %><br>
 	카테고리:&nbsp;<%=productList.get(i).getCategory_name() %></small>
