@@ -14,7 +14,7 @@
 <% UserInfo userInfo = (UserInfo) request.getAttribute("userInfo"); %>
 <% Attachment attach = (Attachment) request.getAttribute("attach"); %>
 <% List<ReviewComment> reviewComment = (List) request.getAttribute("reviewComment"); %>
-<% String sessionNick = (String)session.getAttribute("usernick"); %>
+<% String sessionNick = (String) session.getAttribute("usernick"); %>
 
 <script type="text/javascript">
 
@@ -213,7 +213,6 @@ th {
 	<hr>
 	
 </div>
-
 
 </div><!-- .container -->
 

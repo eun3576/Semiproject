@@ -20,13 +20,12 @@ public class InquiryAnswerUpdateController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
 		//전달파라미터 얻기 
 		ManagerInquiryAnswer inquiryNo = inquiryAnswerService.getInquiryNo(req);
 
 		//상세보기 결과 조회
 		ManagerInquiryAnswer updateInquiryAnswer = inquiryAnswerService.view(String.valueOf(inquiryNo.getInquiryNo())); 
-				
+		
 		//조회결과 MODEL값 전달
 		req.setAttribute("updateInquiryAnswer", updateInquiryAnswer);
 		
@@ -40,7 +39,7 @@ public class InquiryAnswerUpdateController extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			inquiryAnswerService.update(req);
 			
-			resp.sendRedirect("/inquiryAnswer/list");
+			resp.sendRedirect("/inquiryanswer/list");
 		
 	}
 }
