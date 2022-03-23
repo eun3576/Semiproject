@@ -154,6 +154,10 @@ button{
     <div class="eff-1"></div>
     <a href="/managernotice/list"> 공지사항 관리 </a>
   </div>
+  	<div class="button-1">
+    <div class="eff-1"></div>
+    <a href="/chat/manager"> 실시간 채팅 관리 </a>
+  	</div>
    <div class="button-1">
     <div class="eff-1"></div>
     <a href="/manager/logout"> 로그아웃 </a>

@@ -38,7 +38,7 @@
 			</li>
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text"></span>
 				<ul class="admin-aside-side_menus">
-					<li><a href="<%=root%>/">메인 페이지</a></li>
+					<li><a href="<%=root%>/chat/manager">실시간 채팅관리</a></li>
 <!-- ======= -->
 <!-- >>>>>>> main -->
 				</ul>
