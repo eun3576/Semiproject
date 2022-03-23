@@ -278,8 +278,9 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		
 		product.setProduct_no(managerDao.selectProductNo(conn).getProduct_no());
+		if(attachmentList.size() > 0) {
 		product.setProduct_img(attachmentList.get(attachmentList.size()-1).getStored_img());
-		
+		}
 		int res = managerDao.insertProduct(conn, product);
 		if(res>0) {
 			JDBCTemplate.commit(conn);
