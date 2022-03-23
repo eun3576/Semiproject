@@ -23,7 +23,7 @@ public class MainDaoImpl implements MainDao{
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "   SELECT rownum rnum, DATA.* FROM (";
-		sql += "		SELECT product_name, product_views, product_img, product_num";
+		sql += "		SELECT product_name, product_views, product_img, product_no";
 		sql += "        	FROM product"; 
 		sql += "		ORDER BY product_views DESC";
 		sql += "	) DATA";	    
@@ -44,7 +44,7 @@ public class MainDaoImpl implements MainDao{
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_views(rs.getInt("product_views"));
 				product.setProduct_img(rs.getString("product_img"));
-				product.setProduct_no(rs.getInt("product_num"));
+				product.setProduct_no(rs.getInt("product_no"));
 				pList.add(product);
 			}
 		} catch (SQLException e) {
