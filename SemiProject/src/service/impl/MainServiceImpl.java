@@ -63,6 +63,7 @@ public class MainServiceImpl implements MainService{
 						product.setProduct_views(pList.get(i).getProduct_views());
 						product.setProduct_img(pList.get(i).getProduct_img());
 						product.setProduct_name(pList.get(i).getProduct_name());
+						product.setProduct_no(pList.get(i).getProduct_no());
 						pResultList.add(product);
 				}
 			}
