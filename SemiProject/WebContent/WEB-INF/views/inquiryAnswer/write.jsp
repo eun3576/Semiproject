@@ -57,7 +57,7 @@ function submitContents( elClickedObj ) {
 
 <tr><td class="info">관리자번호</td><td><%=session.getAttribute("managerNo") %></td></tr>
 
-<tr><td class="info">문의번호</td><td><%=session.getAttribute("inquiryNo") %></td></tr>
+<tr><td class="info">문의번호</td><td><input type="text" name ="inquiryNo" style="width:25%"/></td></tr>
 
 <tr><td class="info" colspan="2">본문</td></tr>
 
