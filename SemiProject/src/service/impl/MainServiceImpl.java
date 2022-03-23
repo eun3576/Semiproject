@@ -8,7 +8,6 @@ import common.JDBCTemplate;
 import dao.face.MainDao;
 import dao.impl.MainDaoImpl;
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 import service.face.MainService;
 
@@ -19,10 +18,10 @@ public class MainServiceImpl implements MainService{
 	
 	
 	@Override
-	public List<ProductTag> getBestList() {
+	public List<Product> getBestList() {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		return mainDao.selectProductNtag(conn);
+		return mainDao.selectProduct(conn);
 	}
 
 
