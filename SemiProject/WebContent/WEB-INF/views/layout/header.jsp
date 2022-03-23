@@ -266,7 +266,7 @@ li{list-style:none;}
 <div id="nav">
 <ul>
 <li><a href="<%request.getContextPath();%>/product/search">제품조회</a></li>
-<li><a href="<%request.getContextPath();%>/nutrient/self">제품추천</a></li>
+<li><a href="<%request.getContextPath();%>/nutrient/self">영양소추천</a></li>
 <li><a href="<%request.getContextPath();%>/review/list">제품후기</a></li>
 <li><a href="<%request.getContextPath();%>/product/best">BEST3</a></li>
 <li><a href="<%request.getContextPath();%>/notice/list">고객센터</a>
