@@ -68,13 +68,19 @@ $(document).ready(function () {
 	height: 135px;
 	text-align: center;
 	border-radius: 30px 30px; 
-	border: 2px solid #f9b3b3;
+ 	border: 1px solid white; 
+ 	background-color: white;
+}
+
+img {
+	border-radius: 20px 20px;
 }
 
 </style>
 
 <div class="container">
 
+<hr>
 <h1 align="center">제품 후기 게시판</h1>
 <hr>
 
@@ -84,19 +90,23 @@ $(document).ready(function () {
 	<% for(int i=0; i<reviewList.size(); i++) { %>
 
 		<div class="list_detail">
-		
+			
+			<small>
+			제목: <%=reviewList.get(i).getTitle() %><br>
+			닉네임: <%=nickList.get(i).getNickname() %><br>
+			증상: <%=nickList.get(i).getSymptom() %><br>
+			</small>
+			
 			<div id="reviewImg">
 			<% if(attachList.get(i).getStored_img() != null || "".equals(attachList.get(i).getStored_img())) { %>
-			<img src="<%=request.getContextPath() %>
+			<img alt="이미지 파일" src="<%=request.getContextPath() %>
 			/upload/<%=attachList.get(i).getStored_img() %>" width="100%" height="100%"><br>
 			<% } else { %>
 			사진이 없음
 			<% } %>
 			</div>
+			
 			<small>
-			제목: <%=reviewList.get(i).getTitle() %><br>
-			닉네임: <%=nickList.get(i).getNickname() %><br>
-			증상: <%=nickList.get(i).getSymptom() %><br>
 			작성날짜: <%=reviewList.get(i).getWriteDate() %><br>
 			조회수: <%=reviewList.get(i).getViews() %><br>
 			</small>

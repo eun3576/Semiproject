@@ -186,6 +186,13 @@ $(document).ready(function(){
 })
 </script>
 
+<!-- 로그인 실패 script -->
+<script>
+<%if(null != session.getAttribute("login") && !(boolean)session.getAttribute("login")){ %>
+	alert("아이디 또는 비밀번호가 일치하지 않습니다. 다시 로그인을 시도해주세요.")
+<%}%>
+</script>	
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -261,7 +268,7 @@ li{list-style:none;}
 <div id="nav">
 <ul>
 <li><a href="<%request.getContextPath();%>/product/search">제품조회</a></li>
-<li>제품추천</li>
+<li><a href="<%request.getContextPath();%>/nutrient/self">제품추천</a></li>
 <li><a href="<%request.getContextPath();%>/review/list">제품후기</a></li>
 <li>BEST3</li>
 <li><a href="<%request.getContextPath();%>/notice/list">고객센터</a>

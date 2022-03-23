@@ -28,6 +28,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	private ReviewDao reviewDao = new ReviewDaoImpl();
 	
+	
 	@Override
 	public List<Review> getList() {
 		
@@ -543,6 +544,12 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Attachment> getAttachList() {
 		
 		return reviewDao.selectStoredImg(JDBCTemplate.getConnection());
+	}
+
+	@Override
+	public List<Review> searchTitleList(String searchTitle) {
+		
+		return reviewDao.searchTitleList(JDBCTemplate.getConnection(), searchTitle);
 	}
 
 }

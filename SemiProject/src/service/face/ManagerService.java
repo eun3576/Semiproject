@@ -1,8 +1,11 @@
 package service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Manager;
+import dto.UserInfo;
 
 public interface ManagerService {
 	
@@ -30,6 +33,19 @@ public interface ManagerService {
 	 */
 	public Manager info(Manager manager);
 	
+	/* 회원 정보 조회 */
+	public List<UserInfo> selectUserList();
 	
+	/* 회원 정보 삭제 */
+	public void userDelete(HttpServletRequest req);
+	
+	/* 회원 정보 검색  */
+	public List<UserInfo> searchUserList(String req);
+	
+	/* 리뷰 게시글 삭제 */
+	public void reviewDelete(HttpServletRequest req);
+	
+	/* 제품등록 */
+	public void insertProduct(HttpServletRequest req);
 
 }

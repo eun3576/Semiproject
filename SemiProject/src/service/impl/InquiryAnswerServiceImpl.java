@@ -83,6 +83,7 @@ public class InquiryAnswerServiceImpl implements InquiryAnswerService {
 			ManagerInquiryAnswer inquiryAnswer = new ManagerInquiryAnswer();
 			HttpSession session = req.getSession();
 			inquiryAnswer.setContent( req.getParameter("content") );
+			inquiryAnswer.setInquiryNo( Integer.parseInt(req.getParameter("inquiryNo") ) );
 			
 			//작성자 관리자번호 처리
 			inquiryAnswer.setManagerNo( (int) req.getSession().getAttribute("managerNo") );
@@ -116,8 +117,8 @@ public class InquiryAnswerServiceImpl implements InquiryAnswerService {
 		
 				//DB연결 객체
 				Connection conn = JDBCTemplate.getConnection();
-				
-				inquiryAnswer.setInquiryNo(Integer.parseInt(req.getParameter("inquiryNo")));
+					
+				inquiryAnswer.setInquiryNo(Integer.parseInt(req.getParameter("inquiryno")));
 				inquiryAnswer.setContent(req.getParameter("content"));
 
 				

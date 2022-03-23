@@ -4,10 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.ManagerDao;
+import dto.Attachment;
 import dto.Manager;
+import dto.Product;
+import dto.ProductCategory;
+import dto.Review;
+import dto.UserInfo;
 
 public class ManagerDaoImpl implements ManagerDao {
 
@@ -84,5 +91,237 @@ public class ManagerDaoImpl implements ManagerDao {
 		return result;
 		
 	}
+	
+	@Override
+	public List<UserInfo> selectUserList(Connection conn) {
 		
+		String sql = "select * from userinfo order by user_no asc";
+				
+		//결과 저장할 List
+		List<UserInfo> userList = new ArrayList<>();  
+		
+		try {
+			ps = conn.prepareStatement(sql); 
+			rs = ps.executeQuery(); 
+			
+			while( rs.next() ) {
+				UserInfo n = new UserInfo(); 
+				
+				n.setUserNo(rs.getInt("user_no"));
+				n.setId(rs.getString("id"));
+				n.setPassword(rs.getString("password"));
+				n.setGender(rs.getString("gender"));
+				n.setNickname(rs.getNString("nickname"));
+				n.setSymptom(rs.getNString("sympton"));
+				n.setPhonenumber(rs.getNString("phonenumber"));
+				
+				userList.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return userList;
+			
+	}
+
+	@Override
+	public void userDelete(Connection conn, UserInfo userInfo) {
+			
+		String sql = "delete userinfo where user_no=?";		
+	
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, userInfo.getUserNo());
+			
+			res = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		if(res>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+
+	@Override
+	public List<UserInfo> selectUserSearchList(Connection conn, String search) {
+		
+		String sql = "select * from userinfo where id like ?";
+		
+		//결과 저장할 List
+		List<UserInfo> userList = new ArrayList<>();  
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,"%" + search + "%");
+			rs = ps.executeQuery(); 
+			
+			while( rs.next() ) {
+				UserInfo n = new UserInfo(); 
+				
+				n.setUserNo(rs.getInt("user_no"));
+				n.setId(rs.getString("id"));
+				n.setPassword(rs.getString("password"));
+				n.setGender(rs.getString("gender"));
+				n.setNickname(rs.getNString("nickname"));
+				n.setSymptom(rs.getNString("sympton"));
+				n.setPhonenumber(rs.getNString("phonenumber"));
+				
+				userList.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return userList;
+	}
+
+	@Override
+	public void reviewDelete(Connection conn, Review review) {
+		
+		String sql = "delete review where review_no=?";		
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, review.getReview_no());
+			
+			res = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		if(res>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+	
+	@Override
+	public Product selectProductNo(Connection conn) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		Product product = new Product();
+		
+		String sql = "";
+		sql += "SELECT product_seq.nextval product_no FROM dual";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				product.setProduct_no(rs.getInt("product_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return product;
+	}
+	
+	@Override
+	public int insertProduct(Connection conn, Product product) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO product(product_no, product_name, product_content, product_views, product_img) ";
+		sql += "VALUES(?, ?, ?, 0, ?) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, product.getProduct_no());
+			ps.setString(2, product.getProduct_name());
+			ps.setString(3, product.getProduct_content());
+			ps.setString(4, product.getProduct_img());
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int insertProductCategory(Connection conn, ProductCategory productCategory) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO product_category ";
+		sql += "VALUES(product_category_seq.nextval, ?, ?) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, productCategory.getCategory_name());
+			ps.setInt(2, productCategory.getProduct_no());
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int insertAttachment(Connection conn, Attachment attachment) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO attachment(attachment_no, stored_img, origin_img, product_no, filesize) ";
+		sql += "VALUES(attachment_seq.nextval, ?, ?, ?, ?) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, attachment.getStored_img());
+			ps.setString(2, attachment.getOrigin_img());
+			ps.setInt(3, attachment.getProduct_no());
+			ps.setInt(4, attachment.getFilesize());
+			
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 }
