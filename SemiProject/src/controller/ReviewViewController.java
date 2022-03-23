@@ -83,8 +83,8 @@ public class ReviewViewController extends HttpServlet {
 		String reviewNo = (String) req.getParameter("reviewNo");
 		String commentNo = (String) req.getParameter("commentNo");
 		
-		System.out.println(reviewNo);
-		System.out.println(commentNo);
+		//System.out.println(reviewNo);
+		//System.out.println(commentNo);
 		
 		if (reviewNo == null) {
 			//System.out.println("댓글 삭제 버튼을 누름");
