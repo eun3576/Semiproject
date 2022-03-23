@@ -48,7 +48,8 @@ public class ProductSearchDaoImpl implements ProductSearchDao{
 			for(int i=1; i<categoryList.size()+1; i++) {
 				ps.setString(i, categoryList.get(i-1).getCategory_name());
 			}
-			
+			System.out.println(paging.getStartNo());
+			System.out.println(paging.getEndNo());
 			ps.setInt(categoryList.size()+1, paging.getStartNo());
 			ps.setInt(categoryList.size()+2, paging.getEndNo());
 			

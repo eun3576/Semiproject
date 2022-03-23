@@ -9,7 +9,10 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.ManagerDao;
+import dto.Attachment;
 import dto.Manager;
+import dto.Product;
+import dto.ProductCategory;
 import dto.Review;
 import dto.UserInfo;
 
@@ -214,5 +217,110 @@ public class ManagerDaoImpl implements ManagerDao {
 		}
 		
 	}
+	
+	@Override
+	public Product selectProductNo(Connection conn) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
+		Product product = new Product();
+		
+		String sql = "";
+		sql += "SELECT product_seq.nextval product_no FROM dual";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				product.setProduct_no(rs.getInt("product_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+			JDBCTemplate.close(rs);
+		}
+		
+		return product;
+	}
+	
+	@Override
+	public int insertProduct(Connection conn, Product product) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO product(product_no, product_name, product_content, product_views) ";
+		sql += "VALUES(?, ?, ?, 0) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, product.getProduct_no());
+			ps.setString(2, product.getProduct_name());
+			ps.setString(3, product.getProduct_content());
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int insertProductCategory(Connection conn, ProductCategory productCategory) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO product_category ";
+		sql += "VALUES(product_category_seq.nextval, ?, ?) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, productCategory.getCategory_name());
+			ps.setInt(2, productCategory.getProduct_no());
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int insertAttachment(Connection conn, Attachment attachment) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int res = 0;
+		
+		String sql = "";
+		sql += "INSERT INTO attachment(attachment_no, stored_img, origin_img, product_no, filesize) ";
+		sql += "VALUES(attachment_seq.nextval, ?, ?, ?, ?) ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, attachment.getStored_img());
+			ps.setString(2, attachment.getOrigin_img());
+			ps.setInt(3, attachment.getProduct_no());
+			ps.setInt(4, attachment.getFilesize());
+			
+			res = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 }
