@@ -27,7 +27,7 @@ public interface ChatDao {
 	 * @param conn db연결 객체
 	 * @return 채팅 목록 리스트
 	 */
-	public List<Chat> SelectList(Connection conn);
+	public List<Chat> selectList(Connection conn);
 
 	/**
 	 * 채팅을 삭제한다
