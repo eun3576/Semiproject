@@ -4,6 +4,12 @@
 <html>
 <title>영추영추</title>
 
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="/resources/js/httpRequest.js"></script>
@@ -205,6 +211,11 @@ $(document).ready(function(){
 
 <!-- style sheet -->
 <style type="text/css">
+
+body{ 
+    font-family : 'Jua', sans-serif;
+}
+
 a{text-decoration:none;color:black;}
 p{margin:0;}
 /* header style layout start */
