@@ -87,6 +87,7 @@
 			</table>
 			
 			첨부파일 <input type="file" name="file" multiple>
+			썸네일 <input type="file" name="Thum">
 			
 			</form>
 			</div>

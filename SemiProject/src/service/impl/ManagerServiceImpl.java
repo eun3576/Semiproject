@@ -278,8 +278,7 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		
 		product.setProduct_no(managerDao.selectProductNo(conn).getProduct_no());
-		System.out.println(product.getProduct_no());
-		
+		product.setProduct_img(attachmentList.get(attachmentList.size()-1).getStored_img());
 		
 		int res = managerDao.insertProduct(conn, product);
 		if(res>0) {

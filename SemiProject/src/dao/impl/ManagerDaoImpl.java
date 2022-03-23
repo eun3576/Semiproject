@@ -253,14 +253,15 @@ public class ManagerDaoImpl implements ManagerDao {
 		int res = 0;
 		
 		String sql = "";
-		sql += "INSERT INTO product(product_no, product_name, product_content, product_views) ";
-		sql += "VALUES(?, ?, ?, 0) ";
+		sql += "INSERT INTO product(product_no, product_name, product_content, product_views, product_img) ";
+		sql += "VALUES(?, ?, ?, 0, ?) ";
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, product.getProduct_no());
 			ps.setString(2, product.getProduct_name());
 			ps.setString(3, product.getProduct_content());
+			ps.setString(4, product.getProduct_img());
 			res = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
