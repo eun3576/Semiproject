@@ -45,6 +45,7 @@ public interface ManagerService {
 	/* 리뷰 게시글 삭제 */
 	public void reviewDelete(HttpServletRequest req);
 	
-	
+	/* 제품등록 */
+	public void insertProduct(HttpServletRequest req);
 
 }
