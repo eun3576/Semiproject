@@ -235,7 +235,7 @@ li{list-style:none;}
 #header div{clear:right;margin-right:50px;}
 #header div #mSearch{float:right;width:200px;height:30px;border:1px solid #999;border-radius:3px;margin-top:20px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
 #header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:20px;width:30px;height:30px;display:inline-block;cursor:pointer;}
-#header h1{background-image: url("../../../resources/img/logo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
+#header h1{background-image: url("../../../resources/img/changelogo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
 #header #nav{width:1200px;margin:0 auto;}
 #header #nav > ul{clear:right;margin:30px 0 0 0;padding:0;}
 #header #nav > ul > li{display:inline-block;font-size:25px;margin-right:130px;width:130px;cursor:pointer;text-align:center;position:relative;}

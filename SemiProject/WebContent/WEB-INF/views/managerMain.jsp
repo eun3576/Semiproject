@@ -97,7 +97,7 @@ button{
 
 <div class = "text-center">
 
-<a href="/"> <img alt="영추영추" src="../resources/img/logo.png" width="300" height="125"> </a>
+<a href="/"> <img alt="영추영추" src="../resources/img/changelogo.png" width="300" height="125"> </a>
 
 <hr>
 
