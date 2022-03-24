@@ -7,10 +7,10 @@
 <% List<Inquiry> list = (List)request.getAttribute("list"); %>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 
 <!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -75,6 +75,7 @@ a:hover{
 
 <table class="table table-striped table-hover table-condensed">
 <tr>
+	<th>번호</th>
 	<th>제목</th>
 	<th>작성자</th>
 	<th>날짜</th>
@@ -82,6 +83,7 @@ a:hover{
 
 <%	for(int i=0; i<list.size(); i++) { %>
 <tr onclick="pwtest(<%=list.get(i).getInquiry_no() %>, <%=list.get(i).getPassword()%>);">
+	<td><%=list.get(i).getInquiry_no() %></td>
 	<td><%=list.get(i).getTitle() %></td>
 	<td><%=list.get(i).getId() %></td>
 	<td><%=list.get(i).getWrite_date() %></td>

@@ -1,11 +1,11 @@
+<%@page import="dto.Product"%>
 <%@page import="dto.Review"%>
-<%@page import="dto.ProductTag"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<ProductTag> TagList = (List)request.getAttribute("productTag"); %>
+<% List<Product> pList = (List)request.getAttribute("pList"); %>
 <% List<Review> rList = (List)request.getAttribute("reviewList"); %>
-<% String userid = (String)session.getAttribute("userid"); %>
+
 
 <!-- header삽입 -->
 <%@include file="./views/layout/header.jsp" %>
@@ -146,18 +146,9 @@ $(document).ready(function(){
 	slideshow = setInterval(timer,2000);
 	
 	$("#sliderbox").mouseover(function(){clearInterval(slideshow)});
-	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,2000)});
+	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,3000)});
 	
 })//$(document)
-
-function chatOpen(){
-<%if(userid!=null&&!userid.equals("")){%>
-	window.open('/chat/user','_blank','width=655, height=805')
-<%} else{%>
-	alert("로그인 후 이용 가능합니다")
-	return false;
-<%}%>
-}
 </script>
 
 <!-- top, bottom 화살표 버튼 -->
@@ -166,8 +157,8 @@ function chatOpen(){
 <div id="sliderbox" style="position:relative;">
 	<img src="../resources/img/arrow_left_icon.png" id="arrowLeft" style="position:absolute;left:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 <ul id="slider">
-	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/product/search'"><img src="../resources/img/sildeImg1.jpg"/></li>
-	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/review/list'"><img src="../resources/img/sildeImg2.jpg"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/product/search'"><img src="../resources/img/slideImg1.png"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/review/list'"><img src="../resources/img/slideImg2.png"/></li>
 </ul>
 	<img src="../resources/img/arrow_right_icon.png" id="arrowRight" style="position:absolute;right:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 </div>
@@ -175,13 +166,12 @@ function chatOpen(){
 <!-- 베스트 아이템 -->
 <div id="bestItem" style="width:900px;margin:50px auto;text-align: center;">
 <h1>BEST ITEM</h1>
-<% for(int i=0; i<TagList.size();i++){ %>
-	<div onclick="alert('준비중입니다')" style="cursor:pointer;">
+<% for(int i=0; i<pList.size();i++){ %>
+	<div onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'" style="cursor:pointer;">
 	<!-- 이미지가 없을시 대체 이미지 -->
-	<img alt="상품이미지" src="/upload/<%=TagList.get(i).getProductImg()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
-<!-- 	<img alt="상품이미지" src="../resources/img/best_temp.jpg" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'"> -->
-	<p>#<%=TagList.get(i).getTagName() %></p>
-	<p>조회수: <%=TagList.get(i).getProductViews()%></p>
+	<img alt="상품이미지" src="/upload/<%=pList.get(i).getProduct_img()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
+	<p>제품명: <%=pList.get(i).getProduct_name() %></p>
+	<p>조회수: <%=pList.get(i).getProduct_views()%></p>
 	</div>
 <% } %>
 </div>
@@ -214,9 +204,7 @@ function chatOpen(){
 
 <%} %>
 </div>
-<div style="width:70px;height:70px;background:url('../../resources/img/chat_icon.png') no-repeat center white;background-size:50px;border:1px solid black;border-radius:50px;cursor:pointer;position:fixed;bottom:100px;right:60px;z-index:1000;"
-onclick="chatOpen();">
-</div>
+
 
 <!-- footer삽입 -->
 <%@include file="./views/layout/footer.jsp" %>

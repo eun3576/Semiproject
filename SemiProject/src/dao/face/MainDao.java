@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 
 public interface MainDao {
@@ -14,7 +13,7 @@ public interface MainDao {
 	 * @param conn db연결 객체 
 	 * @return 조회된 상품 목록
 	 */
-	public List<ProductTag> selectProductNtag(Connection conn);
+	public List<Product> selectProduct(Connection conn);
 
 	/**
 	 * 조회수 높은 리뷰 조회

@@ -74,7 +74,7 @@ public class ChatDaoImpl implements ChatDao{
 	}
 
 	@Override
-	public List<Chat> SelectList(Connection conn) {
+	public List<Chat> selectList(Connection conn) {
 		String sql = "";
 		sql += "SELECT DISTINCT CHAT_ROOM FROM CHAT ORDER BY CHAT_ROOM desc";
 		

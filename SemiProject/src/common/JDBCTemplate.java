@@ -24,20 +24,23 @@ public class JDBCTemplate {
 	
 	public static Connection getConnection() {
 		
-		try {
-			//드라이버 로드
-			Class.forName(DRIVER);
-			
-			//DB 연결
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			
-			//AutoCommit 설정 끄기
-			conn.setAutoCommit(false);
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
+		if( conn == null )  {
+			try {
+				//드라이버 로드
+				Class.forName(DRIVER);
+				
+				//DB 연결
+				conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				
+				//AutoCommit 설정 끄기
+				conn.setAutoCommit(false);
+				
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return conn;		
