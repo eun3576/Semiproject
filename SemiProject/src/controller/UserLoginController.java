@@ -44,8 +44,6 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("login", true);
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("usernick", user.getNickname());
-		}else {
-			session.setAttribute("login",false);
 		}
 		
 		//메인페이지로 리다이렉트
