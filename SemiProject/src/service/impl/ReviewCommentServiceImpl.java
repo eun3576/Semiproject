@@ -58,7 +58,6 @@ public class ReviewCommentServiceImpl implements ReviewCommentService {
 		
 	}
 
-	// 재렬
 	@Override
 	public List<ManagerReviewComment> getList(Paging paging, String search) {
 		return reviewCommentDao.selectAll( JDBCTemplate.getConnection(), paging, search );

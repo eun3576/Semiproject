@@ -5,9 +5,7 @@
 
 <%@ include file="../managerLayout/header.jsp"%>
 
-<%
-	List<ManagerInquiryAnswer> inquiryAnswerList = (List) request.getAttribute("inquiryAnswerList");
-%>
+<% List<ManagerInquiryAnswer> inquiryAnswerList = (List) request.getAttribute("inquiryAnswerList"); %>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -16,6 +14,16 @@
 		$("#btnWrite").click(function() {
 			location.href = "/inquiryAnswer/write"
 		})
+		
+		//페이지 접속 시 입력창으로 포커스 이동
+		$("input").eq(0).focus();
+		
+		//입력 창에서 엔터키 입력 시 submit하도록 한다 //검색창을 form으로 감싸주어야 합니다
+		$("input").eq(0).keydown(function( e ) {
+			if( e.keyCode == 13 ) { //엔터키
+				$(this).parents("form").submit();
+			}
+		});
 	})
 </script>
 
@@ -103,8 +111,10 @@
 	    cursor: pointer;
 	}
 </style>
+
 <%@ include file="../template/managerSidebar.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <script>
 	function viewContent(obj){
 		var con = document.querySelectorAll(".con");
@@ -140,13 +150,6 @@
 	}
 </script>
 
-<%-- <script>
-function clickEvent() {
-	var text = document.getElementById("search");
-	$(location).attr("href", "<%=request.getContextPath() %>/inquiryanswer/list?search=" + text);
-}
-</script> --%>
-
 <script>
 function userSearchBtn() {
 	var text = document.getElementById("search").value;
@@ -162,24 +165,17 @@ function userSearchBtn() {
 	</div>
 
 <!-- 검색창 -->
-<div class="admin-content_area">
-	<div class="admin-content">
-		<div class="admin-content_title">1:1문의 검색</div>
-		<div class="align-row choice-genre-area manager_box">
-
-<!-- <div class="pull-right">
-  <form class="search-form">
-       <input type="search" placeholder="내용을 입력하세요" required autocomplete="on" id="search" name="search">
-       <input type="submit" value="검색" onclick="clickEvent();">
-  </form>
-</div> -->
-
+<form>
+	<div class="admin-content_area">
+		<div class="admin-content">
+			<div class="admin-content_title">1:1문의 검색</div>
+			<div class="align-row choice-genre-area manager_box">
 			<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 내용을 입력해주세요.">
 			<button class="manager_btn" onclick="userSearchBtn();">검색</button>
-
-  	</div>
-  </div>
-</div>
+  			</div>
+  		</div>
+	</div>
+</form>
 
 <div class="admin-content_area">
 			<div class="admin-content">
@@ -216,36 +212,3 @@ function userSearchBtn() {
 				</div>
 			</div>
 		</section>
-				
-
-<%-- 	<table class="table table-striped table-hover table-condensed">
-		<tr class="success">
-			<th>답변번호</th>
-			<th>작성날짜</th>
-			<th>작성자</th>
-			<th>문의번호</th>
-			<th>내용</th>
-		</tr>
-
-		<%
-			for (int i = 0; i < inquiryAnswerList.size(); i++) {
-		%>
-		<tr>
-			<td><%=inquiryAnswerList.get(i).getAnswerNo()%></td>
-			<td><%=inquiryAnswerList.get(i).getWriteDate()%></td>
-			<td>관리자<%=inquiryAnswerList.get(i).getManagerNo()%></td>
-			<td><%=inquiryAnswerList.get(i).getInquiryNo()%></td>
-			<td><a
-				href="./view?InquiryNo=<%=inquiryAnswerList.get(i).getInquiryNo()%>"><%=inquiryAnswerList.get(i).getContent()%></td>
-		</tr>
-		<%
-			}
-		%>
-	</table> --%>
-
-
-
-<!-- .container -->
-
-<%-- <%@ include file="../inquiryAnswer/paging.jsp"%>
-<%@ include file="../managerLayout/footer.jsp"%> --%>

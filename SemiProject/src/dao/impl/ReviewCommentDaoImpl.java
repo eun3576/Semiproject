@@ -176,7 +176,6 @@ public class ReviewCommentDaoImpl implements ReviewCommentDao {
 		return res;
 	}
 
-	// 재렬
 	@Override
 	public List<ManagerReviewComment> selectAll(Connection conn, Paging paging, String search) {
 		

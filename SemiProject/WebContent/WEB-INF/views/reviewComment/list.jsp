@@ -21,9 +21,17 @@
 			$(location).attr("href", "<%=request.getContextPath() %>/reviewcomment/delete?CommentNo=" + commentno);
 		}
 	})
+	//페이지 접속 시 입력창으로 포커스 이동
+	$("input").eq(0).focus();
+	
+	//입력 창에서 엔터키 입력 시 submit하도록 한다 //검색창을 form으로 감싸주어야 합니다
+	$("input").eq(0).keydown(function( e ) {
+		if( e.keyCode == 13 ) { //엔터키
+			$(this).parents("form").submit();
+		}
+	});
 })   
 </script>
-
 
 <style>
 
@@ -149,12 +157,6 @@
 </script>
 
 <script>
-<%-- function clickEvent() {
-	var text = document.getElementById("search");
-	$(location).attr("href", "<%=request.getContextPath() %>/reviewcomment/list?search=" + text);
-
-} --%>
-
 function userSearchBtn() {
 	var text = document.getElementById("search").value;
 	$(location).attr("href", "<%=request.getContextPath() %>/reviewcomment/list?search=" + text);	
@@ -170,23 +172,17 @@ function userSearchBtn() {
 
 
 <!-- 검색창 -->
-<div class="admin-content_area">
-	<div class="admin-content">
-		<div class="admin-content_title">댓글 검색</div>
-		<div class="align-row choice-genre-area manager_box">
-
-   <!--     		<input type="search" placeholder="댓글내용을 입력하세요" required autocomplete="on" id="search" name="search">
-       		<input type="submit" value="검색" onclick="clickEvent();"> -->
-       		
-       		<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 댓글을 입력해주세요." required autocomplete="on">
+<form>
+	<div class="admin-content_area">
+		<div class="admin-content">
+			<div class="admin-content_title">댓글 검색</div>
+			<div class="align-row choice-genre-area manager_box">
+       		<input type="text"  class="manager_input" autocomplete="on" id="search" name="search" placeholder="검색할 댓글을 입력해주세요.">
 			<button class="manager_btn" onclick="userSearchBtn();">검색</button>
-
-  	</div>
-  </div>
-</div>
-
-
-<!--  -->
+  			</div>
+  		</div>
+	</div>
+</form>
 
 <div class="admin-content_area">
 			<div class="admin-content">
@@ -200,8 +196,6 @@ function userSearchBtn() {
 									<th style="width: 0.1%;">유저번호</th>
 									<th style="width: 1%;">댓글내용</th>
 									<th style="width: 0.1%;">작성날짜</th>
-									<th style="width: 0.1%;">수정날짜</th>
-									<th style="width: 0.1%;">수정번호</th>
 									<th style="width: 0.1%;">삭제</th>
 								</tr>
 							</thead>
@@ -212,8 +206,6 @@ function userSearchBtn() {
 									<td><%=reviewCommentList.get(i).getUserNo() %></td>
 									<td><%=reviewCommentList.get(i).getCommentText() %></td>
 									<td><%=reviewCommentList.get(i).getCommentDate() %></td>
-									<td><%=reviewCommentList.get(i).getCommentUpdate() %></td>
-									<td><%=reviewCommentList.get(i).getReviewNo() %></td>
 									<td><button id="btnDelete"  data-btn="delete" class="btn btn-danger" >삭제</button></td>
 								</tr>
 							<%} %>
@@ -230,35 +222,4 @@ function userSearchBtn() {
 			
 		</div>
 
-<%-- <table class="table table-striped table-hover table-condensed">
-<tr class="success"> 
-	<th>댓글번호</th>
-	<th>유저번호</th>
-	<th>댓글내용</th>
-	<th>작성날짜</th>
-	<th>수정날짜</th>
-	<th>리뷰번호</th>
-	<th>삭제</th>
-</tr>
-
-<%  for(int i=0; i<reviewCommentList.size(); i++) { %>
-<tr>
-	<td><%=reviewCommentList.get(i).getCommentNo() %></td>
-	<td><%=reviewCommentList.get(i).getUserNo() %></td>
-	<td><%=reviewCommentList.get(i).getCommentText() %></td>
-	<td><%=reviewCommentList.get(i).getCommentDate() %></td>
-	<td><%=reviewCommentList.get(i).getCommentUpdate() %></td>
-	<td><%=reviewCommentList.get(i).getReviewNo() %></td>
-	<td><button id="btnDelete" data-btn="delete" class="btn btn-danger">삭제</button></td>
-</tr>
-<% } %>
-
-</table>
-
-</div><!-- .container --> --%>
-
 </section>	
-
-<%-- <%@ include file="../reviewComment/paging.jsp" %>
-
-<%@ include file="../managerLayout/footer.jsp" %>  --%>

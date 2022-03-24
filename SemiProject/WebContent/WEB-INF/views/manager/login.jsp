@@ -69,7 +69,7 @@ button{
 	<div class="form-group">
 		<label for="password" class="control-label col-xs-2">패스워드</label>
 		<div class="col-xs-10">
-			<input type="text" id="password" name="password" class="form-control" placeholder="패스워드를 입력해주세요" required autocomplete="on">
+			<input type="text" id="password" name="password" class="form-control" placeholder="패스워드를 입력해주세요">
 		</div>
 	</div>
 	
@@ -83,17 +83,3 @@ button{
 </form>
 
 </div><!-- .container -->
-
-<%-- <%@ include file="../managerLayout/footer.jsp" %>
- --%>
-
-
-
-
-
-
-
-
-
-
-

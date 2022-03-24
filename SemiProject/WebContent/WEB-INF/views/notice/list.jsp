@@ -5,9 +5,7 @@
 
 <%@ include file="../managerLayout/header.jsp" %>
 
-<%
-	List<ManagerNotice> noticeList = (List) request.getAttribute("noticeList");
-%>
+<% List<ManagerNotice> noticeList = (List) request.getAttribute("noticeList"); %>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -16,6 +14,17 @@ $(document).ready(function(){
 	$("#btnWrite").click(function(){
 		location.href="/notice/write"
 	})
+	
+	//페이지 접속 시 입력창으로 포커스 이동
+	$("input").eq(0).focus();
+	
+	//입력 창에서 엔터키 입력 시 submit하도록 한다 //검색창을 form으로 감싸주어야 합니다
+	$("input").eq(0).keydown(function( e ) {
+		if( e.keyCode == 13 ) { //엔터키
+			$(this).parents("form").submit();
+		}
+	});
+	
 })
 
 </script>
@@ -142,28 +151,12 @@ $(document).ready(function(){
 	}
 </script>
 
-<%-- <script>
-function clickEvent() {
-	var text = document.getElementById("search");
-	$(location).attr("href", "<%=request.getContextPath() %>/notice/list?search=" + text);
-}
-</script> --%>
-
 <script>
 function userSearchBtn() {
 	var text = document.getElementById("search").value;
 	$(location).attr("href", "<%=request.getContextPath() %>/managernotice/list?search=" + text);	
 }
 </script>
-
-<!-- 검색창 -->
-<!-- <div class="pull-right">
-  <form class="search-form">
-       <input type="search" placeholder="제목을 입력하세요" required autocomplete="on" id="search" name="search">
-       <input type="submit" value="검색" onclick="clickEvent();">
-  </form>
-</div>  -->
-
 
 <section>
 	
@@ -174,18 +167,22 @@ function userSearchBtn() {
 			
 		</div>
 	</div>
-	
+
+<form>	
 <div class="admin-content_area">
 	<div class="admin-content">
 		<div class="admin-content_title">공지사항 검색</div>
 		<div class="align-row choice-genre-area manager_box">
        		
+       		
        		<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 제목을 입력해주세요.">
 			<button class="manager_btn" onclick="userSearchBtn();">검색</button>
-
+			
+			
   	</div>
   </div>
 </div>
+</form>
 
 <div class="admin-content_area">
 			<div class="admin-content">
@@ -221,31 +218,3 @@ function userSearchBtn() {
 			
 		</div>
 </section>	
-
-<%-- <table class="table table-striped table-hover table-condensed">
-
-<tr class="success">
-	<th>글번호</th>
-	<th>제목</th>
-	<th>작성일</th>
-	<th>작성자</th>
-</tr>
-
-<%	for(int i=0; i<noticeList.size(); i++) { %>
-<tr>
-	<td><%=noticeList.get(i).getNoticeNo() %></td>
-	<td><a href="./view?noticeNo=<%=noticeList.get(i).getNoticeNo() %>"><%=noticeList.get(i).getTitle()%></a></td>
-	<td><%=noticeList.get(i).getWriteDate() %></td>
-	<td>관리자<%=noticeList.get(i).getManagerNo() %></td>
-
-</tr>
-<%	} %>
-
-</table> --%>
-
-
-<%-- <%@ include file="../notice/paging.jsp" %>
-
-<%@ include file="../managerLayout/footer.jsp" %> --%>
-
-

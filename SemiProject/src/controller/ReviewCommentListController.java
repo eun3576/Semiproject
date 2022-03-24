@@ -30,7 +30,6 @@ public class ReviewCommentListController extends HttpServlet {
 	//리뷰댓글 페이징 목록 조회 - NoticeService이용
 	List<ManagerReviewComment> reviewCommentList = reviewCommentService.getList( paging ); 
 	
-	// 재렬
 	String search = req.getParameter("search");
 	if(search != null && search.length() > 0) {
 		reviewCommentList = reviewCommentService.getList( paging, search ); 
