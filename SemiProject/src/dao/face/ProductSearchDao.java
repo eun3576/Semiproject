@@ -58,7 +58,6 @@ public interface ProductSearchDao {
 	 * @return 해당되는 제품의 첨부파일리스트 반환
 	 */
 	public List<Attachment> getAttachmentList(Connection conn, Product product);
-	
 
 	/**
 	 * 제품의 조회수 상위 3품목을 조회한다.
