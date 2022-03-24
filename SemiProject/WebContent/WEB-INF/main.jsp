@@ -146,7 +146,7 @@ $(document).ready(function(){
 	slideshow = setInterval(timer,2000);
 	
 	$("#sliderbox").mouseover(function(){clearInterval(slideshow)});
-	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,2000)});
+	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,3000)});
 	
 })//$(document)
 </script>
