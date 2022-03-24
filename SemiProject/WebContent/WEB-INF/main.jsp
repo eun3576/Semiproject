@@ -170,7 +170,7 @@ $(document).ready(function(){
 	<div onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'" style="cursor:pointer;">
 	<!-- 이미지가 없을시 대체 이미지 -->
 	<img alt="상품이미지" src="/upload/<%=pList.get(i).getProduct_img()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
-	<p>제품명: <%=pList.get(i).getProduct_name() %></p>
+	<p style="width:200px;">제품명: <%=pList.get(i).getProduct_name() %></p>
 	<p>조회수: <%=pList.get(i).getProduct_views()%></p>
 	</div>
 <% } %>
