@@ -43,6 +43,9 @@ public interface ManagerDao {
 	
 	/* 리뷰 게시글 삭제 */
 	public void reviewDelete(Connection conn, Review review);
+
+	//리뷰 이미지 삭제
+	public int reviewImgDelete(Connection conn, Review review);
 	
 	public int insertProduct(Connection conn, Product product);
 	

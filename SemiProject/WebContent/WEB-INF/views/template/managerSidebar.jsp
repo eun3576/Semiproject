@@ -30,12 +30,6 @@
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text">게시글</span>
 				<ul class="admin-aside-side_menus">
 					<li><a href="<%=root%>/manager/review">게시글 조회/관리</a></li>
-<!--<<<<<<< mej-->
-					<li><a href="<%=root%>/reviewcomment/list">댓글 조회/관리</a></li>
-              		<li><a href="<%=root%>/inquiryanswer/list">1:1문의 관리</a></li>
-               		<li><a href="<%=root%>/managernotice/list">공지사항 관리</a></li>
-<!--=======-->
-<!-- <<<<<<< mej -->
 					<li><a href="<%=root%>/reviewcomment/list">댓글 관리</a></li>
 					<li><a href="<%=root%>/inquiryanswer/list">1:1문의 관리</a></li>
 					<li><a href="<%=root%>/managernotice/list">공지사항 관리</a></li>
@@ -44,9 +38,6 @@
 			<li class="admin-aside-top_menu"><span class="admin-aside-top_text"></span>
 				<ul class="admin-aside-side_menus">
 					<li><a href="#" onclick="window.open('/chat/manager','_blank','width=655, height=805')"> 실시간 채팅 관리 </a></li>
-<!-- ======= -->
-<!-- >>>>>>> main -->
-<!-->>>>>>> main-->
 				</ul>
 			</li>
 		</ul>

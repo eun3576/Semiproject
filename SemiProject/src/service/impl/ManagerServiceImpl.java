@@ -90,15 +90,16 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		Review review = new Review();
 		ReviewDao reviewDao = new ReviewDaoImpl();
+		ManagerDao mangerDao = new ManagerDaoImpl();
 		
 		review.setReview_no(Integer.parseInt(req.getParameter("review_no")));
 		
 		int count = reviewDao.deleteCommentAllByReview(conn, review);
+		int count2 = managerDao.reviewImgDelete(conn, review);
 		
-		if(count > 0) {
+		//if(count > 0) {
 			managerDao.reviewDelete(conn, review);	
-		}
-		
+		//}
 		
 	}
 	
