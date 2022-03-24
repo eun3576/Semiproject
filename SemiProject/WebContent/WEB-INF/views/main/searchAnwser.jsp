@@ -9,7 +9,7 @@
 <div class="wrapper" style="width:830px;height:1000px;margin:80px auto;clear:left;overflow:auto;">
 <% if(pList!=null&&pList.size()!=0){ %>
 <% for(int i=0;i<pList.size();i++){ %>
-<div style="width:250px;height:250px;box-shadow:3px 3px 3px #eee;box-sizing: border-box;float:left;margin-right:20px;margin-bottom:20px;cursor:pointer" onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'">
+<div style="width:250px;height:260px;box-shadow:3px 3px 3px #eee;box-sizing: border-box;float:left;margin-right:20px;margin-bottom:20px;cursor:pointer" onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'">
 <img alt="상품이미지" src="/upload/<%=pList.get(i).getProduct_img()%>" onerror="this.src='../resources/img/best_temp.jpg'" width="250" height="200">
 <%-- <img alt="상품이미지" src="../resources/img/best_temp.jpg" onerror="this.src='../resources/img/best_temp.jpg'"> --%>
 <p><%=pList.get(i).getProduct_name() %></p>

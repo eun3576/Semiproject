@@ -40,8 +40,12 @@ public interface ManagerDao {
 	/* 회원 닉네임 검색 */
 	public List<UserInfo> selectUserSearchList(Connection conn, String search);
 	
+	
 	/* 리뷰 게시글 삭제 */
 	public void reviewDelete(Connection conn, Review review);
+
+	//리뷰 이미지 삭제
+	public int reviewImgDelete(Connection conn, Review review);
 	
 	public int insertProduct(Connection conn, Product product);
 	
@@ -51,5 +55,22 @@ public interface ManagerDao {
 	
 	public int insertProductCategory(Connection conn, ProductCategory productCategory);
 	
+	/* 제품 리스트 */
+	public List<Product> selectProductList(Connection conn);
+	
+	/* 제품 검색 리스트 */
+	public List<Product> selectSearchProductList(Connection conn, String search);
+	
+	//제품 수정
+	public int productEdit(Connection conn, Product product);
+
+	//제품 삭제
+	public void productDelete(Connection conn, Product product);
+	
+	//제품 카테고리 삭제
+	public int productCategoryDelete(Connection conn, Product product);
+	
+	//제품 이미지 삭제
+	public int productImgDelete(Connection conn, Product product);
 	
 }

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Product;
 import service.face.ManagerService;
 import service.impl.ManagerServiceImpl;
 
-@WebServlet(urlPatterns = "/manager/item")
-public class ManagerItemController extends HttpServlet{
+@WebServlet(urlPatterns = "/manager/itemDelete")
+public class ManagerItemDeleteController extends HttpServlet{
 
 	//서비스 객체
 	private ManagerService managerService= new ManagerServiceImpl();
@@ -22,21 +20,15 @@ public class ManagerItemController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-						
-		List<Product> itemList = managerService.selectProductList();
 		
+		//문의글, 문의글 답변 삭제
+		managerService.productDelete(req);
 		
-		String search = req.getParameter("search"); 
-		if(search != null && search.length() > 0) { 
-			itemList = managerService.selectSearchProductList(search); 
-		}
-		 
-		
-		req.setAttribute("itemList", itemList);
-		
-		req.getRequestDispatcher("/WEB-INF/views/manager/item.jsp").forward(req, resp); // 로그인 폼 보여주기
+		//문의글 목록페이지로 리다이렉트
+		resp.sendRedirect("/manager/item");
 	
 	}
+
 
 	
 	

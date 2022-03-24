@@ -71,7 +71,7 @@
 			
 			<div class="container">
 			
-			<h3 class="item-add-title">게시글 쓰기</h3>
+			<h3 class="item-add-title">제품 등록</h3>
 			<hr>
 			
 			<div>
@@ -110,7 +110,7 @@
 			</div>
 			
 			<div class="text-center" style="margin: 5px;">	
-				<button type="button" id="btnWrite" class="btn btn-info add-btn">작성</button>
+				<button type="button" id="btnWrite" class="btn btn-info add-btn">등록</button>
 				<button type="button" id="btnCancel" class="btn btn-danger add-btn">취소</button>
 			</div>
 			

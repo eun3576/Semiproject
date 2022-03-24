@@ -18,7 +18,7 @@ import service.impl.UserLoginServiceImpl;
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserLoginService userLoginService = new UserLoginServiceImpl();
-
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,7 +45,7 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("usernick", user.getNickname());
 		}else {
-			session.setAttribute("login",false);
+			session.setAttribute("msg","로그인 실패");
 		}
 		
 		//메인페이지로 리다이렉트

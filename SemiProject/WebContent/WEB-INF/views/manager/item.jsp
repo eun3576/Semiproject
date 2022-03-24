@@ -1,3 +1,4 @@
+<%@page import="dto.Product"%>
 <%@page import="dto.UserInfo"%>
 <%@page import="dao.impl.ManagerDaoImpl"%>
 <%@page import="dao.face.ManagerDao"%>
@@ -10,7 +11,7 @@
 
 
 <%
-	/* List<UserInfo> userList = (List) request.getAttribute("userList"); */
+	List<Product> itemList = (List) request.getAttribute("itemList"); 
 %>
 
 	
@@ -146,7 +147,7 @@
 	function userSearchBtn() {
 		var text = document.getElementById("search").value;
 		
-		$(location).attr("href", "<%=request.getContextPath() %>/manager/user?search=" + text);
+		$(location).attr("href", "<%=request.getContextPath() %>/manager/item?search=" + text);
 	}
 	
 </script>
@@ -159,9 +160,9 @@
 	
 	<div class="admin-content_area">
 		<div class="admin-content">
-			<div class="admin-content_title">회원 검색</div>
+			<div class="admin-content_title">제품 검색</div>
 			<div class="align-row choice-genre-area manager_user_box">
-				<input type="text"  class="manager_user_input" id="search" name="search" placeholder="검색할 아이디를 입력해주세요.">
+				<input type="text"  class="manager_user_input" id="search" name="search" placeholder="검색할 제품을 입력해주세요.">
 				<button class="manager_user_btn" onclick="userSearchBtn();">검색</button>
 			</div>
 			
@@ -169,24 +170,34 @@
 	</div>
 		<div class="admin-content_area">
 			<div class="admin-content">
-				<div class="admin-content_title">회원 목록</div>
+				<div class="admin-content_title">제품 목록</div>
 				<div class="align-row choice-genre-area">
 					<div class="search-table" style="min-height: 550px;">
 						<table class="table table-border table-hover table-striped" style="text-align: center;">
 							<thead>
 								<tr>
-									<th style="width: 1%;">번호</th>
-									<th style="width: 1%;">아이디</th>
-									<th style="width: 1%;">비밀번호</th>
-									<th style="width: 1%;">닉네임</th>
-									<th style="width: 1%;">성별</th>
-									<th style="width: 1%;">상태</th>
-									<th style="width: 1%;">전화번호</th>
-									<th style="width: 1%;">삭제</th>
+									<th style="width: 1%;">제품번호</th>
+									<th style="width: 5%;">제품명</th>
+									<th style="width: 10%;">제품내용</th>
+									<th style="width: 2%;">제품조회수</th>
+									<th style="width: 2%;">제품이미지</th>
+									<th style="width: 3%;">제품수정</th>
+									<th style="width: 3%;">제품삭제</th>
 								</tr>
 							</thead>
 							<tbody>
-							
+							<% System.out.print(itemList); 
+							for(int i=0;  i < itemList.size(); i++){ %>
+								<tr>
+									<td><%=itemList.get(i).getProduct_no() %></td>
+									<td><%=itemList.get(i).getProduct_name() %></td>
+									<td><%=itemList.get(i).getProduct_content() %></td>
+									<td><%=itemList.get(i).getProduct_views() %></td>
+									<td><%=itemList.get(i).getProduct_img() %></td>
+									<td><a class="update-btn" style="background-color: #ff9f43;" href="<%= root%>/manager/itemEdit?product_no=<%=itemList.get(i).getProduct_no() %>">수정하기</a></td>
+									<td><a class="update-btn" style="background-color: #FF5A5A;" href="<%= root%>/manager/itemDelete?product_no=<%=itemList.get(i).getProduct_no() %>">삭제하기</a></td>
+								</tr>
+							<%} %>
 							</tbody>
 						</table>
 					</div>

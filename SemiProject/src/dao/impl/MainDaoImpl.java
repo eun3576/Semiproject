@@ -10,7 +10,6 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.MainDao;
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 
 public class MainDaoImpl implements MainDao{
