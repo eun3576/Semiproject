@@ -6,7 +6,7 @@
 <% List<Product> pList = (List)request.getAttribute("pList"); %>
 <!-- header삽입 -->
 <%@include file="../layout/header.jsp" %>
-<div class="wrapper" style="width:830px;height:1000px;margin:80px auto;clear:left;scroll:auto;">
+<div class="wrapper" style="width:830px;height:1000px;margin:80px auto;clear:left;overflow:auto;">
 <% if(pList!=null&&pList.size()!=0){ %>
 <% for(int i=0;i<pList.size();i++){ %>
 <div style="width:250px;height:250px;box-shadow:3px 3px 3px #eee;box-sizing: border-box;float:left;margin-right:20px;margin-bottom:20px;cursor:pointer" onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'">
