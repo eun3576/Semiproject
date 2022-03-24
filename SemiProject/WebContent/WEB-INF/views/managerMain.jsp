@@ -146,7 +146,7 @@ button{
   </div>
   	<div class="button-1">
     <div class="eff-1"></div>
-    <a href="/chat/manager"> 실시간 채팅 관리 </a>
+    <a href="#" onclick="window.open('/chat/manager','_blank','width=655, height=805')"> 실시간 채팅 관리 </a>
   	</div>
    <div class="button-1">
     <div class="eff-1"></div>
