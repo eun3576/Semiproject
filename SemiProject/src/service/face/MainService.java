@@ -3,7 +3,6 @@ package service.face;
 import java.util.List;
 
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 
 public interface MainService {
