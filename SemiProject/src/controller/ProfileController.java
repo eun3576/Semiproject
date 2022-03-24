@@ -27,10 +27,8 @@ public class ProfileController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-	
 		//지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/profile/ProfileMain.jsp").forward(req, resp);		
-		
 		
 	}
 
