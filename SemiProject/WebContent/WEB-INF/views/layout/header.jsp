@@ -381,4 +381,9 @@ li{list-style:none;}
 </div>
 <!-- 회원가입 끝 -->
 
+<!-- 1:1문의 -->
+<div style="width:70px;height:70px;background:url('../../resources/img/chat_icon.png') no-repeat center white;background-size:50px;border:1px solid black;border-radius:50px;cursor:pointer;position:fixed;bottom:100px;right:60px;z-index:1000;"
+onclick="chatOpen();">
+</div>
+<!-- 1:1문의 끝 -->
 

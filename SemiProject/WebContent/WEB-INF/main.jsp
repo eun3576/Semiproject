@@ -146,7 +146,7 @@ $(document).ready(function(){
 	slideshow = setInterval(timer,2000);
 	
 	$("#sliderbox").mouseover(function(){clearInterval(slideshow)});
-	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,2000)});
+	$("#sliderbox").mouseout(function(){slideshow = setInterval(timer,3000)});
 	
 })//$(document)
 </script>
@@ -204,9 +204,7 @@ $(document).ready(function(){
 
 <%} %>
 </div>
-<div style="width:70px;height:70px;background:url('../../resources/img/chat_icon.png') no-repeat center white;background-size:50px;border:1px solid black;border-radius:50px;cursor:pointer;position:fixed;bottom:100px;right:60px;z-index:1000;"
-onclick="chatOpen();">
-</div>
+
 
 <!-- footer삽입 -->
 <%@include file="./views/layout/footer.jsp" %>
