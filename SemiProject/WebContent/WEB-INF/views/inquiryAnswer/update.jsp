@@ -59,7 +59,7 @@ $(document).ready(function() {
 <hr>
 
 <div>
-<form action="/inquiryAnswer/update" method="post" >
+<form action="/inquiryanswer/update" method="post" >
 <input type="hidden" name="inquiryno" value="<%=updateInquiryAnswer.getInquiryNo() %>" />
 
 <table class="table table-bordered">

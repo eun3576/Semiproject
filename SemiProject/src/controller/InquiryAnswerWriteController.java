@@ -33,7 +33,7 @@ public class InquiryAnswerWriteController extends HttpServlet {
 		inquiryAnswerService.write(req);
 		
 		//목록으로 리다이렉션
-		resp.sendRedirect("/inquiryAnswer/list");
+		resp.sendRedirect("/inquiryanswer/list");
 	}
 	
 }

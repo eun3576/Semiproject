@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Attachment;
-import dto.Notice;
 import dto.Product;
 import dto.ProductCategory;
 import util.ProductPaging;
@@ -59,5 +58,6 @@ public interface ProductSearchDao {
 	 * @return 해당되는 제품의 첨부파일리스트 반환
 	 */
 	public List<Attachment> getAttachmentList(Connection conn, Product product);
+	
 	
 }

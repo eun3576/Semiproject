@@ -59,4 +59,6 @@ public interface ProductService {
 	 * @return 첨부파일리스트
 	 */
 	public List<Attachment> getAttachmentByNo(HttpServletRequest req);
+	
+	
 }

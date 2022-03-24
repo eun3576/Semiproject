@@ -3,6 +3,7 @@ package dto;
 import java.util.Date;
 
 public class Inquiry {
+	
 	private int inquiry_no;
 	private String title;
 	private String content;
@@ -10,7 +11,6 @@ public class Inquiry {
 	private int user_no;
 	private String id;
 	private int password;
-	
 	
 	
 	@Override

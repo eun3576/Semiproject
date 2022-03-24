@@ -13,7 +13,6 @@ import dto.Attachment;
 import dto.Product;
 import dto.ProductCategory;
 import service.face.ProductService;
-import util.Paging;
 import util.ProductPaging;
 
 public class ProductServiceImpl implements ProductService{
@@ -200,9 +199,12 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<Attachment> getAttachmentByNo(HttpServletRequest req) {
+		
 		Product product = new Product();
+		
 		product.setProduct_no(Integer.parseInt(req.getParameter("product_no")));
 		
 		return productSearchDao.getAttachmentList(conn, product);
+		
 	}
 }

@@ -26,6 +26,6 @@ public class ManagerItemAddController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		managerService.insertProduct(req);
-		req.getRequestDispatcher("/WEB-INF/views/manager/itemAdd.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/manager/item.jsp").forward(req, resp);
 	}
 }

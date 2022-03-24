@@ -310,5 +310,51 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		
 	}
+
+	@Override
+	public List<Product> selectProductList() {
+		
+		return managerDao.selectProductList(JDBCTemplate.getConnection());
+	}
+
+	@Override
+	public List<Product> selectSearchProductList(String search) {
+		
+		return managerDao.selectSearchProductList(JDBCTemplate.getConnection(), search);
+	}
+
+	@Override
+	public void productEdit(HttpServletRequest req) {
+		
+		/*
+		 * Product product = new Product();
+		 * 
+		 * product.setProduct_no(Integer.parseInt(req.getParameter("product_no")));
+		 * product.setProduct_name(req.getParameter("product_name"));
+		 * product.setProduct_content(req.getParameter("product_content"));
+		 * 
+		 * managerDao.productEdit(JDBCTemplate.getConnection(), product);
+		 */
+		
+	}
+
+	@Override
+	public void productDelete(HttpServletRequest req) {
+
+		Product product = new Product();
+		ManagerDao managerDao = new ManagerDaoImpl();
+		
+		product.setProduct_no(Integer.parseInt(req.getParameter("product_no")));
+		
+		int count = managerDao.productCategoryDelete(conn, product);
+		int count2 = managerDao.productImgDelete(conn, product);
+		
+		
+		//if(count > 0 && count2 > 0) { // ( 카테고리 o, 이미지 o)
+			managerDao.productDelete(conn, product);
+		//}
+		
+		
+	}
 	
 }

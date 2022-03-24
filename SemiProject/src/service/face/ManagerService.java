@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Manager;
+import dto.Product;
 import dto.UserInfo;
 
 public interface ManagerService {
@@ -47,5 +48,18 @@ public interface ManagerService {
 	
 	/* 제품등록 */
 	public void insertProduct(HttpServletRequest req);
+	
+	/* 제품 리스트 */
+	public List<Product> selectProductList();
+	
+	/* 제품 검색 리스트 */
+	public List<Product> selectSearchProductList(String search);
+	
+	/* 제품 수정 */
+	public void productEdit(HttpServletRequest req); 
+	
+	// 제품 삭제
+	public void productDelete(HttpServletRequest req);
+	
 
 }
