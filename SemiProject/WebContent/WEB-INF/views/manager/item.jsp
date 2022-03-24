@@ -181,8 +181,8 @@
 									<th style="width: 10%;">제품내용</th>
 									<th style="width: 2%;">제품조회수</th>
 									<th style="width: 2%;">제품이미지</th>
-									<th style="width: 2%;">제품수정</th>
-									<th style="width: 2%;">제품삭제</th>
+									<th style="width: 3%;">제품수정</th>
+									<th style="width: 3%;">제품삭제</th>
 								</tr>
 							</thead>
 							<tbody>
