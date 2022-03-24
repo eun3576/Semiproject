@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Profile;
+import util.Paging;
 
 public interface ProfileService {
 
@@ -31,8 +32,8 @@ public interface ProfileService {
 
 	//회원 정보 비밀번호 확인
 	public int checkProfile(HttpServletRequest req);
-	
-	
+
+
 	
 }
 

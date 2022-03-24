@@ -5,9 +5,7 @@
 
 <%@ include file="../managerLayout/header.jsp" %>
 
-<%
-	List<ManagerNotice> noticeList = (List) request.getAttribute("noticeList");
-%>
+<% List<ManagerNotice> noticeList = (List) request.getAttribute("noticeList"); %>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -16,6 +14,17 @@ $(document).ready(function(){
 	$("#btnWrite").click(function(){
 		location.href="/notice/write"
 	})
+	
+	//페이지 접속 시 입력창으로 포커스 이동
+	$("input").eq(0).focus();
+	
+	//입력 창에서 엔터키 입력 시 submit하도록 한다 //검색창을 form으로 감싸주어야 합니다
+	$("input").eq(0).keydown(function( e ) {
+		if( e.keyCode == 13 ) { //엔터키
+			$(this).parents("form").submit();
+		}
+	});
+	
 })
 
 </script>
@@ -142,13 +151,6 @@ $(document).ready(function(){
 	}
 </script>
 
-<%-- <script>
-function clickEvent() {
-	var text = document.getElementById("search");
-	$(location).attr("href", "<%=request.getContextPath() %>/notice/list?search=" + text);
-}
-</script> --%>
-
 <script>
 function userSearchBtn() {
 	var text = document.getElementById("search").value;
@@ -156,47 +158,44 @@ function userSearchBtn() {
 }
 </script>
 
-<!-- 검색창 -->
-<!-- <div class="pull-right">
-  <form class="search-form">
-       <input type="search" placeholder="제목을 입력하세요" required autocomplete="on" id="search" name="search">
-       <input type="submit" value="검색" onclick="clickEvent();">
-  </form>
-</div>  -->
-
-
 <section>
 	
 	<div class="admin-content_area">
 		<div class="admin-content">
-			<div class="admin-content_title">공지사항 관리</div>
+			
+			<div class="admin-content_title">공지사항 관리 <button id="btnWrite" class=" btn-primary pull-right">공지사항 작성하기</button> </div>
+			
 		</div>
 	</div>
-	
+
+<form>	
 <div class="admin-content_area">
 	<div class="admin-content">
 		<div class="admin-content_title">공지사항 검색</div>
 		<div class="align-row choice-genre-area manager_box">
        		
+       		
        		<input type="text"  class="manager_input" id="search" name="search" placeholder="검색할 제목을 입력해주세요.">
 			<button class="manager_btn" onclick="userSearchBtn();">검색</button>
-
+			
+			
   	</div>
   </div>
 </div>
+</form>
 
 <div class="admin-content_area">
 			<div class="admin-content">
-				<div class="admin-content_title">댓글 목록</div>
+				<div class="admin-content_title">공지사항 목록</div>
 				<div class="align-row choice-genre-area">
 					<div class="search-table" style="min-height: 550px;">
 						<table class="table table-border table-hover table-striped" style="text-align: center;">
 							<thead>
 								<tr>
-									<th style="width: 1%;">글번호</th>
+									<th style="width: 0.25%;">글번호</th>
 									<th style="width: 1%;">제목</th>
-									<th style="width: 1%;">작성일</th>
-									<th style="width: 1%;">작성자</th>
+									<th style="width: 0.25%;">작성일</th>
+									<th style="width: 0.25%;">작성자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -212,49 +211,10 @@ function userSearchBtn() {
 						</table>
 					</div>
 				</div>
-				<!-- 페이지 네비게이션 자리 -->
-				<div class="pagination">
-					
-				</div>
-					
-				<form class="page-form" action="notice.jsp" method="post">
-					<input type="hidden" name="pageNo">
-				</form>
+				
+				<%@ include file="../notice/paging.jsp" %>
+			
 			</div>
 			
 		</div>
-
-
-<%-- <table class="table table-striped table-hover table-condensed">
-
-<tr class="success">
-	<th>글번호</th>
-	<th>제목</th>
-	<th>작성일</th>
-	<th>작성자</th>
-</tr>
-
-<%	for(int i=0; i<noticeList.size(); i++) { %>
-<tr>
-	<td><%=noticeList.get(i).getNoticeNo() %></td>
-	<td><a href="./view?noticeNo=<%=noticeList.get(i).getNoticeNo() %>"><%=noticeList.get(i).getTitle()%></a></td>
-	<td><%=noticeList.get(i).getWriteDate() %></td>
-	<td>관리자<%=noticeList.get(i).getManagerNo() %></td>
-
-</tr>
-<%	} %>
-
-</table> --%>
-
-<!-- 글쓰기 버튼 -->
-<div id="btnBox" class="pull-right">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
-
 </section>	
-
-<%-- <%@ include file="../notice/paging.jsp" %>
-
-<%@ include file="../managerLayout/footer.jsp" %> --%>
-
-

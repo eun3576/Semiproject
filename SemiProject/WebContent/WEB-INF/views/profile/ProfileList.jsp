@@ -4,6 +4,11 @@
 <%@include file="../layout/header.jsp" %>
 
 
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -123,6 +128,13 @@ footer {
     left: 0;
 }
 /* footer 하단 고정 [E] */
+
+
+
+body{ 
+    font-family : 'Jua', sans-serif;
+}
+
 
 
 </style>

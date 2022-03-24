@@ -72,7 +72,7 @@ $(document).ready(function() {
 <div class="text-center">	
 	<button type="button" id="btnUpdate" class="btn btn-info">수정</button>
 	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
-</div>z
+</div>
 
 
 <!-- .container -->

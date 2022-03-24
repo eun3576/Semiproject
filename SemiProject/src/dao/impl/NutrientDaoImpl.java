@@ -23,7 +23,7 @@ public class NutrientDaoImpl implements NutrientDao {
 		sql += " WHERE nutrientno = ?";
 		
 		//조회한 결과를 저장할 객체
-		Nutrient nutrient = null;
+		Nutrient n = null;
 		
 		try {
 			//SQL수행 객체 
@@ -38,12 +38,12 @@ public class NutrientDaoImpl implements NutrientDao {
 			
 			if(rs.next()) {
 				//결과값 저장 객체
-				nutrient = new Nutrient();
+				n = new Nutrient();
 				
 				//결과값 행처리 
-				nutrient.setNutrientNo(rs.getInt("nutrientno"));
-				nutrient.setNutrient(rs.getString("nutrient"));
-				nutrient.setExplain(rs.getString("explain"));
+				n.setNutrientNo(rs.getInt("nutrientno"));
+				n.setNutrient(rs.getString("nutrient"));
+				n.setExplain(rs.getString("explain"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class NutrientDaoImpl implements NutrientDao {
 			JDBCTemplate.close(rs);
 		}
 		
-		return nutrient;
+		return n;
 	}
 
 }

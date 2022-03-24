@@ -24,8 +24,8 @@ public class SignUpController extends HttpServlet {
 		
 		//UserInfo객체 생성
 		UserInfo user = new UserInfo();
-		user.setId(req.getParameter("userJoinid"));
-		user.setNickname(req.getParameter("userJoinnick"));
+		user.setId(req.getParameter("joinUserId"));
+		user.setNickname(req.getParameter("joinUserNick"));
 		user.setPassword(req.getParameter("userJoinpw"));
 		user.setGender(req.getParameter("gender"));
 		user.setPhonenumber(req.getParameter("userJoinphone"));

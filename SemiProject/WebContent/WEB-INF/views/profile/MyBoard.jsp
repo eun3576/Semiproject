@@ -9,7 +9,10 @@
 
 <% List<Review> Blist = (List)request.getAttribute("Blist"); %>
 
-
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -46,39 +49,18 @@ a:hover{
 	color:blue;
 }
 
-/* footer 하단 고정 [S] */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+tr:hover { 
+	background-color: lightgray; 
+
 }
 
-#body-wrapper {
-    min-height: 100%;
-    position: relative;
+body{ 
+    font-family : 'Jua', sans-serif;
 }
-
-#body-content {
-    margin-top: 100px;
-    padding-bottom: 100px; /* footer의 높이 */
-}
-
-footer {
-    width: 100%;
-    height: 100px; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
-}
-/* footer 하단 고정 [E] */
-
 
 </style>
 
-<body>
 
-<div id="body wrapper">
-  <div id="body-conten">
 
 <div class="container text-center">
 <br><br>
@@ -98,44 +80,39 @@ footer {
 <!--     <div class="row"> -->
         <div class="col-xs-10">
             <div class="col-sm-2"></div>
-                <div class="col-sm-9">
-                    <h2 class="text-center">나의 게시판</h2>
+<!--                 <div class="col-sm-10"> -->
+<!--                     <h2 class="text-center">나의 게시판</h2> -->
 <br>     
 <hr>                
                      
    <table class="table table-striped">
    <tr class="info">
-   		<th>제목</th>
-   		<th>조회수</th>
-   		<th>작성일</th>
+   		<th width="20%">작성일</th>
+   		<th id="titile" width="70%">제목</th>
+   		<th width="10%">조회수</th>
    	</tr>
    	
  <%	for(int i=0; i<Blist.size(); i++) { %>
  
 <tr>
-	<td><%=Blist.get(i).getTitle() %></td>
-	<td><%=Blist.get(i).getViews() %></td>
 	<td><%=Blist.get(i).getWriteDate() %></td>
+	<td><a href="/review/view?review_no=<%=Blist.get(i).getReview_no() %>"><%=Blist.get(i).getTitle() %></a></td>
+	<td><%=Blist.get(i).getViews() %></td>
 </tr>
 <%	} %>
 
    </table>                  
   
                 </div>
-        </div> <!-- col-sm-12 --> 
+<!--         </div> col-sm-10  -->
 </div> <!-- container end-->
 
 </div> <!-- class="col-xs-2"> -->
 
+<%@ include file="../profile/paging.jsp" %>
 
-
-</div> <!-- body-conten -->
-  
     <!-- footer삽입 -->
 <footer class="footer"><%@include file="../layout/footer.jsp" %></footer>
   
-</div>
 
 
-
-</body>

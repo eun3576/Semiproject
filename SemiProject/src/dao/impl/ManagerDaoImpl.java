@@ -494,6 +494,30 @@ public class ManagerDaoImpl implements ManagerDao {
 		return res;
 	}
 
+	@Override
+	public int reviewImgDelete(Connection conn, Review review) {
+		
+		String sql = "delete attachment where review_no = ?";		
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, review.getReview_no());
+			
+			res = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		
+		return res;
+	}
+
 	
 	
 }

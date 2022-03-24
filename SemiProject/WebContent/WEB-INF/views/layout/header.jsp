@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String userid = (String)session.getAttribute("userid"); %>
 <!DOCTYPE html>
 <html>
 <title>영추영추</title>
+
+<!-- 구글웹폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 
 <!-- jQuery  -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -126,18 +133,14 @@ $(document).ready(function(){
 	})
 	
 	//사용중인 아이디인지 확인
-	$("#joinUserId").keyup(function(){
-		ajaxToServerId();
-	})
+// 	$("#joinUserId").keyup(function(){
+// 		ajaxToServerId();
+// 	})
 	
 	//사용중인 닉네임인지 확인
-	$("#joinUserNick").keyup(function(){
-		ajaxToServerNick();
-	})
-	
-	$("#joinUserId").keyup(function(){
-		ajaxToServerId();
-	})
+// 	$("#joinUserNick").keyup(function(){
+// 		ajaxToServerNick();
+// 	})
 	
 	//회원가입창 닫기/닫으면서 기록한거 삭제
 	$("#userJoinClose").click(function(){
@@ -184,6 +187,15 @@ $(document).ready(function(){
 		}
 	})
 })
+
+function chatOpen(){
+<%if(userid!=null&&!userid.equals("")){%>
+	window.open('/chat/user','_blank','width=655, height=805')
+<%} else{%>
+	alert("로그인 후 이용 가능합니다")
+	return false;
+<%}%>
+}
 </script>
 
 <!-- 로그인 실패 script -->
@@ -205,6 +217,11 @@ $(document).ready(function(){
 
 <!-- style sheet -->
 <style type="text/css">
+
+body{ 
+    font-family : 'Jua', sans-serif;
+}
+
 a{text-decoration:none;color:black;}
 p{margin:0;}
 /* header style layout start */
@@ -212,36 +229,36 @@ div{padding:0;margin:0;}
 ul{margin:0;}
 li{list-style:none;}
 #header{margin-top:10px;}
-#header #smallNav li{float:right;margin-right:30px;cursor:pointer;font-size:13px;height:13px;}
+#header #smallNav li{float:right;margin-right:30px;cursor:pointer;font-size:16px;height:16px;}
 #header #smallNav li:first-child, #header #smallNav li:nth-child(0){margin-right:50px;}
 #header #smallNav li:hover{font-weight:bold;}
 #header div{clear:right;margin-right:50px;}
-#header div #mSearch{float:right;height:24px;border:1px solid #999;border-radius:3px;margin-top:10px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
-#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:10px;width:25px;height:25px;display:inline-block;cursor:pointer;}
-#header h1{background-image: url("../../../resources/img/logo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
+#header div #mSearch{float:right;width:200px;height:30px;border:1px solid #999;border-radius:3px;margin-top:20px;margin-right:5px;padding:0;font-size:13px;line-height: 1em;box-sizing: border-box;}
+#header div span{float:right;background-image: url('../../resources/img/search_icon.png');background-size:30px 30px;margin-top:20px;width:30px;height:30px;display:inline-block;cursor:pointer;}
+#header h1{background-image: url("../../../resources/img/changelogo.png");background-size: 220px 100px;width:220px;height:100px;cursor:pointer;margin:20px auto 0;}
 #header #nav{width:1200px;margin:0 auto;}
 #header #nav > ul{clear:right;margin:30px 0 0 0;padding:0;}
-#header #nav > ul > li{display:inline-block;font-size:25px;margin-right:169px;width:100px;cursor:pointer;text-align:center;position:relative;}
+#header #nav > ul > li{display:inline-block;font-size:25px;margin-right:130px;width:130px;cursor:pointer;text-align:center;position:relative;}
 #header #nav > ul > li:last-child{margin-right:0;}
 #header #nav > ul > li:hover{font-weight:bold;}
 #header #nav > ul > li:hover > .subMenu {font-size:16px;overflow:visible;z-index:50;height:50px;}
-#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;width:110px;}
+#header #nav > ul > li > .subMenu{padding:0;background-color:#eee;position:absolute;height:0;font-size:0;overflow:hidden;width:130px;}
 #header #nav > ul > li > .subMenu > li{font-size:16px;font-weight:normal;text-align:center;}
 #header #nav > ul > li > .subMenu > li:hover{font-weight:bold;}
 
 /* header style layout end */
-/*<<<<<<< jyj*/
 
 #footer { text-align: center; }
 /* footer style layout */
-/* ======= */
+
 /* footer style layout start */
 #footer{background-color:#eee;margin:0;padding:0;height:100px;padding-top:10px;}
 #footer ul{width:1200px;margin:30px auto;padding:0;text-align: center;}
 #footer ul li{display:inline-block;margin-right:30px;}
 /* footer style layout end */
-/*>>>>>>> main*/
 </style>
+
+<link rel="shortcut icon" href="/resources/img/favicon.ico">
 
 </head>
 <body>
@@ -268,9 +285,9 @@ li{list-style:none;}
 <div id="nav">
 <ul>
 <li><a href="<%request.getContextPath();%>/product/search">제품조회</a></li>
-<li><a href="<%request.getContextPath();%>/nutrient/self">제품추천</a></li>
+<li><a href="<%request.getContextPath();%>/nutrient/self">영양소추천</a></li>
 <li><a href="<%request.getContextPath();%>/review/list">제품후기</a></li>
-<li>BEST3</li>
+<li><a href="<%request.getContextPath();%>/product/best">BEST3</a></li>
 <li><a href="<%request.getContextPath();%>/notice/list">고객센터</a>
 <ul class="subMenu">
 <li><a href="<%request.getContextPath();%>/notice/list">공지사항</a></li>
@@ -316,12 +333,14 @@ li{list-style:none;}
 <h3 style="clear:right;font-size:25px;width:100px;margin:0 auto;">회원가입</h3>
 <div style="width:300px;margin:50px auto 0;">
 <label for="joinUserId" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="joinUserId" name="joinUserId" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text" autocomplete="off">
+<input id="joinUserId" name="joinUserId" style="width:180px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="아이디는 4~6자로 입력" type="text" autocomplete="off">
+<button type="button" onclick="ajaxToServerId();">중복확인</button>
 <span id="rescheckid" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 <div style="width:300px;margin:0 auto;">
 <label for="joinUserNick" style="cursor:pointer;background:url(../../resources/img/user_person_icon.png) #ccc no-repeat center;background-size:25px;width:35px;height:35px;float:left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;"></label>
-<input id="joinUserNick" name="joinUserNick" style="width:250px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
+<input id="joinUserNick" name="joinUserNick" style="width:180px;height:35px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border:1px solid #ccc;" placeholder="닉네임" type="text">
+<button type="button" onclick="ajaxToServerNick();">중복확인</button>
 <span id="reschecknick" style="font-size:14px;color:red;height:18px;display:block;"></span>
 </div>
 
@@ -362,4 +381,9 @@ li{list-style:none;}
 </div>
 <!-- 회원가입 끝 -->
 
+<!-- 1:1문의 -->
+<div style="width:70px;height:70px;background:url('../../resources/img/chat_icon.png') no-repeat center white;background-size:50px;border:1px solid black;border-radius:50px;cursor:pointer;position:fixed;bottom:100px;right:60px;z-index:1000;"
+onclick="chatOpen();">
+</div>
+<!-- 1:1문의 끝 -->
 

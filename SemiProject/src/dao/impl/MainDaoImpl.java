@@ -10,7 +10,6 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.MainDao;
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 
 public class MainDaoImpl implements MainDao{
@@ -19,20 +18,19 @@ public class MainDaoImpl implements MainDao{
 	private ResultSet rs = null; //조회결과 객체
 	
 	@Override
-	public List<ProductTag> selectProductNtag(Connection conn) {
+	public List<Product> selectProduct(Connection conn) {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "   SELECT rownum rnum, DATA.* FROM (";
-		sql += "		SELECT tag_name, product_views, product_img";
-		sql += "        	FROM product, product_tag"; 
-		sql += "		WHERE product.product_no = product_tag.product_no"; 
+		sql += "		SELECT product_name, product_views, product_img, product_no";
+		sql += "        	FROM product"; 
 		sql += "		ORDER BY product_views DESC";
 		sql += "	) DATA";	    
 		sql += " ) R";
 		sql += " WHERE rnum BETWEEN 1 AND 4";
 		
 		//조회결과 저장할 list 
-		List<ProductTag> tagList = new ArrayList<>();
+		List<Product> pList = new ArrayList<>();
 		
 		try {
 			//sql 수행객체 생성
@@ -41,12 +39,12 @@ public class MainDaoImpl implements MainDao{
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				ProductTag productTag = new ProductTag();
-				productTag.setTagName(rs.getString("tag_name"));
-				productTag.setProductViews(rs.getInt("product_views"));
-				productTag.setProductImg(rs.getString("product_img"));
-				
-				tagList.add(productTag);
+				Product product = new Product();
+				product.setProduct_name(rs.getString("product_name"));
+				product.setProduct_views(rs.getInt("product_views"));
+				product.setProduct_img(rs.getString("product_img"));
+				product.setProduct_no(rs.getInt("product_no"));
+				pList.add(product);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,7 +54,7 @@ public class MainDaoImpl implements MainDao{
 		}
 		
 		//최종 조회 결과 반환
-		return tagList;
+		return pList;
 	}
 
 	@Override
@@ -103,7 +101,7 @@ public class MainDaoImpl implements MainDao{
 	@Override
 	public List<Product> selectBySearchItems(Connection conn) {
 		String sql = "";
-		sql += "SELECT product_name, product_views, product_img, product_content  FROM product";
+		sql += "SELECT product_name, product_views, product_img, product_content, product_no  FROM product";
 		sql += " ORDER BY product_views";
 		
 		List<Product> pList = new ArrayList<>();
@@ -119,6 +117,7 @@ public class MainDaoImpl implements MainDao{
 				product.setProduct_name(rs.getString("product_name"));
 				product.setProduct_views(rs.getInt("product_views"));
 				product.setProduct_img(rs.getString("product_img"));
+				product.setProduct_no(rs.getInt("product_no"));
 				
 				pList.add(product);
 			}
