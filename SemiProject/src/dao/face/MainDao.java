@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Product;
-import dto.ProductTag;
 import dto.Review;
 
 public interface MainDao {
