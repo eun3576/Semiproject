@@ -17,18 +17,18 @@ import service.impl.ManagerServiceImpl;
 public class ManagerItemController extends HttpServlet{
 
 	//서비스 객체
-	private ManagerService managerSevice= new ManagerServiceImpl();
+	private ManagerService managerService= new ManagerServiceImpl();
 		
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 						
-		List<Product> itemList = managerSevice.selectProductList();
+		List<Product> itemList = managerService.selectProductList();
 		
 		
 		String search = req.getParameter("search"); 
 		if(search != null && search.length() > 0) { 
-			itemList = managerSevice.selectSearchProductList(search); 
+			itemList = managerService.selectSearchProductList(search); 
 		}
 		 
 		
