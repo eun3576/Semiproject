@@ -186,7 +186,8 @@
 								</tr>
 							</thead>
 							<tbody>
-							<%for(int i=0;  i < itemList.size(); i++){ %>
+							<% System.out.print(itemList); 
+							for(int i=0;  i < itemList.size(); i++){ %>
 								<tr>
 									<td><%=itemList.get(i).getProduct_no() %></td>
 									<td><%=itemList.get(i).getProduct_name() %></td>
