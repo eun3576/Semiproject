@@ -157,8 +157,8 @@ $(document).ready(function(){
 <div id="sliderbox" style="position:relative;">
 	<img src="../resources/img/arrow_left_icon.png" id="arrowLeft" style="position:absolute;left:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 <ul id="slider">
-	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/product/search'"><img src="../resources/img/sildeImg1.jpg"/></li>
-	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/review/list'"><img src="../resources/img/sildeImg2.jpg"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/product/search'"><img src="../resources/img/slideImg1.png"/></li>
+	<li style="cursor:pointer;" onclick="location.href='<%request.getContextPath();%>/review/list'"><img src="../resources/img/slideImg2.png"/></li>
 </ul>
 	<img src="../resources/img/arrow_right_icon.png" id="arrowRight" style="position:absolute;right:0;top:50%;z-index:10;margin-top:-32px;cursor:pointer;"/>
 </div>
