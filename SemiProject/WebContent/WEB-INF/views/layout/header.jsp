@@ -200,7 +200,7 @@ function chatOpen(){
 
 <!-- 로그인 실패 script -->
 <script>
-<%if(null != session.getAttribute("msg")){ %>
+<%if(null != session.getAttribute("msg")&&session.getAttribute("msg").equals("로그인 실패")){ %>
 	alert("아이디 또는 비밀번호가 일치하지 않습니다. 다시 로그인을 시도해주세요.")
 	<%session.setAttribute("msg", null);%>
 <%}%>
