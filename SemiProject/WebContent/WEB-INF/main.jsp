@@ -164,10 +164,10 @@ $(document).ready(function(){
 </div>
 
 <!-- 베스트 아이템 -->
-<div id="bestItem" style="width:900px;margin:50px auto;text-align: center;">
+<div id="bestItem" style="width:860px;height:350px;margin:50px auto;text-align: center;clear:both;">
 <h1>BEST ITEM</h1>
 <% for(int i=0; i<pList.size();i++){ %>
-	<div onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'" style="cursor:pointer;">
+	<div onclick="location.href='/product/detail?product_no=<%=pList.get(i).getProduct_no() %>'" style="cursor:pointer;margin-right:15px;float:left;">
 	<!-- 이미지가 없을시 대체 이미지 -->
 	<img alt="상품이미지" src="/upload/<%=pList.get(i).getProduct_img()%>" width="200" height="200" onerror="this.src='../resources/img/best_temp.jpg'">
 	<p style="width:200px;">제품명: <%=pList.get(i).getProduct_name() %></p>
