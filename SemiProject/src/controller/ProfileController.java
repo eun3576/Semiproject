@@ -29,6 +29,7 @@ public class ProfileController extends HttpServlet {
 		
 		//지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/profile/ProfileMain.jsp").forward(req, resp);		
+
 		
 	}
 

@@ -5,6 +5,9 @@
 <!-- footer 시작-->
 
 <style>
+
+
+
 button{
 button:hover{
   background:#fff;
@@ -12,6 +15,8 @@ button:hover{
 	}
 }
 </style>
+
+
 
 <div id="footer" >
 	<small>Copyright &copy; 영추영추 2022</small>
@@ -23,7 +28,10 @@ button:hover{
 <button onclick="location.href='<%=request.getContextPath() %>/manager/login'">관리자로그인</button>
 
 </ul>
+
 </div>
+
+
 <!-- footer끝 -->
 </body>
 </html>
