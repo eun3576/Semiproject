@@ -60,10 +60,14 @@ public interface ProductService {
 	 */
 	public List<Attachment> getAttachmentByNo(HttpServletRequest req);
 	
+<!--<<<<<<< mej-->
+	
+<!--=======-->
 	/**
 	 * 조회수가 높은 상위 3품목의 리스트를 불러온다.
 	 * 
 	 * @return - Product객체의 리스트
 	 */
 	public List<Product> getProductByBest();
+<!-->>>>>>> main-->
 }

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Attachment;
-import dto.Notice;
 import dto.Product;
 import dto.ProductCategory;
 import util.ProductPaging;
@@ -60,6 +59,8 @@ public interface ProductSearchDao {
 	 */
 	public List<Attachment> getAttachmentList(Connection conn, Product product);
 	
+<!--<<<<<<< mej-->
+<!--=======-->
 	/**
 	 * 제품의 조회수 상위 3품목을 조회한다.
 	 * 
@@ -68,5 +69,6 @@ public interface ProductSearchDao {
 	 * @return 조회수 상위 3품목 리스트
 	 */
 	public List<Product> getProductByViews(Connection conn, Product product);
+<!-->>>>>>> main-->
 	
 }
