@@ -198,13 +198,6 @@ function chatOpen(){
 }
 </script>
 
-<!-- 로그인 실패 script -->
-<script>
-<%if(null != session.getAttribute("login") && !(boolean)session.getAttribute("login")){ %>
-	alert("아이디 또는 비밀번호가 일치하지 않습니다. 다시 로그인을 시도해주세요.")
-<%}%>
-</script>	
-
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
