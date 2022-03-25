@@ -73,4 +73,7 @@ public interface ManagerDao {
 	//제품 이미지 삭제
 	public int productImgDelete(Connection conn, Product product);
 	
+	//제품 이미지 업데이트
+	public int productUpdateImg(Connection conn, Product product);
+	
 }

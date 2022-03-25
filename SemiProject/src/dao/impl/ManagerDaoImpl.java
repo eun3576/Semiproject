@@ -328,7 +328,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public List<Product> selectProductList(Connection conn) {
 		
-		String sql = "select * from product order by product_no asc";
+		String sql = "select * from product order by product_no DESC";
 		
 		//결과 저장할 List
 		List<Product> productList = new ArrayList<>();  
@@ -401,7 +401,7 @@ public class ManagerDaoImpl implements ManagerDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, product.getCategory_name());
+			ps.setString(1, product.getProduct_name());
 			ps.setString(2, product.getProduct_content());
 			ps.setInt(3, product.getProduct_no());
 
@@ -518,6 +518,27 @@ public class ManagerDaoImpl implements ManagerDao {
 		return res;
 	}
 
-	
+	@Override
+	public int productUpdateImg(Connection conn, Product product) {
+		
+		String sql = "";
+		sql += "UPDATE product set product_img = ? where product_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, product.getProduct_img());
+			ps.setInt(2, product.getProduct_no());
+			
+			res = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+	}
 	
 }

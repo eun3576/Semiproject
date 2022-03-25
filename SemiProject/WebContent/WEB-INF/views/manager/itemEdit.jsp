@@ -81,7 +81,8 @@
 			<hr>
 			
 			<div>
-				<form id="addform" action="/manager/itemAdd" method="post" enctype="multipart/form-data">
+				<form id="addform" action="/manager/itemEdit" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="product_no" value="<%=product.getProduct_no() %>">
 				
 				<table class="table table-bordered">
 					<tr>

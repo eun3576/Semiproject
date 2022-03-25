@@ -17,18 +17,18 @@ import service.impl.ManagerServiceImpl;
 public class ManagerUserController extends HttpServlet{
 
 	//서비스 객체
-	private ManagerService managerSevice= new ManagerServiceImpl();
+	private ManagerService managerService= new ManagerServiceImpl();
 		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//베스트 목록 가져오기
-		List<UserInfo> userList = managerSevice.selectUserList();
+		List<UserInfo> userList = managerService.selectUserList();
 		
 		
 		String search = req.getParameter("search");
 		if(search != null && search.length() > 0) {
-			userList = managerSevice.searchUserList(search); 
+			userList = managerService.searchUserList(search); 
 		}
 		
 		//조회된 결과 view로 전달

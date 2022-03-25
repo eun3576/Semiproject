@@ -42,9 +42,7 @@ public class ManagerItemEditController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		managerService.productEdit(req);
 		
-		resp.sendRedirect("/managernotice/list");
+		resp.sendRedirect("/manager/item");
 	}
-
-	
 	
 }
