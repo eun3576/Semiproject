@@ -16,13 +16,20 @@
 			<script type="text/javascript">
 			$(document).ready(function() {
 				
+				
 				//작성버튼 동작
 				$("#btnWrite").click(function() {
 					
-					//submit전에 스마트에디터에 작성된 내용을 <textarea>로 반영한다
-					submitContents( $("#btnWrite") );
+					 if ($("input:checkbox[name=category]").is(":checked") == true) {
+						//submit전에 스마트에디터에 작성된 내용을 <textarea>로 반영한다
+						submitContents( $("#btnWrite") );
+							
+						$("#addform").submit();
+			        } else {
+		               	alert("카테고리를 체크해주세요")
+			        }
 					
-					$("#addform").submit();
+					
 				});
 				
 				//취소버튼 동작
